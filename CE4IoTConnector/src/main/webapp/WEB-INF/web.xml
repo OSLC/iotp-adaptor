@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>CE4IoTConnector</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<description>Scheme used for URI when registering ServiceProvider.  Can be overridden by System property of the same name.</description>
+		<param-name>com.ibm.oslc.adaptor.iotp.servlet.scheme</param-name>
+		<param-value>https</param-value>
+	</context-param>
+	<context-param>
+		<description>Base URI for the adaptor.</description>
+		<param-name>com.ibm.oslc.adaptor.iotp.servlet.baseurl</param-name>
+		<param-value>https://localhost:8080</param-value>
+	</context-param>
+	<context-param>
+		<description>Port used for URI when registering ServiceProvider.  Can be overridden by System property of the same name.</description>
+		<param-name>com.ibm.oslc.adaptor.iotp.servlet.port</param-name>
+		<param-value>8080</param-value>
+	</context-param>
+	<listener>
+		<description>Listener for ServletContext lifecycle changes</description>
+		<listener-class>com.ibm.oslc.adaptor.iotp.servlet.ServletListener</listener-class>
+	</listener>
+
+	<servlet>
+		<description>JAX-RS Tools Generated - Do not modify</description>
+		<servlet-name>JAX-RS Servlet</servlet-name>
+		<servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.ibm.oslc.adaptor.iotp.servlet.Application</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JAX-RS Servlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RootServicesService</servlet-name>
+		<servlet-class>com.ibm.oslc.adaptor.iotp.impl.RootServicesService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RootServicesService</servlet-name>
+		<url-pattern>/rootservices</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+		<display-name>CredentialsFilter</display-name>
+		<filter-name>CredentialsFilter</filter-name>
+		<filter-class>com.ibm.oslc.adaptor.iotp.impl.CredentialsFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CredentialsFilter</filter-name>
+        <url-pattern>/services/*</url-pattern>
+	</filter-mapping>
+</web-app>

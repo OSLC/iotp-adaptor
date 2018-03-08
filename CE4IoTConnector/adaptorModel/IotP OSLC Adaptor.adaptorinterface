@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oslc4j_ai:AdaptorInterface xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:oslc4j_ai="http://org.eclipse.lyo/oslc4j/adaptorInterface" name="IoTPAdaptor" javaClassBaseNamespace="com.ibm.oslc.adaptor.iotp" javaFilesBasePath="/src/main/java/" jspFilesBasePath="/src/main/webapp" javascriptFilesBasePath="/src/main/webapp">
+  <serviceProviderCatalog title="IoTP Service Provider Catalog" description="Service Provider Catalog for Watson IoT Platform Adaptor">
+    <serviceProviders title="SampleAdaptor Service Provider" description="Service Provider for SampleAdaptor">
+      <services domainSpecification="//@specification/@domainSpecifications.0">
+        <queryCapabilities title="AResource Query Capability" label="AResource Query Capability" queryBaseURI="query" resourceTypes="//@specification/@domainSpecifications.0/@resources.0"/>
+      </services>
+    </serviceProviders>
+  </serviceProviderCatalog>
+  <specification>
+    <domainSpecifications name="SampleDomain" namespaceURI="http://www.sampledomain.org/sam#" namespacePrefix="//@specification/@domainPrefixes.0">
+      <resources name="AResource" resourceProperties="//@specification/@domainSpecifications.0/@resourceProperties.0"/>
+      <resourceProperties title="a Property" name="aProperty" valueType="String" description="a Property"/>
+    </domainSpecifications>
+    <domainPrefixes name="sam"/>
+  </specification>
+</oslc4j_ai:AdaptorInterface>
