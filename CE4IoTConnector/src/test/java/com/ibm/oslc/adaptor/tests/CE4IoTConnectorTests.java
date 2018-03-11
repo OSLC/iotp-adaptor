@@ -36,9 +36,9 @@ public class CE4IoTConnectorTests {
 
 	private static final Logger logger = Logger.getLogger(CE4IoTConnectorTests.class.getName());
 	private static final String serverUrl = "https://rlia4iot.raleigh.ibm.com:9443/iotp";
-	private static final String userId = "jamsden@us.ibm.com";
-	private static final String password = "jra2canberra";
-	private static final String orgId = "rhu3zv";
+	private static final String userId = "someuser@ibm.com";
+	private static final String password = "********";
+	private static final String orgId = "some organization";
 	private static String queryCapability = null;
 	private static String creationFactory = null;
 	private static OslcClient client = null;
