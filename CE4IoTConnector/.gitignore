@@ -1,9 +1,5 @@
 /target/
 /build/
-/license/
-/src/main/java/
-/src/main/webapp/*
-!/src/main/webapp/WEB-INF
 
 *.class
 
