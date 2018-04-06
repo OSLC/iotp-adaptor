@@ -27,6 +27,7 @@ package com.ibm.oslc.adaptor.iotp.resources;
 
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
+
 // Start of user code imports
 // End of user code
 
@@ -39,19 +40,24 @@ public interface Oslc_bmxDomainConstants
     public static String BLUEMIX_NAMSPACE = "http://jazz.net/ns/bmx#";
     public static String BLUEMIX_NAMSPACE_PREFIX = "oslc_bmx";
 
-    public static String APP = "App";
-    public static String PATH_APP = "app";
-    public static String TYPE_APP = BLUEMIX_NAMSPACE + APP;
-    public static String CFSERVICE = "CFService";
-    public static String PATH_CFSERVICE = "cFService";
-    public static String TYPE_CFSERVICE = BLUEMIX_NAMSPACE + CFSERVICE;
-    public static String FLOW = "Flow";
-    public static String PATH_FLOW = "flow";
-    public static String TYPE_FLOW = BLUEMIX_NAMSPACE + FLOW;
-    public static String NODEREDAPP = "NodeREDApp";
-    public static String PATH_NODEREDAPP = "nodeREDApp";
-    public static String TYPE_NODEREDAPP = BLUEMIX_NAMSPACE + NODEREDAPP;
-    public static String SPACE = "Space";
-    public static String PATH_SPACE = "space";
-    public static String TYPE_SPACE = BLUEMIX_NAMSPACE + SPACE;
+    public static String APP_PATH = "app";
+    public static String APP_NAMESPACE = BLUEMIX_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String APP_LOCALNAME = "App"; //localName of the rdfs:class the resource describes
+    public static String APP_TYPE = APP_NAMESPACE + APP_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String CFSERVICE_PATH = "cFService";
+    public static String CFSERVICE_NAMESPACE = BLUEMIX_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String CFSERVICE_LOCALNAME = "CFService"; //localName of the rdfs:class the resource describes
+    public static String CFSERVICE_TYPE = CFSERVICE_NAMESPACE + CFSERVICE_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String FLOW_PATH = "flow";
+    public static String FLOW_NAMESPACE = BLUEMIX_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String FLOW_LOCALNAME = "Flow"; //localName of the rdfs:class the resource describes
+    public static String FLOW_TYPE = FLOW_NAMESPACE + FLOW_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String NODEREDAPP_PATH = "nodeREDApp";
+    public static String NODEREDAPP_NAMESPACE = BLUEMIX_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String NODEREDAPP_LOCALNAME = "NodeREDApp"; //localName of the rdfs:class the resource describes
+    public static String NODEREDAPP_TYPE = NODEREDAPP_NAMESPACE + NODEREDAPP_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String SPACE_PATH = "space";
+    public static String SPACE_NAMESPACE = BLUEMIX_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String SPACE_LOCALNAME = "Space"; //localName of the rdfs:class the resource describes
+    public static String SPACE_TYPE = SPACE_NAMESPACE + SPACE_LOCALNAME; //fullname of the rdfs:class the resource describes
 }

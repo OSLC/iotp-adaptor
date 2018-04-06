@@ -27,6 +27,7 @@ package com.ibm.oslc.adaptor.iotp.resources;
 
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
+
 // Start of user code imports
 // End of user code
 
@@ -39,7 +40,8 @@ public interface Oslc_amDomainConstants
     public static String ARCHITECTURE_MANAGEMENT_NAMSPACE = "http://open-services.net/ns/am#";
     public static String ARCHITECTURE_MANAGEMENT_NAMSPACE_PREFIX = "oslc_am";
 
-    public static String RESOURCE = "Resource";
-    public static String PATH_RESOURCE = "resource";
-    public static String TYPE_RESOURCE = ARCHITECTURE_MANAGEMENT_NAMSPACE + RESOURCE;
+    public static String RESOURCE_PATH = "resource";
+    public static String RESOURCE_NAMESPACE = ARCHITECTURE_MANAGEMENT_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String RESOURCE_LOCALNAME = "Resource"; //localName of the rdfs:class the resource describes
+    public static String RESOURCE_TYPE = RESOURCE_NAMESPACE + RESOURCE_LOCALNAME; //fullname of the rdfs:class the resource describes
 }

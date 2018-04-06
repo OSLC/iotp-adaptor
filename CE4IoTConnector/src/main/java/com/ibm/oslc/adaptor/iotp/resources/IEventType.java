@@ -74,9 +74,9 @@ import com.ibm.oslc.adaptor.iotp.resources.ISchema;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.EVENTTYPE)
-@OslcResourceShape(title = "EventType Resource Shape", describes = Oslc_iotDomainConstants.TYPE_EVENTTYPE)
+@OslcNamespace(Oslc_iotDomainConstants.EVENTTYPE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.EVENTTYPE_LOCALNAME)
+@OslcResourceShape(title = "EventType Resource Shape", describes = Oslc_iotDomainConstants.EVENTTYPE_TYPE)
 public interface IEventType
 {
 
@@ -85,7 +85,7 @@ public interface IEventType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "schema")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_SCHEMA})
+    @OslcRange({Oslc_iotDomainConstants.SCHEMA_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("schema")
     public Link getSchema();

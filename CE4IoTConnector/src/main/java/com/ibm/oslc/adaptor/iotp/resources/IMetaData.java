@@ -71,9 +71,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IMetaProperty;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.METADATA)
-@OslcResourceShape(title = "MetaData Resource Shape", describes = Oslc_iotDomainConstants.TYPE_METADATA)
+@OslcNamespace(Oslc_iotDomainConstants.METADATA_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.METADATA_LOCALNAME)
+@OslcResourceShape(title = "MetaData Resource Shape", describes = Oslc_iotDomainConstants.METADATA_TYPE)
 public interface IMetaData
 {
 
@@ -83,7 +83,7 @@ public interface IMetaData
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "metaProperties")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_METAPROPERTY})
+    @OslcRange({Oslc_iotDomainConstants.METAPROPERTY_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("metaProperties")
     public HashSet<MetaProperty> getMetaProperties();

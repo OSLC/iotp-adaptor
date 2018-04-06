@@ -82,9 +82,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Oslc_iotDomainConstants;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.DEVICEINFO)
-@OslcResourceShape(title = "DeviceInfo Resource Shape", describes = Oslc_iotDomainConstants.TYPE_DEVICEINFO)
+@OslcNamespace(Oslc_iotDomainConstants.DEVICEINFO_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.DEVICEINFO_LOCALNAME)
+@OslcResourceShape(title = "DeviceInfo Resource Shape", describes = Oslc_iotDomainConstants.DEVICEINFO_TYPE)
 public class DeviceInfo
     extends AbstractResource
     implements IDeviceInfo
@@ -140,7 +140,7 @@ public class DeviceInfo
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_DEVICEINFO,
+        Oslc_iotDomainConstants.DEVICEINFO_PATH,
         DeviceInfo.class);
     }
     

@@ -75,9 +75,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IFlow;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.NODEREDAPP)
-@OslcResourceShape(title = "NodeREDApp Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_NODEREDAPP)
+@OslcNamespace(Oslc_bmxDomainConstants.NODEREDAPP_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.NODEREDAPP_LOCALNAME)
+@OslcResourceShape(title = "NodeREDApp Resource Shape", describes = Oslc_bmxDomainConstants.NODEREDAPP_TYPE)
 public interface INodeREDApp
 {
 
@@ -87,7 +87,7 @@ public interface INodeREDApp
     @OslcPropertyDefinition(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE + "flows")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_bmxDomainConstants.TYPE_FLOW})
+    @OslcRange({Oslc_bmxDomainConstants.FLOW_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("flows")
     public HashSet<Link> getFlows();

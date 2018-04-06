@@ -99,9 +99,9 @@ import java.text.ParseException;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.DEVICETYPE)
-@OslcResourceShape(title = "DeviceType Resource Shape", describes = Oslc_iotDomainConstants.TYPE_DEVICETYPE)
+@OslcNamespace(Oslc_iotDomainConstants.DEVICETYPE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.DEVICETYPE_LOCALNAME)
+@OslcResourceShape(title = "DeviceType Resource Shape", describes = Oslc_iotDomainConstants.DEVICETYPE_TYPE)
 public class DeviceType
     extends Resource
     implements IDeviceType
@@ -279,7 +279,7 @@ public class DeviceType
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_DEVICETYPE,
+        Oslc_iotDomainConstants.DEVICETYPE_PATH,
         DeviceType.class);
     }
     
@@ -354,7 +354,7 @@ public class DeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "deviceTypeMappings")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_DEVICETYPEMAPPING})
+    @OslcRange({Oslc_iotDomainConstants.DEVICETYPEMAPPING_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("deviceTypeMappings")
     public HashSet<Link> getDeviceTypeMappings()
@@ -370,7 +370,7 @@ public class DeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "physicalInterface")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_PHYSICALINTERFACE})
+    @OslcRange({Oslc_iotDomainConstants.PHYSICALINTERFACE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("physicalInterface")
     public Link getPhysicalInterface()
@@ -386,7 +386,7 @@ public class DeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "logicalInterfaces")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE})
+    @OslcRange({Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("applicationInterfaces")
     public HashSet<Link> getLogicalInterfaces()
@@ -402,7 +402,7 @@ public class DeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "deviceInfo")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_DEVICEINFO})
+    @OslcRange({Oslc_iotDomainConstants.DEVICEINFO_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("deviceInfo")
     public DeviceInfo getDeviceInfo()
@@ -418,7 +418,7 @@ public class DeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "metaData")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_METADATA})
+    @OslcRange({Oslc_iotDomainConstants.METADATA_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("metaData")
     public MetaData getMetaData()
@@ -543,23 +543,6 @@ public class DeviceType
         return s;
     }
     
-    static public String deviceTypeMappingsToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:deviceTypeMappingsToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"deviceTypeMappings\">deviceTypeMappings: </LABEL>";
-    
-        // Start of user code "Mid:deviceTypeMappingsToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:deviceTypeMappingsToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     static public String physicalInterfaceToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -578,23 +561,6 @@ public class DeviceType
         return s;
     }
     
-    static public String physicalInterfaceToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:physicalInterfaceToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"physicalInterface\">physicalInterface: </LABEL>";
-    
-        // Start of user code "Mid:physicalInterfaceToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:physicalInterfaceToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     static public String logicalInterfacesToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -613,23 +579,6 @@ public class DeviceType
         return s;
     }
     
-    static public String logicalInterfacesToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:logicalInterfacesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"logicalInterfaces\">logicalInterfaces: </LABEL>";
-    
-        // Start of user code "Mid:logicalInterfacesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:logicalInterfacesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     static public String deviceInfoToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -648,23 +597,6 @@ public class DeviceType
         return s;
     }
     
-    static public String deviceInfoToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:deviceInfoToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"deviceInfo\">deviceInfo: </LABEL>";
-    
-        // Start of user code "Mid:deviceInfoToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:deviceInfoToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     static public String metaDataToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -683,23 +615,6 @@ public class DeviceType
         return s;
     }
     
-    static public String metaDataToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:metaDataToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"metaData\">metaData: </LABEL>";
-    
-        // Start of user code "Mid:metaDataToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:metaDataToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     static public String classIdToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -719,24 +634,6 @@ public class DeviceType
         return s;
     }
     
-    static public String classIdToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:classIdToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"classId\">classId: </LABEL>";
-    
-        // Start of user code "Mid:classIdToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s= s + "<input name=\"classId\" type=\"text\" style=\"width: 400px\" id=\"classId\" >";
-        // Start of user code "Finalize:classIdToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     
     public String deviceTypeMappingsToHtml()
     {

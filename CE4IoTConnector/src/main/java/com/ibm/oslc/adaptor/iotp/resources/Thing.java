@@ -85,9 +85,9 @@ import com.ibm.oslc.adaptor.iotp.resources.ThingType;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.THING)
-@OslcResourceShape(title = "Thing Resource Shape", describes = Oslc_iotDomainConstants.TYPE_THING)
+@OslcNamespace(Oslc_iotDomainConstants.THING_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.THING_LOCALNAME)
+@OslcResourceShape(title = "Thing Resource Shape", describes = Oslc_iotDomainConstants.THING_TYPE)
 public class Thing
     extends Resource
     implements IThing
@@ -122,7 +122,7 @@ public class Thing
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_THING,
+        Oslc_iotDomainConstants.THING_PATH,
         Thing.class);
     }
     
@@ -191,7 +191,7 @@ public class Thing
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "thingTypes")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_THINGTYPE})
+    @OslcRange({Oslc_iotDomainConstants.THINGTYPE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("thingTypes")
     public HashSet<Link> getThingTypes()
@@ -237,23 +237,6 @@ public class Thing
         return s;
     }
     
-    static public String thingTypesToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:thingTypesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"thingTypes\">thingTypes: </LABEL>";
-    
-        // Start of user code "Mid:thingTypesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:thingTypesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     
     public String thingTypesToHtml()
     {

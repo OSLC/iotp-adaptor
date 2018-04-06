@@ -27,6 +27,7 @@ package com.ibm.oslc.adaptor.iotp.resources;
 
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
+
 // Start of user code imports
 // End of user code
 
@@ -39,7 +40,8 @@ public interface FoafDomainConstants
     public static String FOAF_NAMSPACE = "http://xmlns.com/foaf/0.1/#";
     public static String FOAF_NAMSPACE_PREFIX = "foaf";
 
-    public static String PERSON = "Person";
-    public static String PATH_PERSON = "person";
-    public static String TYPE_PERSON = FOAF_NAMSPACE + PERSON;
+    public static String PERSON_PATH = "person";
+    public static String PERSON_NAMESPACE = FOAF_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String PERSON_LOCALNAME = "Person"; //localName of the rdfs:class the resource describes
+    public static String PERSON_TYPE = PERSON_NAMESPACE + PERSON_LOCALNAME; //fullname of the rdfs:class the resource describes
 }

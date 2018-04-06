@@ -81,9 +81,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Oslc_iotDomainConstants;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.METAPROPERTY)
-@OslcResourceShape(title = "MetaProperty Resource Shape", describes = Oslc_iotDomainConstants.TYPE_METAPROPERTY)
+@OslcNamespace(Oslc_iotDomainConstants.METAPROPERTY_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.METAPROPERTY_LOCALNAME)
+@OslcResourceShape(title = "MetaProperty Resource Shape", describes = Oslc_iotDomainConstants.METAPROPERTY_TYPE)
 public class MetaProperty
     extends AbstractResource
     implements IMetaProperty
@@ -121,7 +121,7 @@ public class MetaProperty
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_METAPROPERTY,
+        Oslc_iotDomainConstants.METAPROPERTY_PATH,
         MetaProperty.class);
     }
     

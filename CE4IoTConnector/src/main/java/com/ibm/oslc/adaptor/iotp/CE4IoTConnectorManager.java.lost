@@ -1,8 +1,0 @@
-
-Thu Feb 22 10:32:47 EST 2018
-================================================================================
-Start of user code NodeREDAppSelector
-        List<NodeREDApp> apps = queryNodeREDApps(httpServletRequest, bmxId, terms, 1, 1000);
-        resources = new ArrayList<NodeREDApp>(apps.size());
-        resources.addAll(apps);
-        // End of user code

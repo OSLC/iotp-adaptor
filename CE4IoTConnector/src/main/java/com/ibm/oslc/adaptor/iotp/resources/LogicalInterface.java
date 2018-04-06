@@ -85,9 +85,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Schema;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.LOGICALINTERFACE)
-@OslcResourceShape(title = "LogicalInterface Resource Shape", describes = Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE)
+@OslcNamespace(Oslc_iotDomainConstants.LOGICALINTERFACE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.LOGICALINTERFACE_LOCALNAME)
+@OslcResourceShape(title = "LogicalInterface Resource Shape", describes = Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE)
 public class LogicalInterface
     extends Resource
     implements ILogicalInterface
@@ -167,7 +167,7 @@ public class LogicalInterface
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_LOGICALINTERFACE,
+        Oslc_iotDomainConstants.LOGICALINTERFACE_PATH,
         LogicalInterface.class);
     }
     
@@ -231,7 +231,7 @@ public class LogicalInterface
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "schema")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_SCHEMA})
+    @OslcRange({Oslc_iotDomainConstants.SCHEMA_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("schema")
     public Link getSchema()
@@ -273,23 +273,6 @@ public class LogicalInterface
         return s;
     }
     
-    static public String schemaToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:schemaToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"schema\">schema: </LABEL>";
-    
-        // Start of user code "Mid:schemaToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:schemaToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     
     public String schemaToHtml()
     {

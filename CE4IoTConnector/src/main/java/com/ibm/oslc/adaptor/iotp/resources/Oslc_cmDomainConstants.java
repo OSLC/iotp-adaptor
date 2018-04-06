@@ -27,6 +27,7 @@ package com.ibm.oslc.adaptor.iotp.resources;
 
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
+
 // Start of user code imports
 // End of user code
 
@@ -39,7 +40,8 @@ public interface Oslc_cmDomainConstants
     public static String CHANGE_MANAGEMENT_NAMSPACE = "http://open-services.net/ns/cm#";
     public static String CHANGE_MANAGEMENT_NAMSPACE_PREFIX = "oslc_cm";
 
-    public static String CHANGEREQUEST = "ChangeRequest";
-    public static String PATH_CHANGEREQUEST = "changeRequest";
-    public static String TYPE_CHANGEREQUEST = CHANGE_MANAGEMENT_NAMSPACE + CHANGEREQUEST;
+    public static String CHANGEREQUEST_PATH = "changeRequest";
+    public static String CHANGEREQUEST_NAMESPACE = CHANGE_MANAGEMENT_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String CHANGEREQUEST_LOCALNAME = "ChangeRequest"; //localName of the rdfs:class the resource describes
+    public static String CHANGEREQUEST_TYPE = CHANGEREQUEST_NAMESPACE + CHANGEREQUEST_LOCALNAME; //fullname of the rdfs:class the resource describes
 }

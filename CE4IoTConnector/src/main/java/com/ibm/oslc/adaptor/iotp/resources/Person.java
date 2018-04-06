@@ -81,9 +81,9 @@ import com.ibm.oslc.adaptor.iotp.resources.FoafDomainConstants;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(FoafDomainConstants.FOAF_NAMSPACE)
-@OslcName(FoafDomainConstants.PERSON)
-@OslcResourceShape(title = "Person Resource Shape", describes = FoafDomainConstants.TYPE_PERSON)
+@OslcNamespace(FoafDomainConstants.PERSON_NAMESPACE)
+@OslcName(FoafDomainConstants.PERSON_LOCALNAME)
+@OslcResourceShape(title = "Person Resource Shape", describes = FoafDomainConstants.PERSON_TYPE)
 public class Person
     extends AbstractResource
     implements IPerson
@@ -124,7 +124,7 @@ public class Person
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        FoafDomainConstants.PATH_PERSON,
+        FoafDomainConstants.PERSON_PATH,
         Person.class);
     }
     

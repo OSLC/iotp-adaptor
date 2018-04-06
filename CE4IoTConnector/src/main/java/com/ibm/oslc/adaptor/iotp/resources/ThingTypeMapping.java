@@ -82,9 +82,9 @@ import com.ibm.oslc.adaptor.iotp.resources.LogicalInterface;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.THINGTYPEMAPPING)
-@OslcResourceShape(title = "ThingTypeMapping Resource Shape", describes = Oslc_iotDomainConstants.TYPE_THINGTYPEMAPPING)
+@OslcNamespace(Oslc_iotDomainConstants.THINGTYPEMAPPING_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.THINGTYPEMAPPING_LOCALNAME)
+@OslcResourceShape(title = "ThingTypeMapping Resource Shape", describes = Oslc_iotDomainConstants.THINGTYPEMAPPING_TYPE)
 public class ThingTypeMapping
     extends AbstractResource
     implements IThingTypeMapping
@@ -119,7 +119,7 @@ public class ThingTypeMapping
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_THINGTYPEMAPPING,
+        Oslc_iotDomainConstants.THINGTYPEMAPPING_PATH,
         ThingTypeMapping.class);
     }
     
@@ -183,7 +183,7 @@ public class ThingTypeMapping
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "logicalInterface")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE})
+    @OslcRange({Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("logicalInterface")
     public Link getLogicalInterface()

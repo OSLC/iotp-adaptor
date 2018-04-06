@@ -87,9 +87,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Person;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_rmDomainConstants.REQUIREMENTS_MANAGEMENT_NAMSPACE)
-@OslcName(Oslc_rmDomainConstants.REQUIREMENT)
-@OslcResourceShape(title = "Requirement Resource Shape", describes = Oslc_rmDomainConstants.TYPE_REQUIREMENT)
+@OslcNamespace(Oslc_rmDomainConstants.REQUIREMENT_NAMESPACE)
+@OslcName(Oslc_rmDomainConstants.REQUIREMENT_LOCALNAME)
+@OslcResourceShape(title = "Requirement Resource Shape", describes = Oslc_rmDomainConstants.REQUIREMENT_TYPE)
 public class Requirement
     extends AbstractResource
     implements IRequirement
@@ -199,7 +199,7 @@ public class Requirement
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_rmDomainConstants.PATH_REQUIREMENT,
+        Oslc_rmDomainConstants.REQUIREMENT_PATH,
         Requirement.class);
     }
     
@@ -435,7 +435,7 @@ public class Requirement
     @OslcDescription("Creator or creators of the resource. It is likely that the target resource will be a foaf:Person but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({FoafDomainConstants.TYPE_PERSON})
+    @OslcRange({FoafDomainConstants.PERSON_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getCreator()
     {
@@ -451,7 +451,7 @@ public class Requirement
     @OslcDescription("Contributor or contributors to the resource. It is likely that the target resource will be a foaf:Person but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({FoafDomainConstants.TYPE_PERSON})
+    @OslcRange({FoafDomainConstants.PERSON_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getContributor()
     {
@@ -1152,6 +1152,24 @@ public class Requirement
         return s;
     }
     
+    static public String titleToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:titleToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"title\">title: </LABEL>";
+    
+        // Start of user code "Mid:titleToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s= s + "<input name=\"title\" type=\"text\" style=\"width: 400px\" id=\"title\" >";
+        // Start of user code "Finalize:titleToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String descriptionToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1171,6 +1189,24 @@ public class Requirement
         return s;
     }
     
+    static public String descriptionToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:descriptionToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"description\">description: </LABEL>";
+    
+        // Start of user code "Mid:descriptionToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s= s + "<input name=\"description\" type=\"text\" style=\"width: 400px\" id=\"description\" >";
+        // Start of user code "Finalize:descriptionToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String identifierToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1190,6 +1226,24 @@ public class Requirement
         return s;
     }
     
+    static public String identifierToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:identifierToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"identifier\">identifier: </LABEL>";
+    
+        // Start of user code "Mid:identifierToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s= s + "<input name=\"identifier\" type=\"text\" style=\"width: 400px\" id=\"identifier\" >";
+        // Start of user code "Finalize:identifierToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String shortTitleToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1209,6 +1263,24 @@ public class Requirement
         return s;
     }
     
+    static public String shortTitleToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:shortTitleToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"shortTitle\">shortTitle: </LABEL>";
+    
+        // Start of user code "Mid:shortTitleToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s= s + "<input name=\"shortTitle\" type=\"text\" style=\"width: 400px\" id=\"shortTitle\" >";
+        // Start of user code "Finalize:shortTitleToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String subjectToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1228,6 +1300,24 @@ public class Requirement
         return s;
     }
     
+    static public String subjectToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:subjectToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"subject\">subject: </LABEL>";
+    
+        // Start of user code "Mid:subjectToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s= s + "<input name=\"subject\" type=\"text\" style=\"width: 400px\" id=\"subject\" >";
+        // Start of user code "Finalize:subjectToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String creatorToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1246,6 +1336,23 @@ public class Requirement
         return s;
     }
     
+    static public String creatorToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:creatorToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"creator\">creator: </LABEL>";
+    
+        // Start of user code "Mid:creatorToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:creatorToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String contributorToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1264,6 +1371,23 @@ public class Requirement
         return s;
     }
     
+    static public String contributorToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:contributorToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"contributor\">contributor: </LABEL>";
+    
+        // Start of user code "Mid:contributorToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:contributorToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String createdToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1283,6 +1407,24 @@ public class Requirement
         return s;
     }
     
+    static public String createdToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:createdToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"created\">created: </LABEL>";
+    
+        // Start of user code "Mid:createdToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s= s + "<input name=\"created\" type=\"text\" style=\"width: 400px\" id=\"created\" >";
+        // Start of user code "Finalize:createdToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String modifiedToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1302,6 +1444,24 @@ public class Requirement
         return s;
     }
     
+    static public String modifiedToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:modifiedToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"modified\">modified: </LABEL>";
+    
+        // Start of user code "Mid:modifiedToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s= s + "<input name=\"modified\" type=\"text\" style=\"width: 400px\" id=\"modified\" >";
+        // Start of user code "Finalize:modifiedToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String typeToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1320,6 +1480,23 @@ public class Requirement
         return s;
     }
     
+    static public String typeToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:typeToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"type\">type: </LABEL>";
+    
+        // Start of user code "Mid:typeToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:typeToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String serviceProviderToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1339,6 +1516,24 @@ public class Requirement
         return s;
     }
     
+    static public String serviceProviderToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:serviceProviderToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"serviceProvider\">serviceProvider: </LABEL>";
+    
+        // Start of user code "Mid:serviceProviderToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s= s + "<input name=\"serviceProvider\" type=\"text\" style=\"width: 400px\" id=\"serviceProvider\" >";
+        // Start of user code "Finalize:serviceProviderToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String instanceShapeToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1358,6 +1553,24 @@ public class Requirement
         return s;
     }
     
+    static public String instanceShapeToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:instanceShapeToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"instanceShape\">instanceShape: </LABEL>";
+    
+        // Start of user code "Mid:instanceShapeToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s= s + "<input name=\"instanceShape\" type=\"text\" style=\"width: 400px\" id=\"instanceShape\" >";
+        // Start of user code "Finalize:instanceShapeToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String elaboratedByToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1376,6 +1589,23 @@ public class Requirement
         return s;
     }
     
+    static public String elaboratedByToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:elaboratedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"elaboratedBy\">elaboratedBy: </LABEL>";
+    
+        // Start of user code "Mid:elaboratedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:elaboratedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String elaboratesToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1394,6 +1624,23 @@ public class Requirement
         return s;
     }
     
+    static public String elaboratesToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:elaboratesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"elaborates\">elaborates: </LABEL>";
+    
+        // Start of user code "Mid:elaboratesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:elaboratesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String specifiedByToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1412,6 +1659,23 @@ public class Requirement
         return s;
     }
     
+    static public String specifiedByToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:specifiedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"specifiedBy\">specifiedBy: </LABEL>";
+    
+        // Start of user code "Mid:specifiedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:specifiedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String specifiesToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1430,6 +1694,23 @@ public class Requirement
         return s;
     }
     
+    static public String specifiesToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:specifiesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"specifies\">specifies: </LABEL>";
+    
+        // Start of user code "Mid:specifiesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:specifiesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String affectedByToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1448,6 +1729,23 @@ public class Requirement
         return s;
     }
     
+    static public String affectedByToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:affectedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"affectedBy\">affectedBy: </LABEL>";
+    
+        // Start of user code "Mid:affectedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:affectedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String trackedByToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1466,6 +1764,23 @@ public class Requirement
         return s;
     }
     
+    static public String trackedByToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:trackedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"trackedBy\">trackedBy: </LABEL>";
+    
+        // Start of user code "Mid:trackedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:trackedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String implementedByToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1484,6 +1799,23 @@ public class Requirement
         return s;
     }
     
+    static public String implementedByToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:implementedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"implementedBy\">implementedBy: </LABEL>";
+    
+        // Start of user code "Mid:implementedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:implementedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String validatedByToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1502,6 +1834,23 @@ public class Requirement
         return s;
     }
     
+    static public String validatedByToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:validatedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"validatedBy\">validatedBy: </LABEL>";
+    
+        // Start of user code "Mid:validatedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:validatedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String satisfiedByToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1520,6 +1869,23 @@ public class Requirement
         return s;
     }
     
+    static public String satisfiedByToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:satisfiedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"satisfiedBy\">satisfiedBy: </LABEL>";
+    
+        // Start of user code "Mid:satisfiedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:satisfiedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String satisfiesToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1538,6 +1904,23 @@ public class Requirement
         return s;
     }
     
+    static public String satisfiesToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:satisfiesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"satisfies\">satisfies: </LABEL>";
+    
+        // Start of user code "Mid:satisfiesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:satisfiesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String decomposedByToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1556,6 +1939,23 @@ public class Requirement
         return s;
     }
     
+    static public String decomposedByToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:decomposedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"decomposedBy\">decomposedBy: </LABEL>";
+    
+        // Start of user code "Mid:decomposedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:decomposedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String decomposesToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1574,6 +1974,23 @@ public class Requirement
         return s;
     }
     
+    static public String decomposesToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:decomposesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"decomposes\">decomposes: </LABEL>";
+    
+        // Start of user code "Mid:decomposesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:decomposesToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String constrainedByToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1592,6 +2009,23 @@ public class Requirement
         return s;
     }
     
+    static public String constrainedByToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:constrainedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"constrainedBy\">constrainedBy: </LABEL>";
+    
+        // Start of user code "Mid:constrainedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:constrainedByToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     static public String constrainsToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -1610,6 +2044,23 @@ public class Requirement
         return s;
     }
     
+    static public String constrainsToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
+    {
+        String s = "";
+    
+        // Start of user code "Init:constrainsToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        s = s + "<label for=\"constrains\">constrains: </LABEL>";
+    
+        // Start of user code "Mid:constrainsToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        // Start of user code "Finalize:constrainsToHtmlForCreation1(...final String iotId)"
+        // End of user code
+    
+        return s;
+    }
     
     public String titleToHtml()
     {

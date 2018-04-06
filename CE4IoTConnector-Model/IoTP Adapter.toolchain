@@ -12,6 +12,7 @@
           <creationFactories title="DeviceTypeCreationFactory" label="Device Type Creation Factory" creationURI="devicetype" resourceTypes="//@specification/@domainSpecifications.1/@resources.0"/>
           <creationFactories title="LogicalInterfaceCreationFactory" label="Logical Interface Creation Factory" creationURI="logicalinterface" resourceTypes="//@specification/@domainSpecifications.1/@resources.7"/>
           <creationFactories title="ThingCreationFactory" label="ThingCreationFactory" creationURI="thing" resourceTypes="//@specification/@domainSpecifications.1/@resources.13"/>
+          <creationFactories title="DeviceCreationFactory" label="Device Creation Factory" creationURI="typeId/create" resourceTypes="//@specification/@domainSpecifications.1/@resources.12"/>
           <queryCapabilities title="EventTypeQueryCapability" label="Event Type Query Capability" queryBaseURI="eventtype" resourceTypes="//@specification/@domainSpecifications.1/@resources.5"/>
           <queryCapabilities title="DeviceTypeQueryCapability" label="Device Type Query Capability" queryBaseURI="devicetype" resourceTypes="//@specification/@domainSpecifications.1/@resources.0"/>
           <queryCapabilities title="PhysicalIntefaceQueryCapability" label="Physical Inteface Query Capability" queryBaseURI="physicalinterface" resourceTypes="//@specification/@domainSpecifications.1/@resources.4"/>
@@ -22,23 +23,19 @@
           <queryCapabilities title="DeviceQueryCapability" label="DeviceQueryCapability" queryBaseURI="device" resourceTypes="//@specification/@domainSpecifications.1/@resources.12"/>
           <queryCapabilities title="ThingQueryCapability" label="ThingQueryCapability" queryBaseURI="thing" resourceTypes="//@specification/@domainSpecifications.1/@resources.13"/>
           <selectionDialogs title="IotSelectionDialog" label="IoT Platform Selection Dialog" dialogURI="selector" hintWidth="525" hintHeight="325">
-            <resourceTypes href="#//@specification/@domainSpecifications.1/@resources.0"/>
-            <resourceTypes href="#//@specification/@domainSpecifications.1/@resources.1"/>
-            <resourceTypes href="#//@specification/@domainSpecifications.1/@resources.9"/>
             <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.6/@resources.0"/>
             <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.5/@resources.0"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
             <usages>http://open-services.net/ns/am#IoTPSelectionDialog</usages>
           </selectionDialogs>
-          <creationDialogs title="DeviceTypeCreationDialog" label="Device Type Creation Dialog" dialogURI="devicetype/creator" hintWidth="525" hintHeight="325" resourceTypes="//@specification/@domainSpecifications.1/@resources.0"/>
-          <creationDialogs title="RuleCreationDialog" label="Rule Creation Dialog" dialogURI="rule/creator" hintWidth="525" hintHeight="325" resourceTypes="//@specification/@domainSpecifications.1/@resources.1"/>
-          <creationDialogs title="ThingTypeCreationDialog" label="Thing Creation Dialog" dialogURI="thingtype/creator" hintWidth="525" hintHeight="325" resourceTypes="//@specification/@domainSpecifications.1/@resources.9"/>
-          <creationDialogs title="PhysicalInterfaceCreationDialog" label="CreationDialog5" dialogURI="physicalinterface/creator" hintWidth="525" hintHeight="325" resourceTypes="//@specification/@domainSpecifications.1/@resources.4"/>
-          <creationDialogs title="EventTypeCreationDialog" label="Event Type Creation Dialog" dialogURI="eventtype/creator" hintWidth="525" hintHeight="325" resourceTypes="//@specification/@domainSpecifications.1/@resources.5"/>
-          <creationDialogs title="LogicalInterfaceCreationDialog" label="Logical Interface Creation Dialog" dialogURI="logicalinterface/creator" hintWidth="525" hintHeight="325" resourceTypes="//@specification/@domainSpecifications.1/@resources.7"/>
-          <creationDialogs title="SchemaCreationDialog" label="Schema Creation Dialog" dialogURI="schema/creator" hintWidth="525" hintHeight="325" resourceTypes="//@specification/@domainSpecifications.1/@resources.8"/>
-          <creationDialogs title="ThingCreationDialog" label="ThingCreationDialog" dialogURI="thing/creator" resourceTypes="//@specification/@domainSpecifications.1/@resources.13"/>
+          <creationDialogs title="ResourceCreationDialog" label="Resource Creation Dialog" dialogURI="creator" hintWidth="525" hintHeight="225">
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.5/@resources.0"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.6/@resources.0"/>
+            <usages>http://open-services.net/ns/am#IoTPCreationDialog</usages>
+          </creationDialogs>
           <basicCapabilities instanceID="" resourceTypes="//@specification/@domainSpecifications.1/@resources.0 //@specification/@domainSpecifications.1/@resources.1 //@specification/@domainSpecifications.1/@resources.7 //@specification/@domainSpecifications.1/@resources.5 //@specification/@domainSpecifications.1/@resources.4 //@specification/@domainSpecifications.1/@resources.8 //@specification/@domainSpecifications.1/@resources.9" delete="true" update="true"/>
-          <basicCapabilities instanceID="{typeId}/devices/{deviceId}" resourceTypes="//@specification/@domainSpecifications.1/@resources.12"/>
+          <basicCapabilities instanceID="{typeId}/devices/{deviceId}" resourceTypes="//@specification/@domainSpecifications.1/@resources.12" delete="true" update="true"/>
           <usages>http://open-services.net/ns/am#IoTPlatform</usages>
         </services>
       </serviceProviders>

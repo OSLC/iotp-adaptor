@@ -75,9 +75,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IMetaData;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.DEVICE)
-@OslcResourceShape(title = "Device Resource Shape", describes = Oslc_iotDomainConstants.TYPE_DEVICE)
+@OslcNamespace(Oslc_iotDomainConstants.DEVICE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.DEVICE_LOCALNAME)
+@OslcResourceShape(title = "Device Resource Shape", describes = Oslc_iotDomainConstants.DEVICE_TYPE)
 public interface IDevice
 {
 
@@ -86,7 +86,7 @@ public interface IDevice
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "deviceInfo")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_DEVICEINFO})
+    @OslcRange({Oslc_iotDomainConstants.DEVICEINFO_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("deviceInfo")
     public DeviceInfo getDeviceInfo();
@@ -95,7 +95,7 @@ public interface IDevice
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "metaData")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_METADATA})
+    @OslcRange({Oslc_iotDomainConstants.METADATA_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("metaData")
     public MetaData getMetaData();

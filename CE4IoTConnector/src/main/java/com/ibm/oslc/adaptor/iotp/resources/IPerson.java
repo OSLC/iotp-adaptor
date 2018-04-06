@@ -70,9 +70,9 @@ import com.ibm.oslc.adaptor.iotp.resources.FoafDomainConstants;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(FoafDomainConstants.FOAF_NAMSPACE)
-@OslcName(FoafDomainConstants.PERSON)
-@OslcResourceShape(title = "Person Resource Shape", describes = FoafDomainConstants.TYPE_PERSON)
+@OslcNamespace(FoafDomainConstants.PERSON_NAMESPACE)
+@OslcName(FoafDomainConstants.PERSON_LOCALNAME)
+@OslcResourceShape(title = "Person Resource Shape", describes = FoafDomainConstants.PERSON_TYPE)
 public interface IPerson
 {
 

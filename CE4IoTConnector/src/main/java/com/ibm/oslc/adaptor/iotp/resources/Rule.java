@@ -84,9 +84,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Discussion;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.RULE)
-@OslcResourceShape(title = "Rule Resource Shape", describes = Oslc_iotDomainConstants.TYPE_RULE)
+@OslcNamespace(Oslc_iotDomainConstants.RULE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.RULE_LOCALNAME)
+@OslcResourceShape(title = "Rule Resource Shape", describes = Oslc_iotDomainConstants.RULE_TYPE)
 public class Rule
     extends Resource
     implements IRule
@@ -169,7 +169,7 @@ public class Rule
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_RULE,
+        Oslc_iotDomainConstants.RULE_PATH,
         Rule.class);
     }
     
@@ -302,24 +302,6 @@ public class Rule
         return s;
     }
     
-    static public String conditionToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:conditionToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"condition\">condition: </LABEL>";
-    
-        // Start of user code "Mid:conditionToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s= s + "<input name=\"condition\" type=\"text\" style=\"width: 400px\" id=\"condition\" >";
-        // Start of user code "Finalize:conditionToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     static public String actionToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -339,24 +321,6 @@ public class Rule
         return s;
     }
     
-    static public String actionToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:actionToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"action\">action: </LABEL>";
-    
-        // Start of user code "Mid:actionToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s= s + "<input name=\"action\" type=\"text\" style=\"width: 400px\" id=\"action\" >";
-        // Start of user code "Finalize:actionToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     
     public String conditionToHtml()
     {

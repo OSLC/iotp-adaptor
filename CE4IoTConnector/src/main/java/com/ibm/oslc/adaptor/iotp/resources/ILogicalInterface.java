@@ -74,9 +74,9 @@ import com.ibm.oslc.adaptor.iotp.resources.ISchema;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.LOGICALINTERFACE)
-@OslcResourceShape(title = "LogicalInterface Resource Shape", describes = Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE)
+@OslcNamespace(Oslc_iotDomainConstants.LOGICALINTERFACE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.LOGICALINTERFACE_LOCALNAME)
+@OslcResourceShape(title = "LogicalInterface Resource Shape", describes = Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE)
 public interface ILogicalInterface
 {
 
@@ -85,7 +85,7 @@ public interface ILogicalInterface
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "schema")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_SCHEMA})
+    @OslcRange({Oslc_iotDomainConstants.SCHEMA_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("schema")
     public Link getSchema();

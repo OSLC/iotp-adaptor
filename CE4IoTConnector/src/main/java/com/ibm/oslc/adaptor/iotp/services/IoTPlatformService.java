@@ -76,6 +76,7 @@ import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
 
 import com.ibm.oslc.adaptor.iotp.CE4IoTConnectorManager;
 import com.ibm.oslc.adaptor.iotp.CE4IoTConnectorConstants;
+import com.ibm.oslc.adaptor.iotp.resources.Oslc_amDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_cmDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_iotDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_iotDomainConstants;
@@ -140,8 +141,8 @@ public class IoTPlatformService
     (
         title = "EventTypeQueryCapability",
         label = "Event Type Query Capability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_EVENTTYPE,
-        resourceTypes = {Oslc_iotDomainConstants.TYPE_EVENTTYPE},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.EVENTTYPE_PATH,
+        resourceTypes = {Oslc_iotDomainConstants.EVENTTYPE_TYPE},
         usages = {}
     )
     @GET
@@ -216,8 +217,8 @@ public class IoTPlatformService
     (
         title = "DeviceTypeQueryCapability",
         label = "Device Type Query Capability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_DEVICETYPE,
-        resourceTypes = {Oslc_iotDomainConstants.TYPE_DEVICETYPE},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.DEVICETYPE_PATH,
+        resourceTypes = {Oslc_iotDomainConstants.DEVICETYPE_TYPE},
         usages = {}
     )
     @GET
@@ -292,8 +293,8 @@ public class IoTPlatformService
     (
         title = "PhysicalIntefaceQueryCapability",
         label = "Physical Inteface Query Capability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_PHYSICALINTERFACE,
-        resourceTypes = {Oslc_iotDomainConstants.TYPE_PHYSICALINTERFACE},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PHYSICALINTERFACE_PATH,
+        resourceTypes = {Oslc_iotDomainConstants.PHYSICALINTERFACE_TYPE},
         usages = {}
     )
     @GET
@@ -368,8 +369,8 @@ public class IoTPlatformService
     (
         title = "RuleQueryCapability",
         label = "Rule Query Capability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_RULE,
-        resourceTypes = {Oslc_iotDomainConstants.TYPE_RULE},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.RULE_PATH,
+        resourceTypes = {Oslc_iotDomainConstants.RULE_TYPE},
         usages = {}
     )
     @GET
@@ -444,8 +445,8 @@ public class IoTPlatformService
     (
         title = "SchemaQueryCapability",
         label = "Schema Query Capability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_SCHEMA,
-        resourceTypes = {Oslc_iotDomainConstants.TYPE_SCHEMA},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.SCHEMA_PATH,
+        resourceTypes = {Oslc_iotDomainConstants.SCHEMA_TYPE},
         usages = {}
     )
     @GET
@@ -520,8 +521,8 @@ public class IoTPlatformService
     (
         title = "ThingTypeQueryCapability",
         label = "Thing Type Query Capability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_THINGTYPE,
-        resourceTypes = {Oslc_iotDomainConstants.TYPE_THINGTYPE},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.THINGTYPE_PATH,
+        resourceTypes = {Oslc_iotDomainConstants.THINGTYPE_TYPE},
         usages = {}
     )
     @GET
@@ -596,8 +597,8 @@ public class IoTPlatformService
     (
         title = "LogicalInterfaceQueryCapability",
         label = "Logical Interface Query Capability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_LOGICALINTERFACE,
-        resourceTypes = {Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.LOGICALINTERFACE_PATH,
+        resourceTypes = {Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE},
         usages = {}
     )
     @GET
@@ -672,8 +673,8 @@ public class IoTPlatformService
     (
         title = "DeviceQueryCapability",
         label = "DeviceQueryCapability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_DEVICE,
-        resourceTypes = {Oslc_iotDomainConstants.TYPE_DEVICE},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.DEVICE_PATH,
+        resourceTypes = {Oslc_iotDomainConstants.DEVICE_TYPE},
         usages = {}
     )
     @GET
@@ -748,8 +749,8 @@ public class IoTPlatformService
     (
         title = "ThingQueryCapability",
         label = "ThingQueryCapability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_THING,
-        resourceTypes = {Oslc_iotDomainConstants.TYPE_THING},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.THING_PATH,
+        resourceTypes = {Oslc_iotDomainConstants.THING_TYPE},
         usages = {}
     )
     @GET
@@ -827,28 +828,28 @@ public class IoTPlatformService
          uri = "iotp/{iotId}/resources/selector",
          hintWidth = "525px",
          hintHeight = "325px",
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_DEVICETYPE, Oslc_iotDomainConstants.TYPE_RULE, Oslc_iotDomainConstants.TYPE_THINGTYPE, Oslc_rmDomainConstants.TYPE_REQUIREMENT, Oslc_cmDomainConstants.TYPE_CHANGEREQUEST},
+         resourceTypes = {Oslc_rmDomainConstants.REQUIREMENT_TYPE, Oslc_cmDomainConstants.CHANGEREQUEST_TYPE, Oslc_amDomainConstants.RESOURCE_TYPE},
          usages = {"http://open-services.net/ns/am#IoTPSelectionDialog"}
     )
     @GET
     @Path("selector")
     @Consumes({ MediaType.TEXT_HTML, MediaType.WILDCARD })
-    public void DeviceTypeAndRuleAndThingTypeAndRequirementAndChangeRequestSelector(
+    public void RequirementAndChangeRequestAndResourceSelector(
         @QueryParam("terms") final String terms
         , @PathParam("iotId") final String iotId
         ) throws ServletException, IOException
     {
         try {
-            // Start of user code DeviceTypeAndRuleAndThingTypeAndRequirementAndChangeRequestSelector_init
+            // Start of user code RequirementAndChangeRequestAndResourceSelector_init
             // End of user code
 
             httpServletRequest.setAttribute("selectionUri",uriInfo.getAbsolutePath().toString());
-            // Start of user code DeviceTypeAndRuleAndThingTypeAndRequirementAndChangeRequestSelector_setAttributes
+            // Start of user code RequirementAndChangeRequestAndResourceSelector_setAttributes
             // End of user code
 
             if (terms != null ) {
                 httpServletRequest.setAttribute("terms", terms);
-                final List<AbstractResource> resources = CE4IoTConnectorManager.DeviceTypeAndRuleAndThingTypeAndRequirementAndChangeRequestSelector(httpServletRequest, iotId, terms);
+                final List<AbstractResource> resources = CE4IoTConnectorManager.RequirementAndChangeRequestAndResourceSelector(httpServletRequest, iotId, terms);
                 if (resources!= null) {
                             httpServletRequest.setAttribute("resources", resources);
                             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/iotpselectiondialogselectorresults.jsp");
@@ -880,8 +881,8 @@ public class IoTPlatformService
     (
          title = "RuleCreationFactory",
          label = "Rule Creation Factory",
-         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_RULE},
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_RULE},
+         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.RULE_PATH},
+         resourceTypes = {Oslc_iotDomainConstants.RULE_TYPE},
          usages = {}
     )
     @POST
@@ -913,8 +914,8 @@ public class IoTPlatformService
     (
          title = "EventTypeCreationFactory",
          label = "Event Type CreationFactory",
-         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_EVENTTYPE},
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_EVENTTYPE},
+         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.EVENTTYPE_PATH},
+         resourceTypes = {Oslc_iotDomainConstants.EVENTTYPE_TYPE},
          usages = {}
     )
     @POST
@@ -946,8 +947,8 @@ public class IoTPlatformService
     (
          title = "PhysicalInterfaceCreationFactory",
          label = "Physical Interface Creation Factory",
-         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_PHYSICALINTERFACE},
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_PHYSICALINTERFACE},
+         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PHYSICALINTERFACE_PATH},
+         resourceTypes = {Oslc_iotDomainConstants.PHYSICALINTERFACE_TYPE},
          usages = {}
     )
     @POST
@@ -979,8 +980,8 @@ public class IoTPlatformService
     (
          title = "SchemaCreationFactory",
          label = "Schema Creation Factory",
-         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_SCHEMA},
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_SCHEMA},
+         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.SCHEMA_PATH},
+         resourceTypes = {Oslc_iotDomainConstants.SCHEMA_TYPE},
          usages = {}
     )
     @POST
@@ -1012,8 +1013,8 @@ public class IoTPlatformService
     (
          title = "ThingTypeCreationFactory",
          label = "Thing Type Creation Factory",
-         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_THINGTYPE},
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_THINGTYPE},
+         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.THINGTYPE_PATH},
+         resourceTypes = {Oslc_iotDomainConstants.THINGTYPE_TYPE},
          usages = {}
     )
     @POST
@@ -1045,8 +1046,8 @@ public class IoTPlatformService
     (
          title = "DeviceTypeCreationFactory",
          label = "Device Type Creation Factory",
-         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_DEVICETYPE},
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_DEVICETYPE},
+         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.DEVICETYPE_PATH},
+         resourceTypes = {Oslc_iotDomainConstants.DEVICETYPE_TYPE},
          usages = {}
     )
     @POST
@@ -1078,8 +1079,8 @@ public class IoTPlatformService
     (
          title = "LogicalInterfaceCreationFactory",
          label = "Logical Interface Creation Factory",
-         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_LOGICALINTERFACE},
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE},
+         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.LOGICALINTERFACE_PATH},
+         resourceTypes = {Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE},
          usages = {}
     )
     @POST
@@ -1111,8 +1112,8 @@ public class IoTPlatformService
     (
          title = "ThingCreationFactory",
          label = "ThingCreationFactory",
-         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.PATH_THING},
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_THING},
+         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.THING_PATH},
+         resourceTypes = {Oslc_iotDomainConstants.THING_TYPE},
          usages = {}
     )
     @POST
@@ -1135,244 +1136,38 @@ public class IoTPlatformService
     }
 
     /**
-     * OSLC delegated creation dialog for a single resource
+     * Create a single Device via RDF/XML, XML or JSON POST
      *
      * @throws IOException
      * @throws ServletException
      */
-    @GET
-    @Path("devicetype/creator")
-    @Consumes({MediaType.WILDCARD})
-    public void DeviceTypeCreator(
-                @PathParam("iotId") final String iotId
-        ) throws IOException, ServletException
-    {
-        // Start of user code DeviceTypeCreator
-        // End of user code
-
-        httpServletRequest.setAttribute("creatorUri", uriInfo.getAbsolutePath().toString());
-        httpServletRequest.setAttribute("iotId", iotId);
-
-        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/devicetypecreator.jsp");
-        rd.forward(httpServletRequest, httpServletResponse);
-    }
-
-    /**
-     * Backend creator for the OSLC delegated creation dialog.
-     *
-     * Accepts the input in FormParams and returns a small JSON response
-     */
-    @OslcDialog
+    @OslcCreationFactory
     (
-         title = "DeviceTypeCreationDialog",
-         label = "Device Type Creation Dialog",
-         uri = "iotp/{iotId}/resources/devicetype/creator",
-         hintWidth = "525px",
-         hintHeight = "325px",
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_DEVICETYPE},
+         title = "DeviceCreationFactory",
+         label = "Device Creation Factory",
+         resourceShapes = {OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_iotDomainConstants.DEVICE_PATH},
+         resourceTypes = {Oslc_iotDomainConstants.DEVICE_TYPE},
          usages = {}
     )
     @POST
-    @Path("devicetype/creator")
-    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED})
-    public void createDeviceType(
-            @PathParam("iotId") final String iotId
-        ) {
+    @Path("typeId/create")
+    @Consumes({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
+    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
+    public Response createDevice(
+            @PathParam("iotId") final String iotId ,
+            final Device aResource
+        ) throws IOException, ServletException
+    {
         try {
-            DeviceType newResource = null;
-
-            DeviceType aResource = new DeviceType();
-
-            String[] paramValues;
-
-            paramValues = httpServletRequest.getParameterValues("deviceTypeMappings");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addDeviceTypeMappings(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("physicalInterface");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setPhysicalInterface(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("logicalInterfaces");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addLogicalInterfaces(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("deviceInfo");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDeviceInfo(new DeviceInfo(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("metaData");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setMetaData(new MetaData(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("classId");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setClassId(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("description");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDescription(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("identifier");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setIdentifier(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("shortTitle");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setShortTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("title");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("contributor");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addContributor(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("creator");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addCreator(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("subject");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addSubject(paramValues[i]);
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("created");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setCreated(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("modified");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setModified(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("type");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addType(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("discussedBy");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDiscussedBy(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("instanceShape");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setInstanceShape(new URI(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("serviceProvider");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addServiceProvider(new URI(paramValues[i]));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("relation");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setRelation(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-
-            newResource = CE4IoTConnectorManager.createDeviceType(httpServletRequest, aResource, iotId);
-
-            if (newResource != null) {
-                httpServletRequest.setAttribute("newResource", newResource);
-                httpServletRequest.setAttribute("newResourceUri", newResource.getAbout().toString());
-
-                // Send back to the form a small JSON response
-                httpServletResponse.setContentType("application/json");
-                httpServletResponse.setStatus(Status.CREATED.getStatusCode());
-                httpServletResponse.addHeader("Location", newResource.getAbout().toString());
-                PrintWriter out = httpServletResponse.getWriter();
-
-                JSONObject oslcResponse = new JSONObject();
-                JSONObject newResourceJson = new JSONObject();
-                newResourceJson.put("rdf:resource", newResource.getAbout().toString());
-                // Start of user code OSLC Resource Label
-                newResourceJson.put("oslc:label", newResource.toString());
-                // End of user code
-                oslcResponse.put("oslc:results", new Object[]{newResourceJson});
-
-                out.print(oslcResponse.toString());
-                out.close();
-            }
+            Device newResource = CE4IoTConnectorManager.createDevice(httpServletRequest, aResource, iotId);
+            httpServletResponse.setHeader("ETag", CE4IoTConnectorManager.getETagFromDevice(newResource));
+            return Response.created(newResource.getAbout()).entity(newResource).header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
         } catch (Exception e) {
             e.printStackTrace();
             throw new WebApplicationException(e);
         }
     }
+
     /**
      * OSLC delegated creation dialog for a single resource
      *
@@ -1380,19 +1175,19 @@ public class IoTPlatformService
      * @throws ServletException
      */
     @GET
-    @Path("rule/creator")
+    @Path("creator")
     @Consumes({MediaType.WILDCARD})
-    public void RuleCreator(
+    public void ResourceAndChangeRequestAndRequirementCreator(
                 @PathParam("iotId") final String iotId
         ) throws IOException, ServletException
     {
-        // Start of user code RuleCreator
+        // Start of user code ResourceAndChangeRequestAndRequirementCreator
         // End of user code
 
         httpServletRequest.setAttribute("creatorUri", uriInfo.getAbsolutePath().toString());
         httpServletRequest.setAttribute("iotId", iotId);
 
-        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/rulecreator.jsp");
+        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/iotpcreationdialogcreator.jsp");
         rd.forward(httpServletRequest, httpServletResponse);
     }
 
@@ -1403,1355 +1198,65 @@ public class IoTPlatformService
      */
     @OslcDialog
     (
-         title = "RuleCreationDialog",
-         label = "Rule Creation Dialog",
-         uri = "iotp/{iotId}/resources/rule/creator",
+         title = "ResourceCreationDialog",
+         label = "Resource Creation Dialog",
+         uri = "iotp/{iotId}/resources/creator",
          hintWidth = "525px",
-         hintHeight = "325px",
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_RULE},
-         usages = {}
+         hintHeight = "225px",
+         resourceTypes = {Oslc_amDomainConstants.RESOURCE_TYPE, Oslc_cmDomainConstants.CHANGEREQUEST_TYPE, Oslc_rmDomainConstants.REQUIREMENT_TYPE},
+         usages = {"http://open-services.net/ns/am#IoTPCreationDialog"}
     )
     @POST
-    @Path("rule/creator")
+    @Path("creator")
     @Consumes({ MediaType.APPLICATION_FORM_URLENCODED})
-    public void createRule(
+    public void createResourceAndChangeRequestAndRequirement(
             @PathParam("iotId") final String iotId
         ) {
         try {
-            Rule newResource = null;
+            AbstractResource newResource = null;
 
-            Rule aResource = new Rule();
-
+            // Start of user code createResourceAndChangeRequestAndRequirement
+            // TODO Implement code to create the new resource. This method seems to be expected to handle more than a single type of resources.
+            // Get the user selected resource type from the query parameter
             String[] paramValues;
-
-            paramValues = httpServletRequest.getParameterValues("condition");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setCondition(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
+            Resource aResource = new Resource();
+            String resourceType = httpServletRequest.getParameter("type");
+            if (resourceType.equals("devicetype")) {
+            	aResource = new DeviceType();
+            } else if  (resourceType.equals("device")) {
+            	aResource = new Device();            	
             }
-            paramValues = httpServletRequest.getParameterValues("action");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setAction(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("description");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDescription(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
+            // generic Resource Properties to set (and these are all that are needed for any IoT Platform resource:
             paramValues = httpServletRequest.getParameterValues("identifier");
             if (paramValues != null) {
                     if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
+                        if (paramValues[0].length() != 0) {
                             aResource.setIdentifier(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("shortTitle");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setShortTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("title");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("contributor");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addContributor(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("creator");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addCreator(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("subject");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addSubject(paramValues[i]);
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("created");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setCreated(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("modified");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setModified(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("type");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addType(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("discussedBy");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDiscussedBy(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("instanceShape");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setInstanceShape(new URI(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("serviceProvider");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addServiceProvider(new URI(paramValues[i]));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("relation");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setRelation(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-
-            newResource = CE4IoTConnectorManager.createRule(httpServletRequest, aResource, iotId);
-
-            if (newResource != null) {
-                httpServletRequest.setAttribute("newResource", newResource);
-                httpServletRequest.setAttribute("newResourceUri", newResource.getAbout().toString());
-
-                // Send back to the form a small JSON response
-                httpServletResponse.setContentType("application/json");
-                httpServletResponse.setStatus(Status.CREATED.getStatusCode());
-                httpServletResponse.addHeader("Location", newResource.getAbout().toString());
-                PrintWriter out = httpServletResponse.getWriter();
-
-                JSONObject oslcResponse = new JSONObject();
-                JSONObject newResourceJson = new JSONObject();
-                newResourceJson.put("rdf:resource", newResource.getAbout().toString());
-                // Start of user code OSLC Resource Label
-                newResourceJson.put("oslc:label", newResource.toString());
-                // End of user code
-                oslcResponse.put("oslc:results", new Object[]{newResourceJson});
-
-                out.print(oslcResponse.toString());
-                out.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new WebApplicationException(e);
-        }
-    }
-    /**
-     * OSLC delegated creation dialog for a single resource
-     *
-     * @throws IOException
-     * @throws ServletException
-     */
-    @GET
-    @Path("thingtype/creator")
-    @Consumes({MediaType.WILDCARD})
-    public void ThingTypeCreator(
-                @PathParam("iotId") final String iotId
-        ) throws IOException, ServletException
-    {
-        // Start of user code ThingTypeCreator
-        // End of user code
-
-        httpServletRequest.setAttribute("creatorUri", uriInfo.getAbsolutePath().toString());
-        httpServletRequest.setAttribute("iotId", iotId);
-
-        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/thingtypecreator.jsp");
-        rd.forward(httpServletRequest, httpServletResponse);
-    }
-
-    /**
-     * Backend creator for the OSLC delegated creation dialog.
-     *
-     * Accepts the input in FormParams and returns a small JSON response
-     */
-    @OslcDialog
-    (
-         title = "ThingTypeCreationDialog",
-         label = "Thing Creation Dialog",
-         uri = "iotp/{iotId}/resources/thingtype/creator",
-         hintWidth = "525px",
-         hintHeight = "325px",
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_THINGTYPE},
-         usages = {}
-    )
-    @POST
-    @Path("thingtype/creator")
-    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED})
-    public void createThingType(
-            @PathParam("iotId") final String iotId
-        ) {
-        try {
-            ThingType newResource = null;
-
-            ThingType aResource = new ThingType();
-
-            String[] paramValues;
-
-            paramValues = httpServletRequest.getParameterValues("schema");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setSchema(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("thingTypeMappings");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addThingTypeMappings(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("logicalInterfaces");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addLogicalInterfaces(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("description");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDescription(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("identifier");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setIdentifier(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("shortTitle");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setShortTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("title");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("contributor");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addContributor(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("creator");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addCreator(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("subject");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addSubject(paramValues[i]);
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("created");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setCreated(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("modified");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setModified(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("type");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addType(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("discussedBy");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDiscussedBy(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("instanceShape");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setInstanceShape(new URI(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("serviceProvider");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addServiceProvider(new URI(paramValues[i]));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("relation");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setRelation(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-
-            newResource = CE4IoTConnectorManager.createThingType(httpServletRequest, aResource, iotId);
-
-            if (newResource != null) {
-                httpServletRequest.setAttribute("newResource", newResource);
-                httpServletRequest.setAttribute("newResourceUri", newResource.getAbout().toString());
-
-                // Send back to the form a small JSON response
-                httpServletResponse.setContentType("application/json");
-                httpServletResponse.setStatus(Status.CREATED.getStatusCode());
-                httpServletResponse.addHeader("Location", newResource.getAbout().toString());
-                PrintWriter out = httpServletResponse.getWriter();
-
-                JSONObject oslcResponse = new JSONObject();
-                JSONObject newResourceJson = new JSONObject();
-                newResourceJson.put("rdf:resource", newResource.getAbout().toString());
-                // Start of user code OSLC Resource Label
-                newResourceJson.put("oslc:label", newResource.toString());
-                // End of user code
-                oslcResponse.put("oslc:results", new Object[]{newResourceJson});
-
-                out.print(oslcResponse.toString());
-                out.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new WebApplicationException(e);
-        }
-    }
-    /**
-     * OSLC delegated creation dialog for a single resource
-     *
-     * @throws IOException
-     * @throws ServletException
-     */
-    @GET
-    @Path("physicalinterface/creator")
-    @Consumes({MediaType.WILDCARD})
-    public void PhysicalInterfaceCreator(
-                @PathParam("iotId") final String iotId
-        ) throws IOException, ServletException
-    {
-        // Start of user code PhysicalInterfaceCreator
-        // End of user code
-
-        httpServletRequest.setAttribute("creatorUri", uriInfo.getAbsolutePath().toString());
-        httpServletRequest.setAttribute("iotId", iotId);
-
-        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/physicalinterfacecreator.jsp");
-        rd.forward(httpServletRequest, httpServletResponse);
-    }
-
-    /**
-     * Backend creator for the OSLC delegated creation dialog.
-     *
-     * Accepts the input in FormParams and returns a small JSON response
-     */
-    @OslcDialog
-    (
-         title = "PhysicalInterfaceCreationDialog",
-         label = "CreationDialog5",
-         uri = "iotp/{iotId}/resources/physicalinterface/creator",
-         hintWidth = "525px",
-         hintHeight = "325px",
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_PHYSICALINTERFACE},
-         usages = {}
-    )
-    @POST
-    @Path("physicalinterface/creator")
-    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED})
-    public void createPhysicalInterface(
-            @PathParam("iotId") final String iotId
-        ) {
-        try {
-            PhysicalInterface newResource = null;
-
-            PhysicalInterface aResource = new PhysicalInterface();
-
-            String[] paramValues;
-
-            paramValues = httpServletRequest.getParameterValues("eventTypes");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addEventTypes(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("description");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDescription(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("identifier");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setIdentifier(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("shortTitle");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setShortTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("title");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("contributor");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addContributor(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("creator");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addCreator(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("subject");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addSubject(paramValues[i]);
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("created");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setCreated(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("modified");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setModified(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("type");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addType(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("discussedBy");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDiscussedBy(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("instanceShape");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setInstanceShape(new URI(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("serviceProvider");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addServiceProvider(new URI(paramValues[i]));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("relation");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setRelation(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-
-            newResource = CE4IoTConnectorManager.createPhysicalInterface(httpServletRequest, aResource, iotId);
-
-            if (newResource != null) {
-                httpServletRequest.setAttribute("newResource", newResource);
-                httpServletRequest.setAttribute("newResourceUri", newResource.getAbout().toString());
-
-                // Send back to the form a small JSON response
-                httpServletResponse.setContentType("application/json");
-                httpServletResponse.setStatus(Status.CREATED.getStatusCode());
-                httpServletResponse.addHeader("Location", newResource.getAbout().toString());
-                PrintWriter out = httpServletResponse.getWriter();
-
-                JSONObject oslcResponse = new JSONObject();
-                JSONObject newResourceJson = new JSONObject();
-                newResourceJson.put("rdf:resource", newResource.getAbout().toString());
-                // Start of user code OSLC Resource Label
-                newResourceJson.put("oslc:label", newResource.toString());
-                // End of user code
-                oslcResponse.put("oslc:results", new Object[]{newResourceJson});
-
-                out.print(oslcResponse.toString());
-                out.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new WebApplicationException(e);
-        }
-    }
-    /**
-     * OSLC delegated creation dialog for a single resource
-     *
-     * @throws IOException
-     * @throws ServletException
-     */
-    @GET
-    @Path("eventtype/creator")
-    @Consumes({MediaType.WILDCARD})
-    public void EventTypeCreator(
-                @PathParam("iotId") final String iotId
-        ) throws IOException, ServletException
-    {
-        // Start of user code EventTypeCreator
-        // End of user code
-
-        httpServletRequest.setAttribute("creatorUri", uriInfo.getAbsolutePath().toString());
-        httpServletRequest.setAttribute("iotId", iotId);
-
-        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/eventtypecreator.jsp");
-        rd.forward(httpServletRequest, httpServletResponse);
-    }
-
-    /**
-     * Backend creator for the OSLC delegated creation dialog.
-     *
-     * Accepts the input in FormParams and returns a small JSON response
-     */
-    @OslcDialog
-    (
-         title = "EventTypeCreationDialog",
-         label = "Event Type Creation Dialog",
-         uri = "iotp/{iotId}/resources/eventtype/creator",
-         hintWidth = "525px",
-         hintHeight = "325px",
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_EVENTTYPE},
-         usages = {}
-    )
-    @POST
-    @Path("eventtype/creator")
-    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED})
-    public void createEventType(
-            @PathParam("iotId") final String iotId
-        ) {
-        try {
-            EventType newResource = null;
-
-            EventType aResource = new EventType();
-
-            String[] paramValues;
-
-            paramValues = httpServletRequest.getParameterValues("schema");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setSchema(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("description");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDescription(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("identifier");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setIdentifier(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("shortTitle");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setShortTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("title");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("contributor");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addContributor(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("creator");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addCreator(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("subject");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addSubject(paramValues[i]);
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("created");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setCreated(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("modified");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setModified(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("type");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addType(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("discussedBy");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDiscussedBy(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("instanceShape");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setInstanceShape(new URI(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("serviceProvider");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addServiceProvider(new URI(paramValues[i]));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("relation");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setRelation(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-
-            newResource = CE4IoTConnectorManager.createEventType(httpServletRequest, aResource, iotId);
-
-            if (newResource != null) {
-                httpServletRequest.setAttribute("newResource", newResource);
-                httpServletRequest.setAttribute("newResourceUri", newResource.getAbout().toString());
-
-                // Send back to the form a small JSON response
-                httpServletResponse.setContentType("application/json");
-                httpServletResponse.setStatus(Status.CREATED.getStatusCode());
-                httpServletResponse.addHeader("Location", newResource.getAbout().toString());
-                PrintWriter out = httpServletResponse.getWriter();
-
-                JSONObject oslcResponse = new JSONObject();
-                JSONObject newResourceJson = new JSONObject();
-                newResourceJson.put("rdf:resource", newResource.getAbout().toString());
-                // Start of user code OSLC Resource Label
-                newResourceJson.put("oslc:label", newResource.toString());
-                // End of user code
-                oslcResponse.put("oslc:results", new Object[]{newResourceJson});
-
-                out.print(oslcResponse.toString());
-                out.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new WebApplicationException(e);
-        }
-    }
-    /**
-     * OSLC delegated creation dialog for a single resource
-     *
-     * @throws IOException
-     * @throws ServletException
-     */
-    @GET
-    @Path("logicalinterface/creator")
-    @Consumes({MediaType.WILDCARD})
-    public void LogicalInterfaceCreator(
-                @PathParam("iotId") final String iotId
-        ) throws IOException, ServletException
-    {
-        // Start of user code LogicalInterfaceCreator
-        // End of user code
-
-        httpServletRequest.setAttribute("creatorUri", uriInfo.getAbsolutePath().toString());
-        httpServletRequest.setAttribute("iotId", iotId);
-
-        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/logicalinterfacecreator.jsp");
-        rd.forward(httpServletRequest, httpServletResponse);
-    }
-
-    /**
-     * Backend creator for the OSLC delegated creation dialog.
-     *
-     * Accepts the input in FormParams and returns a small JSON response
-     */
-    @OslcDialog
-    (
-         title = "LogicalInterfaceCreationDialog",
-         label = "Logical Interface Creation Dialog",
-         uri = "iotp/{iotId}/resources/logicalinterface/creator",
-         hintWidth = "525px",
-         hintHeight = "325px",
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE},
-         usages = {}
-    )
-    @POST
-    @Path("logicalinterface/creator")
-    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED})
-    public void createLogicalInterface(
-            @PathParam("iotId") final String iotId
-        ) {
-        try {
-            LogicalInterface newResource = null;
-
-            LogicalInterface aResource = new LogicalInterface();
-
-            String[] paramValues;
-
-            paramValues = httpServletRequest.getParameterValues("schema");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setSchema(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("description");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDescription(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("identifier");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setIdentifier(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("shortTitle");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setShortTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("title");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("contributor");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addContributor(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("creator");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addCreator(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("subject");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addSubject(paramValues[i]);
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("created");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setCreated(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("modified");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setModified(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("type");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addType(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("discussedBy");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDiscussedBy(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("instanceShape");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setInstanceShape(new URI(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("serviceProvider");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addServiceProvider(new URI(paramValues[i]));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("relation");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setRelation(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-
-            newResource = CE4IoTConnectorManager.createLogicalInterface(httpServletRequest, aResource, iotId);
-
-            if (newResource != null) {
-                httpServletRequest.setAttribute("newResource", newResource);
-                httpServletRequest.setAttribute("newResourceUri", newResource.getAbout().toString());
-
-                // Send back to the form a small JSON response
-                httpServletResponse.setContentType("application/json");
-                httpServletResponse.setStatus(Status.CREATED.getStatusCode());
-                httpServletResponse.addHeader("Location", newResource.getAbout().toString());
-                PrintWriter out = httpServletResponse.getWriter();
-
-                JSONObject oslcResponse = new JSONObject();
-                JSONObject newResourceJson = new JSONObject();
-                newResourceJson.put("rdf:resource", newResource.getAbout().toString());
-                // Start of user code OSLC Resource Label
-                newResourceJson.put("oslc:label", newResource.toString());
-                // End of user code
-                oslcResponse.put("oslc:results", new Object[]{newResourceJson});
-
-                out.print(oslcResponse.toString());
-                out.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new WebApplicationException(e);
-        }
-    }
-    /**
-     * OSLC delegated creation dialog for a single resource
-     *
-     * @throws IOException
-     * @throws ServletException
-     */
-    @GET
-    @Path("schema/creator")
-    @Consumes({MediaType.WILDCARD})
-    public void SchemaCreator(
-                @PathParam("iotId") final String iotId
-        ) throws IOException, ServletException
-    {
-        // Start of user code SchemaCreator
-        // End of user code
-
-        httpServletRequest.setAttribute("creatorUri", uriInfo.getAbsolutePath().toString());
-        httpServletRequest.setAttribute("iotId", iotId);
-
-        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/schemacreator.jsp");
-        rd.forward(httpServletRequest, httpServletResponse);
-    }
-
-    /**
-     * Backend creator for the OSLC delegated creation dialog.
-     *
-     * Accepts the input in FormParams and returns a small JSON response
-     */
-    @OslcDialog
-    (
-         title = "SchemaCreationDialog",
-         label = "Schema Creation Dialog",
-         uri = "iotp/{iotId}/resources/schema/creator",
-         hintWidth = "525px",
-         hintHeight = "325px",
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_SCHEMA},
-         usages = {}
-    )
-    @POST
-    @Path("schema/creator")
-    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED})
-    public void createSchema(
-            @PathParam("iotId") final String iotId
-        ) {
-        try {
-            Schema newResource = null;
-
-            Schema aResource = new Schema();
-
-            String[] paramValues;
-
-            paramValues = httpServletRequest.getParameterValues("description");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDescription(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("identifier");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setIdentifier(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("shortTitle");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setShortTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("title");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("contributor");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addContributor(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("creator");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addCreator(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("subject");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addSubject(paramValues[i]);
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("created");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setCreated(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("modified");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setModified(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("type");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addType(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("discussedBy");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDiscussedBy(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("instanceShape");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setInstanceShape(new URI(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("serviceProvider");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addServiceProvider(new URI(paramValues[i]));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("relation");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setRelation(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-
-            newResource = CE4IoTConnectorManager.createSchema(httpServletRequest, aResource, iotId);
-
-            if (newResource != null) {
-                httpServletRequest.setAttribute("newResource", newResource);
-                httpServletRequest.setAttribute("newResourceUri", newResource.getAbout().toString());
-
-                // Send back to the form a small JSON response
-                httpServletResponse.setContentType("application/json");
-                httpServletResponse.setStatus(Status.CREATED.getStatusCode());
-                httpServletResponse.addHeader("Location", newResource.getAbout().toString());
-                PrintWriter out = httpServletResponse.getWriter();
-
-                JSONObject oslcResponse = new JSONObject();
-                JSONObject newResourceJson = new JSONObject();
-                newResourceJson.put("rdf:resource", newResource.getAbout().toString());
-                // Start of user code OSLC Resource Label
-                newResourceJson.put("oslc:label", newResource.toString());
-                // End of user code
-                oslcResponse.put("oslc:results", new Object[]{newResourceJson});
-
-                out.print(oslcResponse.toString());
-                out.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new WebApplicationException(e);
-        }
-    }
-    /**
-     * OSLC delegated creation dialog for a single resource
-     *
-     * @throws IOException
-     * @throws ServletException
-     */
-    @GET
-    @Path("thing/creator")
-    @Consumes({MediaType.WILDCARD})
-    public void ThingCreator(
-                @PathParam("iotId") final String iotId
-        ) throws IOException, ServletException
-    {
-        // Start of user code ThingCreator
-        // End of user code
-
-        httpServletRequest.setAttribute("creatorUri", uriInfo.getAbsolutePath().toString());
-        httpServletRequest.setAttribute("iotId", iotId);
-
-        RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/thingcreator.jsp");
-        rd.forward(httpServletRequest, httpServletResponse);
-    }
-
-    /**
-     * Backend creator for the OSLC delegated creation dialog.
-     *
-     * Accepts the input in FormParams and returns a small JSON response
-     */
-    @OslcDialog
-    (
-         title = "ThingCreationDialog",
-         label = "ThingCreationDialog",
-         uri = "iotp/{iotId}/resources/thing/creator",
-         hintWidth = "0px",
-         hintHeight = "0px",
-         resourceTypes = {Oslc_iotDomainConstants.TYPE_THING},
-         usages = {}
-    )
-    @POST
-    @Path("thing/creator")
-    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED})
-    public void createThing(
-            @PathParam("iotId") final String iotId
-        ) {
-        try {
-            Thing newResource = null;
-
-            Thing aResource = new Thing();
-
-            String[] paramValues;
-
-            paramValues = httpServletRequest.getParameterValues("thingTypes");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addThingTypes(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("description");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDescription(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("identifier");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setIdentifier(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("shortTitle");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setShortTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("title");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setTitle(paramValues[0]);
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("contributor");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addContributor(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("creator");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addCreator(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("subject");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addSubject(paramValues[i]);
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("created");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setCreated(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("modified");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setModified(new SimpleDateFormat("M/D/y").parse(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("type");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addType(new Link(new URI(paramValues[i])));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("discussedBy");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setDiscussedBy(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("instanceShape");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setInstanceShape(new URI(paramValues[0]));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-            paramValues = httpServletRequest.getParameterValues("serviceProvider");
-            if (paramValues != null) {
-                    for(int i=0; i<paramValues.length; i++) {
-                        aResource.addServiceProvider(new URI(paramValues[i]));
-                    }
-            }
-            paramValues = httpServletRequest.getParameterValues("relation");
-            if (paramValues != null) {
-                    if (paramValues.length == 1) {
-                        if (paramValues[0].length() != 0)
-                            aResource.setRelation(new Link(new URI(paramValues[0])));
-                        // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
-                    }
-
-            }
-
-            newResource = CE4IoTConnectorManager.createThing(httpServletRequest, aResource, iotId);
+                    		aResource.setTitle(aResource.getIdentifier());
+                    		aResource.setShortTitle(aResource.getIdentifier());
+                    		// else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
+                        }
+                    }
+                    paramValues = httpServletRequest.getParameterValues("description");
+                    if (paramValues != null) {
+                            if (paramValues.length == 1) {
+                                if (paramValues[0].length() != 0)
+                                    aResource.setDescription(paramValues[0]);
+                                // else, there is an empty value for that parameter, and hence ignore since the parameter is not actually set.
+                            }
+
+                    }
+            }
+            
+            if (resourceType.equals("devicetype")) {
+                newResource = CE4IoTConnectorManager.createDeviceType(httpServletRequest, (DeviceType)aResource, iotId);
+            } else if  (resourceType.equals("device")) {
+            	String typeId = httpServletRequest.getParameter("typeId");
+            	((Device)aResource).setTypeId(typeId);
+                newResource = CE4IoTConnectorManager.createDevice(httpServletRequest, (Device)aResource, iotId);
+            }
+
+            // End of user code
 
             if (newResource != null) {
                 httpServletRequest.setAttribute("newResource", newResource);
@@ -2869,12 +1374,12 @@ public class IoTPlatformService
             smallPreview.setDocument(UriBuilder.fromUri(aDeviceType.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aDeviceType.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aDeviceType.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -2899,6 +1404,31 @@ public class IoTPlatformService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/devicetypesmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("deviceTypes/{deviceTypeId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getDeviceTypeAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("deviceTypeId") final String deviceTypeId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getDeviceTypeAsHtmlLargePreview_init
+        // End of user code
+
+        final DeviceType aDeviceType = CE4IoTConnectorManager.getDeviceType(httpServletRequest, iotId, deviceTypeId);
+
+        if (aDeviceType != null) {
+            httpServletRequest.setAttribute("aDeviceType", aDeviceType);
+            // Start of user code getDeviceTypeAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/devicetypelargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
@@ -2985,12 +1515,12 @@ public class IoTPlatformService
             smallPreview.setDocument(UriBuilder.fromUri(aRule.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aRule.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aRule.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -3015,6 +1545,31 @@ public class IoTPlatformService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/rulesmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("rules/{ruleId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getRuleAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getRuleAsHtmlLargePreview_init
+        // End of user code
+
+        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
+
+        if (aRule != null) {
+            httpServletRequest.setAttribute("aRule", aRule);
+            // Start of user code getRuleAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/rulelargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
@@ -3101,12 +1656,12 @@ public class IoTPlatformService
             smallPreview.setDocument(UriBuilder.fromUri(aLogicalInterface.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aLogicalInterface.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aLogicalInterface.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -3131,6 +1686,31 @@ public class IoTPlatformService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/logicalinterfacesmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("logicalInterfaces/{logicalInterfaceId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getLogicalInterfaceAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("logicalInterfaceId") final String logicalInterfaceId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getLogicalInterfaceAsHtmlLargePreview_init
+        // End of user code
+
+        final LogicalInterface aLogicalInterface = CE4IoTConnectorManager.getLogicalInterface(httpServletRequest, iotId, logicalInterfaceId);
+
+        if (aLogicalInterface != null) {
+            httpServletRequest.setAttribute("aLogicalInterface", aLogicalInterface);
+            // Start of user code getLogicalInterfaceAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/logicalinterfacelargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
@@ -3217,12 +1797,12 @@ public class IoTPlatformService
             smallPreview.setDocument(UriBuilder.fromUri(aEventType.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aEventType.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aEventType.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -3247,6 +1827,31 @@ public class IoTPlatformService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/eventtypesmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("eventTypes/{eventTypeId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getEventTypeAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("eventTypeId") final String eventTypeId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getEventTypeAsHtmlLargePreview_init
+        // End of user code
+
+        final EventType aEventType = CE4IoTConnectorManager.getEventType(httpServletRequest, iotId, eventTypeId);
+
+        if (aEventType != null) {
+            httpServletRequest.setAttribute("aEventType", aEventType);
+            // Start of user code getEventTypeAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/eventtypelargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
@@ -3333,12 +1938,12 @@ public class IoTPlatformService
             smallPreview.setDocument(UriBuilder.fromUri(aPhysicalInterface.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aPhysicalInterface.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aPhysicalInterface.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -3363,6 +1968,31 @@ public class IoTPlatformService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/physicalinterfacesmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("physicalInterfaces/{physicalInterfaceId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getPhysicalInterfaceAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("physicalInterfaceId") final String physicalInterfaceId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getPhysicalInterfaceAsHtmlLargePreview_init
+        // End of user code
+
+        final PhysicalInterface aPhysicalInterface = CE4IoTConnectorManager.getPhysicalInterface(httpServletRequest, iotId, physicalInterfaceId);
+
+        if (aPhysicalInterface != null) {
+            httpServletRequest.setAttribute("aPhysicalInterface", aPhysicalInterface);
+            // Start of user code getPhysicalInterfaceAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/physicalinterfacelargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
@@ -3449,12 +2079,12 @@ public class IoTPlatformService
             smallPreview.setDocument(UriBuilder.fromUri(aSchema.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aSchema.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aSchema.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -3479,6 +2109,31 @@ public class IoTPlatformService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/schemasmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("schemas/{schemaId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getSchemaAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("schemaId") final String schemaId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getSchemaAsHtmlLargePreview_init
+        // End of user code
+
+        final Schema aSchema = CE4IoTConnectorManager.getSchema(httpServletRequest, iotId, schemaId);
+
+        if (aSchema != null) {
+            httpServletRequest.setAttribute("aSchema", aSchema);
+            // Start of user code getSchemaAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/schemalargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
@@ -3565,12 +2220,12 @@ public class IoTPlatformService
             smallPreview.setDocument(UriBuilder.fromUri(aThingType.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aThingType.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aThingType.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -3595,6 +2250,31 @@ public class IoTPlatformService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/thingtypesmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("thingTypes/{thingTypeId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getThingTypeAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("thingTypeId") final String thingTypeId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getThingTypeAsHtmlLargePreview_init
+        // End of user code
+
+        final ThingType aThingType = CE4IoTConnectorManager.getThingType(httpServletRequest, iotId, thingTypeId);
+
+        if (aThingType != null) {
+            httpServletRequest.setAttribute("aThingType", aThingType);
+            // Start of user code getThingTypeAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/thingtypelargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
@@ -4118,12 +2798,12 @@ public class IoTPlatformService
             smallPreview.setDocument(UriBuilder.fromUri(aDevice.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aDevice.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aDevice.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -4154,4 +2834,90 @@ public class IoTPlatformService
 
         throw new WebApplicationException(Status.NOT_FOUND);
     }
+
+    @GET
+    @Path("devices/{typeId}/devices/{deviceId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getDeviceAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("typeId") final String typeId, @PathParam("deviceId") final String deviceId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getDeviceAsHtmlLargePreview_init
+        // End of user code
+
+        final Device aDevice = CE4IoTConnectorManager.getDevice(httpServletRequest, iotId, typeId, deviceId);
+
+        if (aDevice != null) {
+            httpServletRequest.setAttribute("aDevice", aDevice);
+            // Start of user code getDeviceAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/devicelargepreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+    @DELETE
+    @Path("devices/{typeId}/devices/{deviceId}")
+    public Response deleteDevice(
+                @PathParam("iotId") final String iotId, @PathParam("typeId") final String typeId, @PathParam("deviceId") final String deviceId
+        ) throws IOException, ServletException, URISyntaxException
+    {
+        // Start of user code deleteDevice_init
+        // End of user code
+        final Device aResource = CE4IoTConnectorManager.getDevice(httpServletRequest, iotId, typeId, deviceId);
+
+        if (aResource != null) {
+            // Start of user code deleteDevice
+            // End of user code
+            boolean deleted = CE4IoTConnectorManager.deleteDevice(httpServletRequest, iotId, typeId, deviceId);
+            if (deleted)
+                return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
+            else
+                throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
+        }
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @PUT
+    @Path("devices/{typeId}/devices/{deviceId}")
+    @Consumes({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
+    public Response updateDevice(
+            @HeaderParam("If-Match") final String eTagHeader,
+            @PathParam("iotId") final String iotId, @PathParam("typeId") final String typeId, @PathParam("deviceId") final String deviceId ,
+            final Device aResource
+        ) throws IOException, ServletException
+    {
+        // Start of user code updateDevice_init
+        // End of user code
+        final Device originalResource = CE4IoTConnectorManager.getDevice(httpServletRequest, iotId, typeId, deviceId);
+
+        if (originalResource != null) {
+            try {
+                final String originalETag = CE4IoTConnectorManager.getETagFromDevice(originalResource);
+
+                if ((eTagHeader == null) || (originalETag.equals(eTagHeader))) {
+                    // Start of user code updateDevice
+                    // End of user code
+                    final Device updatedResource = CE4IoTConnectorManager.updateDevice(httpServletRequest, aResource, iotId, typeId, deviceId);
+                    httpServletResponse.setHeader("ETag", CE4IoTConnectorManager.getETagFromDevice(updatedResource));
+                    return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
+                }
+                else {
+                    throw new WebApplicationException(Status.PRECONDITION_FAILED);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new WebApplicationException(e);
+            }
+
+        }
+        else {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
+    }
+
 }

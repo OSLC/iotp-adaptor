@@ -73,9 +73,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IDiscussion;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.FLOW)
-@OslcResourceShape(title = "Flow Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_FLOW)
+@OslcNamespace(Oslc_bmxDomainConstants.FLOW_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.FLOW_LOCALNAME)
+@OslcResourceShape(title = "Flow Resource Shape", describes = Oslc_bmxDomainConstants.FLOW_TYPE)
 public interface IFlow
 {
 

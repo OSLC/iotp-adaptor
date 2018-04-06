@@ -84,9 +84,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Discussion;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.CFSERVICE)
-@OslcResourceShape(title = "CFService Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_CFSERVICE)
+@OslcNamespace(Oslc_bmxDomainConstants.CFSERVICE_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.CFSERVICE_LOCALNAME)
+@OslcResourceShape(title = "CFService Resource Shape", describes = Oslc_bmxDomainConstants.CFSERVICE_TYPE)
 public class CFService
     extends Resource
     implements ICFService
@@ -118,7 +118,7 @@ public class CFService
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_bmxDomainConstants.PATH_CFSERVICE,
+        Oslc_bmxDomainConstants.CFSERVICE_PATH,
         CFService.class);
     }
     

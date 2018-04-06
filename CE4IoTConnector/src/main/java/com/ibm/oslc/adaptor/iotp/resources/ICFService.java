@@ -73,9 +73,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IDiscussion;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.CFSERVICE)
-@OslcResourceShape(title = "CFService Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_CFSERVICE)
+@OslcNamespace(Oslc_bmxDomainConstants.CFSERVICE_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.CFSERVICE_LOCALNAME)
+@OslcResourceShape(title = "CFService Resource Shape", describes = Oslc_bmxDomainConstants.CFSERVICE_TYPE)
 public interface ICFService
 {
 

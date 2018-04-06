@@ -36,7 +36,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.ibm.oslc.adaptor.util.Constants;
+import com.ibm.oslc.adaptor.iotp.impl.Constants;
 
 /**
  * A simple test program to login to Bluemix and get organizations, spaces,

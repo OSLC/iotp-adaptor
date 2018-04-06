@@ -74,9 +74,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IDiscussion;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.APP)
-@OslcResourceShape(title = "App Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_APP)
+@OslcNamespace(Oslc_bmxDomainConstants.APP_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.APP_LOCALNAME)
+@OslcResourceShape(title = "App Resource Shape", describes = Oslc_bmxDomainConstants.APP_TYPE)
 public interface IApp
 {
 
@@ -86,7 +86,7 @@ public interface IApp
     @OslcPropertyDefinition(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE + "binds")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_bmxDomainConstants.TYPE_CFSERVICE})
+    @OslcRange({Oslc_bmxDomainConstants.CFSERVICE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("binds Services")
     public HashSet<Link> getBinds();

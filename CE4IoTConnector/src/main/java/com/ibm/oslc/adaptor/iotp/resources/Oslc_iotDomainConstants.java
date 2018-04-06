@@ -27,6 +27,7 @@ package com.ibm.oslc.adaptor.iotp.resources;
 
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
+
 // Start of user code imports
 // End of user code
 
@@ -39,46 +40,60 @@ public interface Oslc_iotDomainConstants
     public static String IOT_PLATFORM_NAMSPACE = "http://jazz.net/ns/iot#";
     public static String IOT_PLATFORM_NAMSPACE_PREFIX = "oslc_iot";
 
-    public static String DEVICE = "Device";
-    public static String PATH_DEVICE = "device";
-    public static String TYPE_DEVICE = IOT_PLATFORM_NAMSPACE + DEVICE;
-    public static String DEVICEINFO = "DeviceInfo";
-    public static String PATH_DEVICEINFO = "deviceInfo";
-    public static String TYPE_DEVICEINFO = IOT_PLATFORM_NAMSPACE + DEVICEINFO;
-    public static String DEVICETYPE = "DeviceType";
-    public static String PATH_DEVICETYPE = "deviceType";
-    public static String TYPE_DEVICETYPE = IOT_PLATFORM_NAMSPACE + DEVICETYPE;
-    public static String DEVICETYPEMAPPING = "DeviceTypeMapping";
-    public static String PATH_DEVICETYPEMAPPING = "deviceTypeMapping";
-    public static String TYPE_DEVICETYPEMAPPING = IOT_PLATFORM_NAMSPACE + DEVICETYPEMAPPING;
-    public static String EVENTTYPE = "EventType";
-    public static String PATH_EVENTTYPE = "eventType";
-    public static String TYPE_EVENTTYPE = IOT_PLATFORM_NAMSPACE + EVENTTYPE;
-    public static String LOGICALINTERFACE = "LogicalInterface";
-    public static String PATH_LOGICALINTERFACE = "logicalInterface";
-    public static String TYPE_LOGICALINTERFACE = IOT_PLATFORM_NAMSPACE + LOGICALINTERFACE;
-    public static String METADATA = "MetaData";
-    public static String PATH_METADATA = "metaData";
-    public static String TYPE_METADATA = IOT_PLATFORM_NAMSPACE + METADATA;
-    public static String METAPROPERTY = "MetaProperty";
-    public static String PATH_METAPROPERTY = "metaProperty";
-    public static String TYPE_METAPROPERTY = IOT_PLATFORM_NAMSPACE + METAPROPERTY;
-    public static String PHYSICALINTERFACE = "PhysicalInterface";
-    public static String PATH_PHYSICALINTERFACE = "physicalInterface";
-    public static String TYPE_PHYSICALINTERFACE = IOT_PLATFORM_NAMSPACE + PHYSICALINTERFACE;
-    public static String RULE = "Rule";
-    public static String PATH_RULE = "rule";
-    public static String TYPE_RULE = IOT_PLATFORM_NAMSPACE + RULE;
-    public static String SCHEMA = "Schema";
-    public static String PATH_SCHEMA = "schema";
-    public static String TYPE_SCHEMA = IOT_PLATFORM_NAMSPACE + SCHEMA;
-    public static String THING = "Thing";
-    public static String PATH_THING = "thing";
-    public static String TYPE_THING = IOT_PLATFORM_NAMSPACE + THING;
-    public static String THINGTYPE = "ThingType";
-    public static String PATH_THINGTYPE = "thingType";
-    public static String TYPE_THINGTYPE = IOT_PLATFORM_NAMSPACE + THINGTYPE;
-    public static String THINGTYPEMAPPING = "ThingTypeMapping";
-    public static String PATH_THINGTYPEMAPPING = "thingTypeMapping";
-    public static String TYPE_THINGTYPEMAPPING = IOT_PLATFORM_NAMSPACE + THINGTYPEMAPPING;
+    public static String DEVICE_PATH = "device";
+    public static String DEVICE_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String DEVICE_LOCALNAME = "Device"; //localName of the rdfs:class the resource describes
+    public static String DEVICE_TYPE = DEVICE_NAMESPACE + DEVICE_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String DEVICEINFO_PATH = "deviceInfo";
+    public static String DEVICEINFO_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String DEVICEINFO_LOCALNAME = "DeviceInfo"; //localName of the rdfs:class the resource describes
+    public static String DEVICEINFO_TYPE = DEVICEINFO_NAMESPACE + DEVICEINFO_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String DEVICETYPE_PATH = "deviceType";
+    public static String DEVICETYPE_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String DEVICETYPE_LOCALNAME = "DeviceType"; //localName of the rdfs:class the resource describes
+    public static String DEVICETYPE_TYPE = DEVICETYPE_NAMESPACE + DEVICETYPE_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String DEVICETYPEMAPPING_PATH = "deviceTypeMapping";
+    public static String DEVICETYPEMAPPING_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String DEVICETYPEMAPPING_LOCALNAME = "DeviceTypeMapping"; //localName of the rdfs:class the resource describes
+    public static String DEVICETYPEMAPPING_TYPE = DEVICETYPEMAPPING_NAMESPACE + DEVICETYPEMAPPING_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String EVENTTYPE_PATH = "eventType";
+    public static String EVENTTYPE_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String EVENTTYPE_LOCALNAME = "EventType"; //localName of the rdfs:class the resource describes
+    public static String EVENTTYPE_TYPE = EVENTTYPE_NAMESPACE + EVENTTYPE_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String LOGICALINTERFACE_PATH = "logicalInterface";
+    public static String LOGICALINTERFACE_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String LOGICALINTERFACE_LOCALNAME = "LogicalInterface"; //localName of the rdfs:class the resource describes
+    public static String LOGICALINTERFACE_TYPE = LOGICALINTERFACE_NAMESPACE + LOGICALINTERFACE_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String METADATA_PATH = "metaData";
+    public static String METADATA_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String METADATA_LOCALNAME = "MetaData"; //localName of the rdfs:class the resource describes
+    public static String METADATA_TYPE = METADATA_NAMESPACE + METADATA_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String METAPROPERTY_PATH = "metaProperty";
+    public static String METAPROPERTY_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String METAPROPERTY_LOCALNAME = "MetaProperty"; //localName of the rdfs:class the resource describes
+    public static String METAPROPERTY_TYPE = METAPROPERTY_NAMESPACE + METAPROPERTY_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String PHYSICALINTERFACE_PATH = "physicalInterface";
+    public static String PHYSICALINTERFACE_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String PHYSICALINTERFACE_LOCALNAME = "PhysicalInterface"; //localName of the rdfs:class the resource describes
+    public static String PHYSICALINTERFACE_TYPE = PHYSICALINTERFACE_NAMESPACE + PHYSICALINTERFACE_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String RULE_PATH = "rule";
+    public static String RULE_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String RULE_LOCALNAME = "Rule"; //localName of the rdfs:class the resource describes
+    public static String RULE_TYPE = RULE_NAMESPACE + RULE_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String SCHEMA_PATH = "schema";
+    public static String SCHEMA_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String SCHEMA_LOCALNAME = "Schema"; //localName of the rdfs:class the resource describes
+    public static String SCHEMA_TYPE = SCHEMA_NAMESPACE + SCHEMA_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String THING_PATH = "thing";
+    public static String THING_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String THING_LOCALNAME = "Thing"; //localName of the rdfs:class the resource describes
+    public static String THING_TYPE = THING_NAMESPACE + THING_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String THINGTYPE_PATH = "thingType";
+    public static String THINGTYPE_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String THINGTYPE_LOCALNAME = "ThingType"; //localName of the rdfs:class the resource describes
+    public static String THINGTYPE_TYPE = THINGTYPE_NAMESPACE + THINGTYPE_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String THINGTYPEMAPPING_PATH = "thingTypeMapping";
+    public static String THINGTYPEMAPPING_NAMESPACE = IOT_PLATFORM_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String THINGTYPEMAPPING_LOCALNAME = "ThingTypeMapping"; //localName of the rdfs:class the resource describes
+    public static String THINGTYPEMAPPING_TYPE = THINGTYPEMAPPING_NAMESPACE + THINGTYPEMAPPING_LOCALNAME; //fullname of the rdfs:class the resource describes
 }

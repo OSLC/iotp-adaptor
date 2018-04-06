@@ -96,9 +96,9 @@ import java.text.ParseException;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.DEVICE)
-@OslcResourceShape(title = "Device Resource Shape", describes = Oslc_iotDomainConstants.TYPE_DEVICE)
+@OslcNamespace(Oslc_iotDomainConstants.DEVICE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.DEVICE_LOCALNAME)
+@OslcResourceShape(title = "Device Resource Shape", describes = Oslc_iotDomainConstants.DEVICE_TYPE)
 public class Device
     extends Resource
     implements IDevice
@@ -138,8 +138,9 @@ public class Device
 		} catch (OslcCoreApplicationException e) {
 		}
 
-		JsonElement element = jsonObject.get("description");
-		if (element != null) this.setDescription(element.getAsString());
+		
+		JsonElement element = jsonObject.get("typeId");
+		if (element != null) this.setTypeId(element.getAsString());
 
 		JsonObject devInfo = jsonObject.get("deviceInfo").getAsJsonObject();
 		if (element != null) {
@@ -153,6 +154,7 @@ public class Device
 			if (element != null) deviceInfo.setDeviceClass(element.getAsString());
 			element = devInfo.get("description");
 			if (element != null) deviceInfo.setDescription(element.getAsString());
+			if (element != null) this.setDescription(element.getAsString());
 			element = devInfo.get("fwVersion");
 			if (element != null) deviceInfo.setFwVersion(element.getAsString());
 			element = devInfo.get("hwVersion");
@@ -175,8 +177,8 @@ public class Device
     public JsonElement toJson() {
 		JsonObject json = super.toJson().getAsJsonObject();
 		
-		json.addProperty("description", getDescription());
-		json.addProperty("id", getIdentifier());
+		json.addProperty("deviceId", getIdentifier());
+		json.addProperty("typeId", getTypeId());
 		if (deviceInfo != null) {
 			JsonObject deviceInfoJson = new JsonObject();
 			deviceInfoJson.addProperty("serialNumber", deviceInfo.getSerialNumber());
@@ -267,7 +269,7 @@ public class Device
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_DEVICE,
+        Oslc_iotDomainConstants.DEVICE_PATH,
         Device.class);
     }
     
@@ -332,7 +334,7 @@ public class Device
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "deviceInfo")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_DEVICEINFO})
+    @OslcRange({Oslc_iotDomainConstants.DEVICEINFO_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("deviceInfo")
     public DeviceInfo getDeviceInfo()
@@ -348,7 +350,7 @@ public class Device
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "metaData")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_METADATA})
+    @OslcRange({Oslc_iotDomainConstants.METADATA_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("metaData")
     public MetaData getMetaData()

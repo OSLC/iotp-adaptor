@@ -74,9 +74,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IThingType;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.THING)
-@OslcResourceShape(title = "Thing Resource Shape", describes = Oslc_iotDomainConstants.TYPE_THING)
+@OslcNamespace(Oslc_iotDomainConstants.THING_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.THING_LOCALNAME)
+@OslcResourceShape(title = "Thing Resource Shape", describes = Oslc_iotDomainConstants.THING_TYPE)
 public interface IThing
 {
 
@@ -86,7 +86,7 @@ public interface IThing
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "thingTypes")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_THINGTYPE})
+    @OslcRange({Oslc_iotDomainConstants.THINGTYPE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("thingTypes")
     public HashSet<Link> getThingTypes();

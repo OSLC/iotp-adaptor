@@ -89,9 +89,9 @@ import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.SPACE)
-@OslcResourceShape(title = "Space Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_SPACE)
+@OslcNamespace(Oslc_bmxDomainConstants.SPACE_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.SPACE_LOCALNAME)
+@OslcResourceShape(title = "Space Resource Shape", describes = Oslc_bmxDomainConstants.SPACE_TYPE)
 public class Space
     extends Resource
     implements ISpace
@@ -111,7 +111,7 @@ public class Space
 		setTitle(space.getName());
 		setShortTitle(space.getName());
 		setIdentifier(space.getGuid());
-		getTypes().add(new URI(Oslc_bmxDomainConstants.TYPE_SPACE));
+		getTypes().add(new URI(Oslc_bmxDomainConstants.SPACE_TYPE));
 		// This is so RDNG, RTC and RQM can link to this resource. Its like a linkable marker type
 	
 		// Note that there must be a service provider since we are creating an instance of an resource
@@ -196,7 +196,7 @@ public class Space
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_bmxDomainConstants.PATH_SPACE,
+        Oslc_bmxDomainConstants.SPACE_PATH,
         Space.class);
     }
     
@@ -270,7 +270,7 @@ public class Space
     @OslcPropertyDefinition(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE + "scopes")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_bmxDomainConstants.TYPE_APP})
+    @OslcRange({Oslc_bmxDomainConstants.APP_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("scopes Applications")
     public HashSet<Link> getScopes()
@@ -287,7 +287,7 @@ public class Space
     @OslcDescription("A Bluemix Space provisions zero or more Bluemix Services")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_bmxDomainConstants.TYPE_CFSERVICE})
+    @OslcRange({Oslc_bmxDomainConstants.CFSERVICE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("provisions Services")
     public HashSet<Link> getProvisions()

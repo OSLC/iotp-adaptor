@@ -85,9 +85,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Discussion;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.APP)
-@OslcResourceShape(title = "App Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_APP)
+@OslcNamespace(Oslc_bmxDomainConstants.APP_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.APP_LOCALNAME)
+@OslcResourceShape(title = "App Resource Shape", describes = Oslc_bmxDomainConstants.APP_TYPE)
 public class App
     extends Resource
     implements IApp
@@ -122,7 +122,7 @@ public class App
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_bmxDomainConstants.PATH_APP,
+        Oslc_bmxDomainConstants.APP_PATH,
         App.class);
     }
     
@@ -191,7 +191,7 @@ public class App
     @OslcPropertyDefinition(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE + "binds")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_bmxDomainConstants.TYPE_CFSERVICE})
+    @OslcRange({Oslc_bmxDomainConstants.CFSERVICE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("binds Services")
     public HashSet<Link> getBinds()

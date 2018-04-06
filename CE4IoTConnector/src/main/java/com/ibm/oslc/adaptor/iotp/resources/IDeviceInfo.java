@@ -71,9 +71,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Oslc_iotDomainConstants;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.DEVICEINFO)
-@OslcResourceShape(title = "DeviceInfo Resource Shape", describes = Oslc_iotDomainConstants.TYPE_DEVICEINFO)
+@OslcNamespace(Oslc_iotDomainConstants.DEVICEINFO_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.DEVICEINFO_LOCALNAME)
+@OslcResourceShape(title = "DeviceInfo Resource Shape", describes = Oslc_iotDomainConstants.DEVICEINFO_TYPE)
 public interface IDeviceInfo
 {
 

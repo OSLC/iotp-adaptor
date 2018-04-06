@@ -70,9 +70,9 @@ import com.ibm.oslc.adaptor.iotp.resources.OslcDomainConstants;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(OslcDomainConstants.OSLC_NAMSPACE)
-@OslcName(OslcDomainConstants.DISCUSSION)
-@OslcResourceShape(title = "Discussion Resource Shape", describes = OslcDomainConstants.TYPE_DISCUSSION)
+@OslcNamespace(OslcDomainConstants.DISCUSSION_NAMESPACE)
+@OslcName(OslcDomainConstants.DISCUSSION_LOCALNAME)
+@OslcResourceShape(title = "Discussion Resource Shape", describes = OslcDomainConstants.DISCUSSION_TYPE)
 public interface IDiscussion
 {
 

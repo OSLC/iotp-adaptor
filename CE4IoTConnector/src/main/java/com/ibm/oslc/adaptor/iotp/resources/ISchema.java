@@ -73,9 +73,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IDiscussion;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.SCHEMA)
-@OslcResourceShape(title = "Schema Resource Shape", describes = Oslc_iotDomainConstants.TYPE_SCHEMA)
+@OslcNamespace(Oslc_iotDomainConstants.SCHEMA_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.SCHEMA_LOCALNAME)
+@OslcResourceShape(title = "Schema Resource Shape", describes = Oslc_iotDomainConstants.SCHEMA_TYPE)
 public interface ISchema
 {
 

@@ -74,9 +74,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IEventType;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.PHYSICALINTERFACE)
-@OslcResourceShape(title = "PhysicalInterface Resource Shape", describes = Oslc_iotDomainConstants.TYPE_PHYSICALINTERFACE)
+@OslcNamespace(Oslc_iotDomainConstants.PHYSICALINTERFACE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.PHYSICALINTERFACE_LOCALNAME)
+@OslcResourceShape(title = "PhysicalInterface Resource Shape", describes = Oslc_iotDomainConstants.PHYSICALINTERFACE_TYPE)
 public interface IPhysicalInterface
 {
 
@@ -86,7 +86,7 @@ public interface IPhysicalInterface
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "eventTypes")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_EVENTTYPE})
+    @OslcRange({Oslc_iotDomainConstants.EVENTTYPE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("eventTypes")
     public HashSet<Link> getEventTypes();

@@ -71,9 +71,9 @@ import com.ibm.oslc.adaptor.iotp.resources.ILogicalInterface;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.DEVICETYPEMAPPING)
-@OslcResourceShape(title = "DeviceTypeMapping Resource Shape", describes = Oslc_iotDomainConstants.TYPE_DEVICETYPEMAPPING)
+@OslcNamespace(Oslc_iotDomainConstants.DEVICETYPEMAPPING_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.DEVICETYPEMAPPING_LOCALNAME)
+@OslcResourceShape(title = "DeviceTypeMapping Resource Shape", describes = Oslc_iotDomainConstants.DEVICETYPEMAPPING_TYPE)
 public interface IDeviceTypeMapping
 {
 
@@ -82,7 +82,7 @@ public interface IDeviceTypeMapping
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "logicalInterface")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE})
+    @OslcRange({Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("logicalInterface")
     public Link getLogicalInterface();

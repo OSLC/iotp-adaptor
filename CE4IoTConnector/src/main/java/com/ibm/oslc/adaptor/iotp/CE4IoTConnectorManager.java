@@ -260,18 +260,20 @@ public class CE4IoTConnectorManager {
         // End of user code
         return resources;
     }
-    public static List<AbstractResource> DeviceTypeAndRuleAndThingTypeAndRequirementAndChangeRequestSelector(HttpServletRequest httpServletRequest, final String iotId, String terms)   
+    public static List<AbstractResource> RequirementAndChangeRequestAndResourceSelector(HttpServletRequest httpServletRequest, final String iotId, String terms)   
     {
         List<AbstractResource> resources = null;
         
-        // Start of user code DeviceTypeAndRuleAndThingTypeAndRequirementAndChangeRequestSelector
+        // Start of user code RequirementAndChangeRequestAndResourceSelector
 		try {
+            String resourceType = httpServletRequest.getParameter("type");
+            if (resourceType == null) resourceType = "devicetype";
 			IotpServiceProviderInfo info = IoTAPIImplementation.getIotpServiceProviderInfo(httpServletRequest, iotId);
 			resources = new ArrayList<AbstractResource>();
-			resources.addAll(queryDeviceTypes(httpServletRequest, iotId, terms, 1, 10000));
-			resources.addAll(queryDevices(httpServletRequest, info.iotId, terms, 1, 10000));				
-			resources.addAll(queryThingTypes(httpServletRequest, info.iotId, terms, 1, 10000));
-			resources.addAll(queryRules(httpServletRequest, info.iotId, terms, 1, 10000));
+			if (resourceType.equals("devicetype")) resources.addAll(queryDeviceTypes(httpServletRequest, iotId, terms, 1, 10000));
+			if (resourceType.equals("device")) resources.addAll(queryDevices(httpServletRequest, info.iotId, terms, 1, 10000));				
+			if (resourceType.equals("thingtype")) resources.addAll(queryThingTypes(httpServletRequest, info.iotId, terms, 1, 10000));
+			if (resourceType.equals("rule")) resources.addAll(queryRules(httpServletRequest, info.iotId, terms, 1, 10000));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
@@ -367,7 +369,43 @@ public class CE4IoTConnectorManager {
         // End of user code
         return newResource;
     }
+    public static Device createDevice(HttpServletRequest httpServletRequest, final Device aResource, final String iotId)
+    {
+        Device newResource = null;
+        
+        // Start of user code createDevice
+		try {
+			IotpServiceProviderInfo info = IoTAPIImplementation.getIotpServiceProviderInfo(httpServletRequest, iotId);
+			IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
+			String uri = "device/types/" + aResource.getTypeId() + "/devices";
+			// Create the JSon Element representing the device.
+			JsonObject json = aResource.toJson().getAsJsonObject();
+			// Remove any properties that can't be assigned in case they were copied from another resource
+			json.addProperty("authToken", httpServletRequest.getParameter("authToken"));
+			json.remove("typeId");
+			json.remove("createdDateTime");
+			json.remove("updatedDateTime");
 
+			// Convert the result back
+			JsonElement result = client.createIoTResource(info.name, uri, json);
+			if (result != null) newResource = new Device(httpServletRequest, info, aResource.getTypeId(), aResource.getIdentifier(), result.getAsJsonObject());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
+		}
+        // End of user code
+        return newResource;
+    }
+
+    public static AbstractResource createResourceAndChangeRequestAndRequirement(HttpServletRequest httpServletRequest, final AbstractResource aResource, final String iotId)
+    {
+        AbstractResource newResource = null;
+        
+        // Start of user code createResourceAndChangeRequestAndRequirement
+        // TODO Implement code to create a resource
+        // End of user code
+        return newResource;
+    }
 
     public static DeviceType getDeviceType(HttpServletRequest httpServletRequest, final String iotId, final String deviceTypeId)
     {
@@ -598,7 +636,40 @@ public class CE4IoTConnectorManager {
         return aResource;
     }
 
+    public static Boolean deleteDevice(HttpServletRequest httpServletRequest, final String iotId, final String typeId, final String deviceId)
+    {
+        Boolean deleted = false;
+        // Start of user code deleteDevice
+        // TODO Implement code to delete a resource
+        // End of user code
+        return deleted;
+    }
 
+    public static Device updateDevice(HttpServletRequest httpServletRequest, final Device aResource, final String iotId, final String typeId, final String deviceId) {
+        Device updatedResource = null;
+        // Start of user code updateDevice
+		try {
+			// RQM attempts to set the backlink without a properly constructed resource, ignore this since we can't store any links
+			if (aResource.getIdentifier() == null) return aResource;
+			IotpServiceProviderInfo info = IoTAPIImplementation.getIotpServiceProviderInfo(httpServletRequest, iotId);
+			IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
+			String uri = "device/types/" + aResource.getTypeId() + "/devices/" + aResource.getIdentifier();
+			JsonObject json = aResource.toJson().getAsJsonObject();
+			// Remove the properties that can't be updated
+			json.remove("id");
+			json.remove("typeid");
+			json.remove("classId");
+			json.remove("createdDateTime");
+			json.remove("updatedDateTime");
+			JsonElement result = client.updateIoTResource(info.name, uri, json);
+			if (result != null) updatedResource = new Device(httpServletRequest, info, aResource.getTypeId(), aResource.getIdentifier(), result.getAsJsonObject());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
+		}
+        // End of user code
+        return updatedResource;
+    }
 
     public static List<Space> querySpaces(HttpServletRequest httpServletRequest, final String bmxId, String where, int page, int limit)
     {
@@ -738,66 +809,10 @@ public class CE4IoTConnectorManager {
     }
 
 
-    public static String getETagFromThingType(final ThingType aResource)
+    public static String getETagFromResource(final Resource aResource)
     {
         String eTag = null;
-        // Start of user code getETagFromThingType
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
-    public static String getETagFromSpace(final Space aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromSpace
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
-    public static String getETagFromEventType(final EventType aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromEventType
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
-    public static String getETagFromRequirement(final Requirement aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromRequirement
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
-    public static String getETagFromSchema(final Schema aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromSchema
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
-    public static String getETagFromPhysicalInterface(final PhysicalInterface aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromPhysicalInterface
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
-    public static String getETagFromRule(final Rule aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromRule
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
-    public static String getETagFromDevice(final Device aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromDevice
+        // Start of user code getETagFromResource
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;
@@ -810,18 +825,50 @@ public class CE4IoTConnectorManager {
         // End of user code
         return eTag;
     }
-    public static String getETagFromDeviceType(final DeviceType aResource)
+    public static String getETagFromNodeREDApp(final NodeREDApp aResource)
     {
         String eTag = null;
-        // Start of user code getETagFromDeviceType
+        // Start of user code getETagFromNodeREDApp
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;
     }
-    public static String getETagFromLogicalInterface(final LogicalInterface aResource)
+    public static String getETagFromDevice(final Device aResource)
     {
         String eTag = null;
-        // Start of user code getETagFromLogicalInterface
+        // Start of user code getETagFromDevice
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromPhysicalInterface(final PhysicalInterface aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromPhysicalInterface
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromThingType(final ThingType aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromThingType
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromEventType(final EventType aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromEventType
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromSpace(final Space aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromSpace
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;
@@ -834,10 +881,42 @@ public class CE4IoTConnectorManager {
         // End of user code
         return eTag;
     }
-    public static String getETagFromNodeREDApp(final NodeREDApp aResource)
+    public static String getETagFromSchema(final Schema aResource)
     {
         String eTag = null;
-        // Start of user code getETagFromNodeREDApp
+        // Start of user code getETagFromSchema
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromRequirement(final Requirement aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromRequirement
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromRule(final Rule aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromRule
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromLogicalInterface(final LogicalInterface aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromLogicalInterface
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromDeviceType(final DeviceType aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromDeviceType
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;

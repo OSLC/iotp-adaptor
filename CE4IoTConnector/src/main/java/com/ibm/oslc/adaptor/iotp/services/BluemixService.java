@@ -123,8 +123,8 @@ public class BluemixService
     (
         title = "SpaceQueryCapability",
         label = "Space Query Capability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_bmxDomainConstants.PATH_SPACE,
-        resourceTypes = {Oslc_bmxDomainConstants.TYPE_SPACE},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_bmxDomainConstants.SPACE_PATH,
+        resourceTypes = {Oslc_bmxDomainConstants.SPACE_TYPE},
         usages = {}
     )
     @GET
@@ -199,8 +199,8 @@ public class BluemixService
     (
         title = "NodeREDQueryCapability",
         label = "Node-RED App Query Capability",
-        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_bmxDomainConstants.PATH_NODEREDAPP,
-        resourceTypes = {Oslc_bmxDomainConstants.TYPE_NODEREDAPP},
+        resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Oslc_bmxDomainConstants.NODEREDAPP_PATH,
+        resourceTypes = {Oslc_bmxDomainConstants.NODEREDAPP_TYPE},
         usages = {}
     )
     @GET
@@ -278,7 +278,7 @@ public class BluemixService
          uri = "bmx/{bmxId}/resources/selector",
          hintWidth = "525px",
          hintHeight = "325px",
-         resourceTypes = {Oslc_bmxDomainConstants.TYPE_NODEREDAPP, Oslc_cmDomainConstants.TYPE_CHANGEREQUEST, Oslc_rmDomainConstants.TYPE_REQUIREMENT},
+         resourceTypes = {Oslc_bmxDomainConstants.NODEREDAPP_TYPE, Oslc_cmDomainConstants.CHANGEREQUEST_TYPE, Oslc_rmDomainConstants.REQUIREMENT_TYPE},
          usages = {}
     )
     @GET
@@ -410,12 +410,12 @@ public class BluemixService
             smallPreview.setDocument(UriBuilder.fromUri(aSpace.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aSpace.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aSpace.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -440,6 +440,31 @@ public class BluemixService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/spacesmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("spaces/{spaceId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getSpaceAsHtmlLargePreview(
+        @PathParam("bmxId") final String bmxId, @PathParam("spaceId") final String spaceId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getSpaceAsHtmlLargePreview_init
+        // End of user code
+
+        final Space aSpace = CE4IoTConnectorManager.getSpace(httpServletRequest, bmxId, spaceId);
+
+        if (aSpace != null) {
+            httpServletRequest.setAttribute("aSpace", aSpace);
+            // Start of user code getSpaceAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/spacelargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
@@ -535,12 +560,12 @@ public class BluemixService
             smallPreview.setDocument(UriBuilder.fromUri(aNodeREDApp.getAbout()).path("smallPreview").build());
             compact.setSmallPreview(smallPreview);
 
-            //Use the HTML representation of a change request as the large preview as well
             final Preview largePreview = new Preview();
             largePreview.setHintHeight(largePreviewHintHeight);
             largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(aNodeREDApp.getAbout());
+            largePreview.setDocument(UriBuilder.fromUri(aNodeREDApp.getAbout()).path("largePreview").build());
             compact.setLargePreview(largePreview);
+
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             return compact;
         }
@@ -565,6 +590,31 @@ public class BluemixService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/noderedappsmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("nodeREDApps/{nodeREDAppId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getNodeREDAppAsHtmlLargePreview(
+        @PathParam("bmxId") final String bmxId, @PathParam("nodeREDAppId") final String nodeREDAppId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getNodeREDAppAsHtmlLargePreview_init
+        // End of user code
+
+        final NodeREDApp aNodeREDApp = CE4IoTConnectorManager.getNodeREDApp(httpServletRequest, bmxId, nodeREDAppId);
+
+        if (aNodeREDApp != null) {
+            httpServletRequest.setAttribute("aNodeREDApp", aNodeREDApp);
+            // Start of user code getNodeREDAppAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/noderedapplargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }

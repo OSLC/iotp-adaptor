@@ -84,9 +84,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Discussion;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.SCHEMA)
-@OslcResourceShape(title = "Schema Resource Shape", describes = Oslc_iotDomainConstants.TYPE_SCHEMA)
+@OslcNamespace(Oslc_iotDomainConstants.SCHEMA_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.SCHEMA_LOCALNAME)
+@OslcResourceShape(title = "Schema Resource Shape", describes = Oslc_iotDomainConstants.SCHEMA_TYPE)
 public class Schema
     extends Resource
     implements ISchema
@@ -163,7 +163,7 @@ public class Schema
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_SCHEMA,
+        Oslc_iotDomainConstants.SCHEMA_PATH,
         Schema.class);
     }
     

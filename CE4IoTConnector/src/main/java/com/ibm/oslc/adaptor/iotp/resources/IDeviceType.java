@@ -78,9 +78,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IPhysicalInterface;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.DEVICETYPE)
-@OslcResourceShape(title = "DeviceType Resource Shape", describes = Oslc_iotDomainConstants.TYPE_DEVICETYPE)
+@OslcNamespace(Oslc_iotDomainConstants.DEVICETYPE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.DEVICETYPE_LOCALNAME)
+@OslcResourceShape(title = "DeviceType Resource Shape", describes = Oslc_iotDomainConstants.DEVICETYPE_TYPE)
 public interface IDeviceType
 {
 
@@ -91,7 +91,7 @@ public interface IDeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "deviceTypeMappings")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_DEVICETYPEMAPPING})
+    @OslcRange({Oslc_iotDomainConstants.DEVICETYPEMAPPING_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("deviceTypeMappings")
     public HashSet<Link> getDeviceTypeMappings();
@@ -100,7 +100,7 @@ public interface IDeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "physicalInterface")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_PHYSICALINTERFACE})
+    @OslcRange({Oslc_iotDomainConstants.PHYSICALINTERFACE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("physicalInterface")
     public Link getPhysicalInterface();
@@ -109,7 +109,7 @@ public interface IDeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "logicalInterfaces")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE})
+    @OslcRange({Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("applicationInterfaces")
     public HashSet<Link> getLogicalInterfaces();
@@ -118,7 +118,7 @@ public interface IDeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "deviceInfo")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_DEVICEINFO})
+    @OslcRange({Oslc_iotDomainConstants.DEVICEINFO_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("deviceInfo")
     public DeviceInfo getDeviceInfo();
@@ -127,7 +127,7 @@ public interface IDeviceType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "metaData")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_METADATA})
+    @OslcRange({Oslc_iotDomainConstants.METADATA_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("metaData")
     public MetaData getMetaData();

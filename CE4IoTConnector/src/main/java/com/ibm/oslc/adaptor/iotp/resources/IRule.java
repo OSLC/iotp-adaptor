@@ -73,9 +73,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IDiscussion;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.RULE)
-@OslcResourceShape(title = "Rule Resource Shape", describes = Oslc_iotDomainConstants.TYPE_RULE)
+@OslcNamespace(Oslc_iotDomainConstants.RULE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.RULE_LOCALNAME)
+@OslcResourceShape(title = "Rule Resource Shape", describes = Oslc_iotDomainConstants.RULE_TYPE)
 public interface IRule
 {
 

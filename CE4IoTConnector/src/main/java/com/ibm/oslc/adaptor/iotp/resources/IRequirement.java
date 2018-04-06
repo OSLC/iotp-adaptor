@@ -76,9 +76,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IPerson;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_rmDomainConstants.REQUIREMENTS_MANAGEMENT_NAMSPACE)
-@OslcName(Oslc_rmDomainConstants.REQUIREMENT)
-@OslcResourceShape(title = "Requirement Resource Shape", describes = Oslc_rmDomainConstants.TYPE_REQUIREMENT)
+@OslcNamespace(Oslc_rmDomainConstants.REQUIREMENT_NAMESPACE)
+@OslcName(Oslc_rmDomainConstants.REQUIREMENT_LOCALNAME)
+@OslcResourceShape(title = "Requirement Resource Shape", describes = Oslc_rmDomainConstants.REQUIREMENT_TYPE)
 public interface IRequirement
 {
 
@@ -148,7 +148,7 @@ public interface IRequirement
     @OslcDescription("Creator or creators of the resource. It is likely that the target resource will be a foaf:Person but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({FoafDomainConstants.TYPE_PERSON})
+    @OslcRange({FoafDomainConstants.PERSON_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getCreator();
 
@@ -157,7 +157,7 @@ public interface IRequirement
     @OslcDescription("Contributor or contributors to the resource. It is likely that the target resource will be a foaf:Person but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({FoafDomainConstants.TYPE_PERSON})
+    @OslcRange({FoafDomainConstants.PERSON_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getContributor();
 

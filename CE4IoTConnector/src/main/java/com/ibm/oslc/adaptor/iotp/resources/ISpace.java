@@ -75,9 +75,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IApp;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.SPACE)
-@OslcResourceShape(title = "Space Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_SPACE)
+@OslcNamespace(Oslc_bmxDomainConstants.SPACE_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.SPACE_LOCALNAME)
+@OslcResourceShape(title = "Space Resource Shape", describes = Oslc_bmxDomainConstants.SPACE_TYPE)
 public interface ISpace
 {
 
@@ -88,7 +88,7 @@ public interface ISpace
     @OslcPropertyDefinition(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE + "scopes")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_bmxDomainConstants.TYPE_APP})
+    @OslcRange({Oslc_bmxDomainConstants.APP_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("scopes Applications")
     public HashSet<Link> getScopes();
@@ -98,7 +98,7 @@ public interface ISpace
     @OslcDescription("A Bluemix Space provisions zero or more Bluemix Services")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_bmxDomainConstants.TYPE_CFSERVICE})
+    @OslcRange({Oslc_bmxDomainConstants.CFSERVICE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("provisions Services")
     public HashSet<Link> getProvisions();

@@ -82,9 +82,9 @@ import com.ibm.oslc.adaptor.iotp.resources.LogicalInterface;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.DEVICETYPEMAPPING)
-@OslcResourceShape(title = "DeviceTypeMapping Resource Shape", describes = Oslc_iotDomainConstants.TYPE_DEVICETYPEMAPPING)
+@OslcNamespace(Oslc_iotDomainConstants.DEVICETYPEMAPPING_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.DEVICETYPEMAPPING_LOCALNAME)
+@OslcResourceShape(title = "DeviceTypeMapping Resource Shape", describes = Oslc_iotDomainConstants.DEVICETYPEMAPPING_TYPE)
 public class DeviceTypeMapping
     extends AbstractResource
     implements IDeviceTypeMapping
@@ -119,7 +119,7 @@ public class DeviceTypeMapping
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_DEVICETYPEMAPPING,
+        Oslc_iotDomainConstants.DEVICETYPEMAPPING_PATH,
         DeviceTypeMapping.class);
     }
     
@@ -183,7 +183,7 @@ public class DeviceTypeMapping
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "logicalInterface")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE})
+    @OslcRange({Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("logicalInterface")
     public Link getLogicalInterface()

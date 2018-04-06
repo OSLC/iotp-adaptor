@@ -87,9 +87,9 @@ import com.ibm.oslc.adaptor.iotp.resources.ThingTypeMapping;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.THINGTYPE)
-@OslcResourceShape(title = "ThingType Resource Shape", describes = Oslc_iotDomainConstants.TYPE_THINGTYPE)
+@OslcNamespace(Oslc_iotDomainConstants.THINGTYPE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.THINGTYPE_LOCALNAME)
+@OslcResourceShape(title = "ThingType Resource Shape", describes = Oslc_iotDomainConstants.THINGTYPE_TYPE)
 public class ThingType
     extends Resource
     implements IThingType
@@ -175,7 +175,7 @@ public class ThingType
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_THINGTYPE,
+        Oslc_iotDomainConstants.THINGTYPE_PATH,
         ThingType.class);
     }
     
@@ -249,7 +249,7 @@ public class ThingType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "schema")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_SCHEMA})
+    @OslcRange({Oslc_iotDomainConstants.SCHEMA_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("schema")
     public Link getSchema()
@@ -265,7 +265,7 @@ public class ThingType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "thingTypeMappings")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_THINGTYPEMAPPING})
+    @OslcRange({Oslc_iotDomainConstants.THINGTYPEMAPPING_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("thingTypeMapping")
     public HashSet<Link> getThingTypeMappings()
@@ -281,7 +281,7 @@ public class ThingType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "logicalInterfaces")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE})
+    @OslcRange({Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("applicationInterfaces")
     public HashSet<Link> getLogicalInterfaces()
@@ -355,23 +355,6 @@ public class ThingType
         return s;
     }
     
-    static public String schemaToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:schemaToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"schema\">schema: </LABEL>";
-    
-        // Start of user code "Mid:schemaToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:schemaToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     static public String thingTypeMappingsToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -390,23 +373,6 @@ public class ThingType
         return s;
     }
     
-    static public String thingTypeMappingsToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:thingTypeMappingsToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"thingTypeMappings\">thingTypeMappings: </LABEL>";
-    
-        // Start of user code "Mid:thingTypeMappingsToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:thingTypeMappingsToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     static public String logicalInterfacesToHtmlForCreation (final HttpServletRequest httpServletRequest)
     {
         String s = "";
@@ -425,23 +391,6 @@ public class ThingType
         return s;
     }
     
-    static public String logicalInterfacesToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:logicalInterfacesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"logicalInterfaces\">logicalInterfaces: </LABEL>";
-    
-        // Start of user code "Mid:logicalInterfacesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:logicalInterfacesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     
     public String schemaToHtml()
     {

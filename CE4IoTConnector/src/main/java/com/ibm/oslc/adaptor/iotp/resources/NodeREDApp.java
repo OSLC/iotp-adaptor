@@ -90,9 +90,9 @@ import com.ibm.oslc.adaptor.iotp.BmxServiceProviderInfo;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.NODEREDAPP)
-@OslcResourceShape(title = "NodeREDApp Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_NODEREDAPP)
+@OslcNamespace(Oslc_bmxDomainConstants.NODEREDAPP_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.NODEREDAPP_LOCALNAME)
+@OslcResourceShape(title = "NodeREDApp Resource Shape", describes = Oslc_bmxDomainConstants.NODEREDAPP_TYPE)
 public class NodeREDApp
     extends App
     implements INodeREDApp
@@ -109,7 +109,7 @@ public class NodeREDApp
 		setTitle(app.getName());
 		setShortTitle(app.getName());
 		setIdentifier(app.getGuid());
-		getTypes().add(new URI(Oslc_bmxDomainConstants.TYPE_NODEREDAPP));
+		getTypes().add(new URI(Oslc_bmxDomainConstants.NODEREDAPP_TYPE));
 		// This is so RDNG, RTC and RQM can link to this resource. Its like a linkable marker type
 		getTypes().add(new URI("http://open-services.net/ns/cm#ChangeRequest"));		
 		getTypes().add(new URI("http://open-services.net/ns/rm#Requirement"));		
@@ -197,7 +197,7 @@ public class NodeREDApp
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_bmxDomainConstants.PATH_NODEREDAPP,
+        Oslc_bmxDomainConstants.NODEREDAPP_PATH,
         NodeREDApp.class);
     }
     
@@ -266,7 +266,7 @@ public class NodeREDApp
     @OslcPropertyDefinition(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE + "flows")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_bmxDomainConstants.TYPE_FLOW})
+    @OslcRange({Oslc_bmxDomainConstants.FLOW_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("flows")
     public HashSet<Link> getFlows()

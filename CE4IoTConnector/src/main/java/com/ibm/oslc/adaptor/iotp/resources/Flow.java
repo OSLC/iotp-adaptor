@@ -84,9 +84,9 @@ import com.ibm.oslc.adaptor.iotp.resources.Discussion;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_bmxDomainConstants.BLUEMIX_NAMSPACE)
-@OslcName(Oslc_bmxDomainConstants.FLOW)
-@OslcResourceShape(title = "Flow Resource Shape", describes = Oslc_bmxDomainConstants.TYPE_FLOW)
+@OslcNamespace(Oslc_bmxDomainConstants.FLOW_NAMESPACE)
+@OslcName(Oslc_bmxDomainConstants.FLOW_LOCALNAME)
+@OslcResourceShape(title = "Flow Resource Shape", describes = Oslc_bmxDomainConstants.FLOW_TYPE)
 public class Flow
     extends Resource
     implements IFlow
@@ -118,7 +118,7 @@ public class Flow
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_bmxDomainConstants.PATH_FLOW,
+        Oslc_bmxDomainConstants.FLOW_PATH,
         Flow.class);
     }
     

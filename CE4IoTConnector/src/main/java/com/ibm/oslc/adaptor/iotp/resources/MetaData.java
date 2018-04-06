@@ -82,9 +82,9 @@ import com.ibm.oslc.adaptor.iotp.resources.MetaProperty;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.METADATA)
-@OslcResourceShape(title = "MetaData Resource Shape", describes = Oslc_iotDomainConstants.TYPE_METADATA)
+@OslcNamespace(Oslc_iotDomainConstants.METADATA_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.METADATA_LOCALNAME)
+@OslcResourceShape(title = "MetaData Resource Shape", describes = Oslc_iotDomainConstants.METADATA_TYPE)
 public class MetaData
     extends AbstractResource
     implements IMetaData
@@ -119,7 +119,7 @@ public class MetaData
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_METADATA,
+        Oslc_iotDomainConstants.METADATA_PATH,
         MetaData.class);
     }
     
@@ -188,7 +188,7 @@ public class MetaData
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "metaProperties")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.LocalResource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_METAPROPERTY})
+    @OslcRange({Oslc_iotDomainConstants.METAPROPERTY_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("metaProperties")
     public HashSet<MetaProperty> getMetaProperties()

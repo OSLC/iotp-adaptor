@@ -162,30 +162,30 @@ public class Application extends OslcWinkApplication {
         RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_SERVICE_PROVIDER,         ServiceProvider.class);
         RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_SERVICE_PROVIDER_CATALOG, ServiceProviderCatalog.class);
 
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.PATH_APP, App.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.PATH_CFSERVICE, CFService.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_cmDomainConstants.PATH_CHANGEREQUEST, ChangeRequest.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_DEVICE, Device.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_DEVICEINFO, DeviceInfo.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_DEVICETYPE, DeviceType.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_DEVICETYPEMAPPING, DeviceTypeMapping.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcDomainConstants.PATH_DISCUSSION, Discussion.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_EVENTTYPE, EventType.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.PATH_FLOW, Flow.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_LOGICALINTERFACE, LogicalInterface.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_METADATA, MetaData.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_METAPROPERTY, MetaProperty.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.PATH_NODEREDAPP, NodeREDApp.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(FoafDomainConstants.PATH_PERSON, Person.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_PHYSICALINTERFACE, PhysicalInterface.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_rmDomainConstants.PATH_REQUIREMENT, Requirement.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_amDomainConstants.PATH_RESOURCE, Resource.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_RULE, Rule.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_SCHEMA, Schema.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.PATH_SPACE, Space.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_THING, Thing.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_THINGTYPE, ThingType.class);
-        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PATH_THINGTYPEMAPPING, ThingTypeMapping.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.APP_PATH, App.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.CFSERVICE_PATH, CFService.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_cmDomainConstants.CHANGEREQUEST_PATH, ChangeRequest.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.DEVICE_PATH, Device.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.DEVICEINFO_PATH, DeviceInfo.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.DEVICETYPE_PATH, DeviceType.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.DEVICETYPEMAPPING_PATH, DeviceTypeMapping.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcDomainConstants.DISCUSSION_PATH, Discussion.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.EVENTTYPE_PATH, EventType.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.FLOW_PATH, Flow.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.LOGICALINTERFACE_PATH, LogicalInterface.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.METADATA_PATH, MetaData.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.METAPROPERTY_PATH, MetaProperty.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.NODEREDAPP_PATH, NodeREDApp.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(FoafDomainConstants.PERSON_PATH, Person.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.PHYSICALINTERFACE_PATH, PhysicalInterface.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_rmDomainConstants.REQUIREMENT_PATH, Requirement.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_amDomainConstants.RESOURCE_PATH, Resource.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.RULE_PATH, Rule.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.SCHEMA_PATH, Schema.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_bmxDomainConstants.SPACE_PATH, Space.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.THING_PATH, Thing.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.THINGTYPE_PATH, ThingType.class);
+        RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Oslc_iotDomainConstants.THINGTYPEMAPPING_PATH, ThingTypeMapping.class);
     }
 
     public Application()

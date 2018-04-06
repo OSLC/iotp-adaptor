@@ -27,6 +27,7 @@ package com.ibm.oslc.adaptor.iotp.resources;
 
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
+
 // Start of user code imports
 // End of user code
 
@@ -39,19 +40,24 @@ public interface OslcDomainConstants
     public static String OSLC_NAMSPACE = "http://open-services.net/ns/core#";
     public static String OSLC_NAMSPACE_PREFIX = "oslc";
 
-    public static String ALLOWEDVALUES = "AllowedValues";
-    public static String PATH_ALLOWEDVALUES = "allowedValues";
-    public static String TYPE_ALLOWEDVALUES = OSLC_NAMSPACE + ALLOWEDVALUES;
-    public static String DISCUSSION = "Discussion";
-    public static String PATH_DISCUSSION = "discussion";
-    public static String TYPE_DISCUSSION = OSLC_NAMSPACE + DISCUSSION;
-    public static String PROPERTY = "Property";
-    public static String PATH_PROPERTY = "property";
-    public static String TYPE_PROPERTY = OSLC_NAMSPACE + PROPERTY;
-    public static String RESOURCESHAPE = "ResourceShape";
-    public static String PATH_RESOURCESHAPE = "resourceShape";
-    public static String TYPE_RESOURCESHAPE = OSLC_NAMSPACE + RESOURCESHAPE;
-    public static String SERVICEPROVIDER = "ServiceProvider";
-    public static String PATH_SERVICEPROVIDER = "serviceProvider";
-    public static String TYPE_SERVICEPROVIDER = OSLC_NAMSPACE + SERVICEPROVIDER;
+    public static String ALLOWED_VALUES_PATH = "allowedValues";
+    public static String ALLOWED_VALUES_NAMESPACE = OSLC_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String ALLOWED_VALUES_LOCALNAME = "AllowedValues"; //localName of the rdfs:class the resource describes
+    public static String ALLOWED_VALUES_TYPE = ALLOWED_VALUES_NAMESPACE + ALLOWED_VALUES_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String DISCUSSION_PATH = "discussion";
+    public static String DISCUSSION_NAMESPACE = OSLC_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String DISCUSSION_LOCALNAME = "Discussion"; //localName of the rdfs:class the resource describes
+    public static String DISCUSSION_TYPE = DISCUSSION_NAMESPACE + DISCUSSION_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String PROPERTY_PATH = "property";
+    public static String PROPERTY_NAMESPACE = OSLC_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String PROPERTY_LOCALNAME = "Property"; //localName of the rdfs:class the resource describes
+    public static String PROPERTY_TYPE = PROPERTY_NAMESPACE + PROPERTY_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String RESOURCESHAPE_PATH = "resourceShape";
+    public static String RESOURCESHAPE_NAMESPACE = OSLC_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String RESOURCESHAPE_LOCALNAME = "ResourceShape"; //localName of the rdfs:class the resource describes
+    public static String RESOURCESHAPE_TYPE = RESOURCESHAPE_NAMESPACE + RESOURCESHAPE_LOCALNAME; //fullname of the rdfs:class the resource describes
+    public static String SERVICEPROVIDER_PATH = "serviceProvider";
+    public static String SERVICEPROVIDER_NAMESPACE = OSLC_NAMSPACE; //namespace of the rdfs:class the resource describes
+    public static String SERVICEPROVIDER_LOCALNAME = "ServiceProvider"; //localName of the rdfs:class the resource describes
+    public static String SERVICEPROVIDER_TYPE = SERVICEPROVIDER_NAMESPACE + SERVICEPROVIDER_LOCALNAME; //fullname of the rdfs:class the resource describes
 }

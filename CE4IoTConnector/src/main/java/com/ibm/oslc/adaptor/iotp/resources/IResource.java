@@ -76,9 +76,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IDiscussion;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_amDomainConstants.ARCHITECTURE_MANAGEMENT_NAMSPACE)
-@OslcName(Oslc_amDomainConstants.RESOURCE)
-@OslcResourceShape(title = "Resource Resource Shape", describes = Oslc_amDomainConstants.TYPE_RESOURCE)
+@OslcNamespace(Oslc_amDomainConstants.RESOURCE_NAMESPACE)
+@OslcName(Oslc_amDomainConstants.RESOURCE_LOCALNAME)
+@OslcResourceShape(title = "Resource Resource Shape", describes = Oslc_amDomainConstants.RESOURCE_TYPE)
 public interface IResource
 {
 
@@ -125,7 +125,7 @@ public interface IResource
     @OslcDescription("Contributor or contributors to the resource. It is likely that the target resource will be a foaf:Person but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({FoafDomainConstants.TYPE_PERSON})
+    @OslcRange({FoafDomainConstants.PERSON_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getContributor();
 
@@ -134,7 +134,7 @@ public interface IResource
     @OslcDescription("Creator or creators of the resource. It is likely that the target resource will be a foaf:Person but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({FoafDomainConstants.TYPE_PERSON})
+    @OslcRange({FoafDomainConstants.PERSON_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getCreator();
 
@@ -176,7 +176,7 @@ public interface IResource
     @OslcDescription("A series of notes and comments about this resource.")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({OslcDomainConstants.TYPE_DISCUSSION})
+    @OslcRange({OslcDomainConstants.DISCUSSION_TYPE})
     @OslcReadOnly(false)
     public Link getDiscussedBy();
 

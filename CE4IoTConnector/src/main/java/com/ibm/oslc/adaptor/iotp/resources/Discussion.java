@@ -81,9 +81,9 @@ import com.ibm.oslc.adaptor.iotp.resources.OslcDomainConstants;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(OslcDomainConstants.OSLC_NAMSPACE)
-@OslcName(OslcDomainConstants.DISCUSSION)
-@OslcResourceShape(title = "Discussion Resource Shape", describes = OslcDomainConstants.TYPE_DISCUSSION)
+@OslcNamespace(OslcDomainConstants.DISCUSSION_NAMESPACE)
+@OslcName(OslcDomainConstants.DISCUSSION_LOCALNAME)
+@OslcResourceShape(title = "Discussion Resource Shape", describes = OslcDomainConstants.DISCUSSION_TYPE)
 public class Discussion
     extends AbstractResource
     implements IDiscussion
@@ -115,7 +115,7 @@ public class Discussion
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        OslcDomainConstants.PATH_DISCUSSION,
+        OslcDomainConstants.DISCUSSION_PATH,
         Discussion.class);
     }
     

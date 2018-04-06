@@ -76,9 +76,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IThingTypeMapping;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.THINGTYPE)
-@OslcResourceShape(title = "ThingType Resource Shape", describes = Oslc_iotDomainConstants.TYPE_THINGTYPE)
+@OslcNamespace(Oslc_iotDomainConstants.THINGTYPE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.THINGTYPE_LOCALNAME)
+@OslcResourceShape(title = "ThingType Resource Shape", describes = Oslc_iotDomainConstants.THINGTYPE_TYPE)
 public interface IThingType
 {
 
@@ -89,7 +89,7 @@ public interface IThingType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "schema")
     @OslcOccurs(Occurs.ExactlyOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_SCHEMA})
+    @OslcRange({Oslc_iotDomainConstants.SCHEMA_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("schema")
     public Link getSchema();
@@ -98,7 +98,7 @@ public interface IThingType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "thingTypeMappings")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_THINGTYPEMAPPING})
+    @OslcRange({Oslc_iotDomainConstants.THINGTYPEMAPPING_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("thingTypeMapping")
     public HashSet<Link> getThingTypeMappings();
@@ -107,7 +107,7 @@ public interface IThingType
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "logicalInterfaces")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_LOGICALINTERFACE})
+    @OslcRange({Oslc_iotDomainConstants.LOGICALINTERFACE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("applicationInterfaces")
     public HashSet<Link> getLogicalInterfaces();

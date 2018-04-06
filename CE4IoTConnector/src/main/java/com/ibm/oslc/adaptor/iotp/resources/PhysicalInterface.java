@@ -85,9 +85,9 @@ import com.ibm.oslc.adaptor.iotp.resources.EventType;
 
 // Start of user code classAnnotations
 // End of user code
-@OslcNamespace(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE)
-@OslcName(Oslc_iotDomainConstants.PHYSICALINTERFACE)
-@OslcResourceShape(title = "PhysicalInterface Resource Shape", describes = Oslc_iotDomainConstants.TYPE_PHYSICALINTERFACE)
+@OslcNamespace(Oslc_iotDomainConstants.PHYSICALINTERFACE_NAMESPACE)
+@OslcName(Oslc_iotDomainConstants.PHYSICALINTERFACE_LOCALNAME)
+@OslcResourceShape(title = "PhysicalInterface Resource Shape", describes = Oslc_iotDomainConstants.PHYSICALINTERFACE_TYPE)
 public class PhysicalInterface
     extends Resource
     implements IPhysicalInterface
@@ -167,7 +167,7 @@ public class PhysicalInterface
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),
         OslcConstants.PATH_RESOURCE_SHAPES,
-        Oslc_iotDomainConstants.PATH_PHYSICALINTERFACE,
+        Oslc_iotDomainConstants.PHYSICALINTERFACE_PATH,
         PhysicalInterface.class);
     }
     
@@ -236,7 +236,7 @@ public class PhysicalInterface
     @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "eventTypes")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_iotDomainConstants.TYPE_EVENTTYPE})
+    @OslcRange({Oslc_iotDomainConstants.EVENTTYPE_TYPE})
     @OslcReadOnly(false)
     @OslcTitle("eventTypes")
     public HashSet<Link> getEventTypes()
@@ -282,23 +282,6 @@ public class PhysicalInterface
         return s;
     }
     
-    static public String eventTypesToHtmlForCreation1 (final HttpServletRequest httpServletRequest, final String iotId)
-    {
-        String s = "";
-    
-        // Start of user code "Init:eventTypesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        s = s + "<label for=\"eventTypes\">eventTypes: </LABEL>";
-    
-        // Start of user code "Mid:eventTypesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        // Start of user code "Finalize:eventTypesToHtmlForCreation1(...final String iotId)"
-        // End of user code
-    
-        return s;
-    }
     
     public String eventTypesToHtml()
     {

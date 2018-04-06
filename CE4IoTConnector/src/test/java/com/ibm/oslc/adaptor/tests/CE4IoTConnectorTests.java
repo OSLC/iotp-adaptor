@@ -69,10 +69,10 @@ public class CE4IoTConnectorTests {
 			String serviceProviderUrl = client.lookupServiceProviderUrl(catalogUrl, orgTitle);
 
 			queryCapability = client.lookupQueryCapability(serviceProviderUrl,
-					Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE, Oslc_iotDomainConstants.TYPE_DEVICETYPE);
+					Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE, Oslc_iotDomainConstants.DEVICETYPE_TYPE);
 
 			creationFactory = client.lookupCreationFactory(serviceProviderUrl,
-					Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE, Oslc_iotDomainConstants.TYPE_DEVICETYPE);
+					Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE, Oslc_iotDomainConstants.DEVICETYPE_TYPE);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

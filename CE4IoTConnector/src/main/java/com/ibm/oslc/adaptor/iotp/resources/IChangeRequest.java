@@ -84,9 +84,9 @@ import com.ibm.oslc.adaptor.iotp.resources.IRequirement;
 // Start of user code imports
 // End of user code
 
-@OslcNamespace(Oslc_cmDomainConstants.CHANGE_MANAGEMENT_NAMSPACE)
-@OslcName(Oslc_cmDomainConstants.CHANGEREQUEST)
-@OslcResourceShape(title = "ChangeRequest Resource Shape", describes = Oslc_cmDomainConstants.TYPE_CHANGEREQUEST)
+@OslcNamespace(Oslc_cmDomainConstants.CHANGEREQUEST_NAMESPACE)
+@OslcName(Oslc_cmDomainConstants.CHANGEREQUEST_LOCALNAME)
+@OslcResourceShape(title = "ChangeRequest Resource Shape", describes = Oslc_cmDomainConstants.CHANGEREQUEST_TYPE)
 public interface IChangeRequest
 {
 
@@ -149,7 +149,7 @@ public interface IChangeRequest
     @OslcDescription("Creator or creators of the resource. It is likely that the target resource will be a foaf:Person but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({FoafDomainConstants.TYPE_PERSON})
+    @OslcRange({FoafDomainConstants.PERSON_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getCreator();
 
@@ -158,7 +158,7 @@ public interface IChangeRequest
     @OslcDescription("Contributor or contributors to the resource. It is likely that the target resource will be a foaf:Person but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({FoafDomainConstants.TYPE_PERSON})
+    @OslcRange({FoafDomainConstants.PERSON_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getContributor();
 
@@ -205,7 +205,7 @@ public interface IChangeRequest
     @OslcDescription("A series of notes and comments about this resource.")
     @OslcOccurs(Occurs.ZeroOrOne)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({OslcDomainConstants.TYPE_DISCUSSION})
+    @OslcRange({OslcDomainConstants.DISCUSSION_TYPE})
     @OslcReadOnly(false)
     public Link getDiscussedBy();
 
@@ -278,7 +278,7 @@ public interface IChangeRequest
     @OslcDescription("This relationship is loosely coupled and has no specific meaning. It is likely that the target resource will be an oslc_cm:ChangeRequest but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_cmDomainConstants.TYPE_CHANGEREQUEST})
+    @OslcRange({Oslc_cmDomainConstants.CHANGEREQUEST_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getRelatedChangeRequest();
 
@@ -287,7 +287,7 @@ public interface IChangeRequest
     @OslcDescription("Change request affects a plan item. It is likely that the target resource will be an oslc_cm:ChangeRequest but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_cmDomainConstants.TYPE_CHANGEREQUEST})
+    @OslcRange({Oslc_cmDomainConstants.CHANGEREQUEST_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getAffectsPlanItem();
 
@@ -296,7 +296,7 @@ public interface IChangeRequest
     @OslcDescription("Change request is affected by a reported defect. It is likely that the target resource will be an oslc_cm:ChangeRequest but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_cmDomainConstants.TYPE_CHANGEREQUEST})
+    @OslcRange({Oslc_cmDomainConstants.CHANGEREQUEST_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getAffectedByDefect();
 
@@ -305,7 +305,7 @@ public interface IChangeRequest
     @OslcDescription("Tracks the associated Requirement or Requirement ChangeSet resources. It is likely that the target resource will be an oslc_rm:Requirement but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_rmDomainConstants.TYPE_REQUIREMENT})
+    @OslcRange({Oslc_rmDomainConstants.REQUIREMENT_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getTracksRequirement();
 
@@ -314,7 +314,7 @@ public interface IChangeRequest
     @OslcDescription("Implements associated Requirement. It is likely that the target resource will be an oslc_rm:Requirement but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_rmDomainConstants.TYPE_REQUIREMENT})
+    @OslcRange({Oslc_rmDomainConstants.REQUIREMENT_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getImplementsRequirement();
 
@@ -323,7 +323,7 @@ public interface IChangeRequest
     @OslcDescription("Change request affecting a Requirement. It is likely that the target resource will be an oslc_rm:Requirement but that is not necessarily the case.")
     @OslcOccurs(Occurs.ZeroOrMany)
     @OslcValueType(ValueType.Resource)
-    @OslcRange({Oslc_rmDomainConstants.TYPE_REQUIREMENT})
+    @OslcRange({Oslc_rmDomainConstants.REQUIREMENT_TYPE})
     @OslcReadOnly(false)
     public HashSet<Link> getAffectsRequirement();
 
