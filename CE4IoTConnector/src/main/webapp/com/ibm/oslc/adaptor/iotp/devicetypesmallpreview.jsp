@@ -64,86 +64,18 @@ To revert to the default generated content, delete all content in this file, and
 <!-- Begin page content -->
 <div>
         <div>
-          <dl class="dl-horizontal">
-            <dt>deviceTypeMappings</dt>
-            <dd><%= aDeviceType.deviceTypeMappingsToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>physicalInterface</dt>
-            <dd><%= aDeviceType.physicalInterfaceToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>logicalInterfaces</dt>
-            <dd><%= aDeviceType.logicalInterfacesToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>deviceInfo</dt>
-            <dd><%= aDeviceType.deviceInfoToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>metaData</dt>
-            <dd><%= aDeviceType.metaDataToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>classId</dt>
-            <dd><%= aDeviceType.classIdToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>description</dt>
-            <dd><%= aDeviceType.descriptionToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>identifier</dt>
-            <dd><%= aDeviceType.identifierToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>shortTitle</dt>
-            <dd><%= aDeviceType.shortTitleToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>title</dt>
-            <dd><%= aDeviceType.titleToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>contributor</dt>
-            <dd><%= aDeviceType.contributorToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>creator</dt>
-            <dd><%= aDeviceType.creatorToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>subject</dt>
-            <dd><%= aDeviceType.subjectToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>created</dt>
-            <dd><%= aDeviceType.createdToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>modified</dt>
-            <dd><%= aDeviceType.modifiedToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>type</dt>
-            <dd><%= aDeviceType.typeToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>discussedBy</dt>
-            <dd><%= aDeviceType.discussedByToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>instanceShape</dt>
-            <dd><%= aDeviceType.instanceShapeToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>serviceProvider</dt>
-            <dd><%= aDeviceType.serviceProviderToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>relation</dt>
-            <dd><%= aDeviceType.relationToHtml()%></dd>
-          </dl>
+    <dl class="row">
+      <dt class="col-sm-3">title</dt>
+      <dd class="col-sm-9"><%= aDeviceType.titleToHtml()%></dd>
+      <dt class="col-sm-3">description</dt>
+      <dd class="col-sm-9"><%= aDeviceType.descriptionToHtml()%></dd>
+      <dt class="col-sm-3">creator</dt>
+      <dd class="col-sm-9"><%= aDeviceType.creatorToHtml()%></dd>
+      <dt class="col-sm-3">created</dt>
+      <dd class="col-sm-9"><%= aDeviceType.createdToHtml()%></dd>
+      <dt class="col-sm-3">modified</dt>
+      <dd class="col-sm-9"><%= aDeviceType.modifiedToHtml()%></dd>
+    </dl>
         </div>
       </div>
 </body>

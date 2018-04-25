@@ -33,10 +33,16 @@
 
         <table style="clear: both;">
           <tr>
-            <td><%= Rule.identifierToHtmlForCreation(request)%></td>
+            <td><%= Rule.logicalInterfaceIdToHtmlForCreation(request)%></td>
+          </tr>
+          <tr>
+            <td><%= Rule.titleToHtmlForCreation(request)%></td>
           </tr>
           <tr>
             <td><%= Rule.descriptionToHtmlForCreation(request)%></td>
+          </tr>
+          <tr>
+            <td><%= Rule.conditionToHtmlForCreation(request)%></td>
           </tr>
           <tr>
             <td>

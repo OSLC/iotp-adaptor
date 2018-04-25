@@ -71,10 +71,9 @@ import com.ibm.oslc.adaptor.iotp.impl.IoTPClient;
 import java.util.ArrayList;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response.Status;
-import com.ibm.oslc.adaptor.bmx.BluemixClient;
-import com.ibm.oslc.adaptor.bmx.NodeREDApplication;
-import java.util.regex.PatternSyntaxException;
-// End of user code
+import com.ibm.oslc.adaptor.bmx.impl.BluemixClient;
+import com.ibm.oslc.adaptor.bmx.impl.NodeREDApplication;
+import java.util.regex.PatternSyntaxException;// End of user code
 
 // Start of user code pre_class_code
 // End of user code
@@ -156,7 +155,8 @@ public class CE4IoTConnectorManager {
 			for (int i = 0; i < results.size(); i++) {
 				JsonObject obj = results.get(i).getAsJsonObject();
 
-				DeviceType deviceType = new DeviceType(httpServletRequest, info, obj.get("id").getAsString(),  obj);
+				// TODO: query doesn't include logical and physical interfaces
+				DeviceType deviceType = new DeviceType(httpServletRequest, info, obj.get("id").getAsString(),  obj, null, null);
 				// Note: toString() methods are used to display the resource in the selection dialog, so we use that here.
 				// This will generally be the dcterms:label
 				// Handle dangling meta char '*' for user convenience
@@ -213,7 +213,28 @@ public class CE4IoTConnectorManager {
         List<LogicalInterface> resources = null;
         
         // Start of user code queryLogicalInterfaces
-        resources = new ArrayList<LogicalInterface>(0);
+		try {
+			IotpServiceProviderInfo info = IoTAPIImplementation.getIotpServiceProviderInfo(httpServletRequest, iotId);
+			IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
+			String uri = "draft/logicalinterfaces";
+			JsonObject result = client.readIoTResource(info.name, uri).getAsJsonObject();
+			JsonArray results = result.getAsJsonArray("results");
+			resources = new ArrayList<LogicalInterface>(results.size());
+			for (int i = 0; i < results.size(); i++) {
+				JsonObject obj = results.get(i).getAsJsonObject();
+
+				LogicalInterface logicalInterface = new LogicalInterface(httpServletRequest, info, obj.get("id").getAsString(),  obj);
+				// Note: toString() methods are used to display the resource in the selection dialog, so we use that here.
+				// This will generally be the dcterms:label
+				// Handle dangling meta char '*' for user convenience
+				if (where == null || where.equals("") || where.equals("*")) where = ".*";
+				if (logicalInterface.toString().matches(where)) resources.add(logicalInterface);
+			}
+		} catch (PatternSyntaxException e) { 
+    		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
+		} 
         // End of user code
         return resources;
     }
@@ -343,7 +364,8 @@ public class CE4IoTConnectorManager {
 
 			// Convert the result back
 			JsonElement result = client.createIoTResource(info.name, uri, json);
-			if (result != null) newResource = new DeviceType(httpServletRequest, info, aResource.getIdentifier(), result.getAsJsonObject());
+			// we do not create any logical and physical interfaces here
+			if (result != null) newResource = new DeviceType(httpServletRequest, info, aResource.getIdentifier(), result, null, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
@@ -419,21 +441,16 @@ public class CE4IoTConnectorManager {
 			final IotpServiceProviderInfo info = IoTAPIImplementation.getIotpServiceProviderInfo(httpServletRequest, iotId);
 			IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
 			String uri = "device/types/" + deviceTypeId;
-			JsonElement result = client.readIoTResource(info.name, uri);
-			if (result != null) aResource = new DeviceType(httpServletRequest, info, deviceTypeId, result.getAsJsonObject());
+			JsonElement deviceType = client.readIoTResource(info.name, uri);
+			if (deviceType == null) return aResource;
+			// Also get the draft serviceInterface and logicalInterfaces
+			JsonElement physicalInterface = client.readIoTResource(info.name, "draft/"+uri+"/physicalinterface");
+			JsonElement logicalInterfaces = client.readIoTResource(info.name, "draft/"+uri+"/logicalinterfaces");
+			aResource = new DeviceType(httpServletRequest, info, deviceTypeId, deviceType, physicalInterface, logicalInterfaces);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
 		}
-        // End of user code
-        return aResource;
-    }
-    public static Rule getRule(HttpServletRequest httpServletRequest, final String iotId, final String ruleId)
-    {
-        Rule aResource = null;
-        
-        // Start of user code getRule
-        // TODO Implement code to return a resource
         // End of user code
         return aResource;
     }
@@ -442,7 +459,19 @@ public class CE4IoTConnectorManager {
         LogicalInterface aResource = null;
         
         // Start of user code getLogicalInterface
-        // TODO Implement code to return a resource
+		try {
+			if (logicalInterfaceId == null) {
+				throw new Exception("Logical Interface ID must not be null");
+			}
+			final IotpServiceProviderInfo info = IoTAPIImplementation.getIotpServiceProviderInfo(httpServletRequest, iotId);
+			IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
+			String uri = "draft/logicalinterfaces/" + logicalInterfaceId;
+			JsonElement result = client.readIoTResource(info.name, uri);
+			if (result != null) aResource = new LogicalInterface(httpServletRequest, info, logicalInterfaceId, result.getAsJsonObject());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
+		}
         // End of user code
         return aResource;
     }
@@ -482,6 +511,15 @@ public class CE4IoTConnectorManager {
         // End of user code
         return aResource;
     }
+    public static Thing getThing(HttpServletRequest httpServletRequest, final String iotId, final String thingId)
+    {
+        Thing aResource = null;
+        
+        // Start of user code getThing
+        // TODO Implement code to return a resource
+        // End of user code
+        return aResource;
+    }
 
     public static Boolean deleteDeviceType(HttpServletRequest httpServletRequest, final String iotId, final String deviceTypeId)
     {
@@ -499,19 +537,19 @@ public class CE4IoTConnectorManager {
         // End of user code
         return deleted;
     }
-    public static Boolean deleteRule(HttpServletRequest httpServletRequest, final String iotId, final String ruleId)
-    {
-        Boolean deleted = false;
-        // Start of user code deleteRule
-        // TODO Implement code to delete a resource
-        // End of user code
-        return deleted;
-    }
     public static Boolean deleteLogicalInterface(HttpServletRequest httpServletRequest, final String iotId, final String logicalInterfaceId)
     {
         Boolean deleted = false;
         // Start of user code deleteLogicalInterface
-        // TODO Implement code to delete a resource
+		try {
+			IotpServiceProviderInfo info = IoTAPIImplementation.getIotpServiceProviderInfo(httpServletRequest, iotId);
+			IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
+			String uri = "draft/logicalinterfaces/" + logicalInterfaceId;
+			deleted = client.deleteIoTResource(info.name, uri);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
+		}
         // End of user code
         return deleted;
     }
@@ -547,6 +585,14 @@ public class CE4IoTConnectorManager {
         // End of user code
         return deleted;
     }
+    public static Boolean deleteThing(HttpServletRequest httpServletRequest, final String iotId, final String thingId)
+    {
+        Boolean deleted = false;
+        // Start of user code deleteThing
+        // TODO Implement code to delete a resource
+        // End of user code
+        return deleted;
+    }
 
     public static DeviceType updateDeviceType(HttpServletRequest httpServletRequest, final DeviceType aResource, final String iotId, final String deviceTypeId) {
         DeviceType updatedResource = null;
@@ -564,7 +610,8 @@ public class CE4IoTConnectorManager {
 			json.remove("createdDateTime");
 			json.remove("updatedDateTime");
 			JsonElement result = client.updateIoTResource(info.name, uri, json);
-			if (result != null) updatedResource = new DeviceType(httpServletRequest, info, aResource.getIdentifier(), result.getAsJsonObject());
+			// logical and physical interfaces are updated directly, not through the device type
+			if (result != null) updatedResource = new DeviceType(httpServletRequest, info, aResource.getIdentifier(), result, null, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
@@ -572,17 +619,27 @@ public class CE4IoTConnectorManager {
         // End of user code
         return updatedResource;
     }
-    public static Rule updateRule(HttpServletRequest httpServletRequest, final Rule aResource, final String iotId, final String ruleId) {
-        Rule updatedResource = null;
-        // Start of user code updateRule
-        // TODO Implement code to update and return a resource
-        // End of user code
-        return updatedResource;
-    }
     public static LogicalInterface updateLogicalInterface(HttpServletRequest httpServletRequest, final LogicalInterface aResource, final String iotId, final String logicalInterfaceId) {
         LogicalInterface updatedResource = null;
         // Start of user code updateLogicalInterface
-        // TODO Implement code to update and return a resource
+		try {
+			// RQM attempts to set the backlink without a properly constructed resource, ignore this since we can't store any links
+			if (aResource.getIdentifier() == null) return aResource;
+			IotpServiceProviderInfo info = IoTAPIImplementation.getIotpServiceProviderInfo(httpServletRequest, iotId);
+			IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
+			String uri = "draft/logicalInterfaces/" + logicalInterfaceId;
+			JsonObject json = aResource.toJson().getAsJsonObject();
+			// Remove the properties that can't be updated
+			json.remove("id");
+			json.remove("classId");
+			json.remove("created");
+			json.remove("updated");
+			JsonElement result = client.updateIoTResource(info.name, uri, json);
+			if (result != null) updatedResource = new LogicalInterface(httpServletRequest, info, aResource.getIdentifier(), result.getAsJsonObject());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
+		}
         // End of user code
         return updatedResource;
     }
@@ -614,6 +671,13 @@ public class CE4IoTConnectorManager {
         // End of user code
         return updatedResource;
     }
+    public static Thing updateThing(HttpServletRequest httpServletRequest, final Thing aResource, final String iotId, final String thingId) {
+        Thing updatedResource = null;
+        // Start of user code updateThing
+        // TODO Implement code to update and return a resource
+        // End of user code
+        return updatedResource;
+    }
     public static Device getDevice(HttpServletRequest httpServletRequest, final String iotId, final String typeId, final String deviceId)
     {
         Device aResource = null;
@@ -640,7 +704,15 @@ public class CE4IoTConnectorManager {
     {
         Boolean deleted = false;
         // Start of user code deleteDevice
-        // TODO Implement code to delete a resource
+		try {
+			IotpServiceProviderInfo info = IoTAPIImplementation.getIotpServiceProviderInfo(httpServletRequest, iotId);
+			IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
+			String uri = "device/types/" + typeId + "/devices/" + deviceId;
+			deleted = client.deleteIoTResource(info.name, uri);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
+		}
         // End of user code
         return deleted;
     }
@@ -670,6 +742,32 @@ public class CE4IoTConnectorManager {
         // End of user code
         return updatedResource;
     }
+    public static Rule getRule(HttpServletRequest httpServletRequest, final String iotId, final String ruleId)
+    {
+        Rule aResource = null;
+        
+        // Start of user code getRule
+        // TODO Implement code to return a resource
+        // End of user code
+        return aResource;
+    }
+
+    public static Boolean deleteRule(HttpServletRequest httpServletRequest, final String iotId, final String ruleId)
+    {
+        Boolean deleted = false;
+        // Start of user code deleteRule
+        // TODO Implement code to delete a resource
+        // End of user code
+        return deleted;
+    }
+
+    public static Rule updateRule(HttpServletRequest httpServletRequest, final Rule aResource, final String iotId, final String ruleId) {
+        Rule updatedResource = null;
+        // Start of user code updateRule
+        // TODO Implement code to update and return a resource
+        // End of user code
+        return updatedResource;
+    }
 
     public static List<Space> querySpaces(HttpServletRequest httpServletRequest, final String bmxId, String where, int page, int limit)
     {
@@ -679,9 +777,9 @@ public class CE4IoTConnectorManager {
         try {
             BmxServiceProviderInfo info = IoTAPIImplementation.getBmxServiceProviderInfo(httpServletRequest, bmxId);
             BluemixClient client = (BluemixClient)httpServletRequest.getSession().getAttribute(BluemixClient.BMXCLIENT_ATTRIBUTE);
-            ArrayList<com.ibm.oslc.adaptor.bmx.Space> spaces = client.getSpaces(info.bmxOrg);
+            ArrayList<com.ibm.oslc.adaptor.bmx.impl.Space> spaces = client.getSpaces(info.bmxOrg);
             resources = new ArrayList<Space>(spaces.size());
-            for (com.ibm.oslc.adaptor.bmx.Space space : spaces) {
+            for (com.ibm.oslc.adaptor.bmx.impl.Space space : spaces) {
                     Space bmxSpace = new Space(httpServletRequest, info, space);
                     resources.add(bmxSpace);
             }
@@ -705,8 +803,8 @@ public class CE4IoTConnectorManager {
             BmxServiceProviderInfo info = IoTAPIImplementation.getBmxServiceProviderInfo(httpServletRequest, bmxId);
             BluemixClient client = (BluemixClient)httpServletRequest.getSession().getAttribute(BluemixClient.BMXCLIENT_ATTRIBUTE);
             // Get the flows for all spaces
-            ArrayList<com.ibm.oslc.adaptor.bmx.Space> spaces = client.getSpaces(info.bmxOrg);
-            for (com.ibm.oslc.adaptor.bmx.Space space : spaces) {
+            ArrayList<com.ibm.oslc.adaptor.bmx.impl.Space> spaces = client.getSpaces(info.bmxOrg);
+            for (com.ibm.oslc.adaptor.bmx.impl.Space space : spaces) {
 	            ArrayList<NodeREDApplication> apps = client.getNodeREDApplications(space);
 	            for (NodeREDApplication app : apps) {
 	            		NodeREDApp iotApp = new NodeREDApp(httpServletRequest, info, app);
@@ -746,7 +844,7 @@ public class CE4IoTConnectorManager {
             }
             final BmxServiceProviderInfo info = IoTAPIImplementation.getBmxServiceProviderInfo(httpServletRequest, bmxId);
             BluemixClient client = (BluemixClient)httpServletRequest.getSession().getAttribute(BluemixClient.BMXCLIENT_ATTRIBUTE);
-            com.ibm.oslc.adaptor.bmx.Space space = client.getSpace(spaceId);
+            com.ibm.oslc.adaptor.bmx.impl.Space space = client.getSpace(spaceId);
             if (space != null) aResource = new Space(httpServletRequest, info, space);
 	    } catch (Exception e) {
 	            e.printStackTrace();
@@ -809,18 +907,10 @@ public class CE4IoTConnectorManager {
     }
 
 
-    public static String getETagFromResource(final Resource aResource)
+    public static String getETagFromLogicalInterface(final LogicalInterface aResource)
     {
         String eTag = null;
-        // Start of user code getETagFromResource
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
-    public static String getETagFromChangeRequest(final ChangeRequest aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromChangeRequest
+        // Start of user code getETagFromLogicalInterface
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;
@@ -829,6 +919,14 @@ public class CE4IoTConnectorManager {
     {
         String eTag = null;
         // Start of user code getETagFromNodeREDApp
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromEventType(final EventType aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromEventType
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;
@@ -857,26 +955,18 @@ public class CE4IoTConnectorManager {
         // End of user code
         return eTag;
     }
-    public static String getETagFromEventType(final EventType aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromEventType
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
-    public static String getETagFromSpace(final Space aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromSpace
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
     public static String getETagFromThing(final Thing aResource)
     {
         String eTag = null;
         // Start of user code getETagFromThing
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromDeviceType(final DeviceType aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromDeviceType
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;
@@ -889,14 +979,6 @@ public class CE4IoTConnectorManager {
         // End of user code
         return eTag;
     }
-    public static String getETagFromRequirement(final Requirement aResource)
-    {
-        String eTag = null;
-        // Start of user code getETagFromRequirement
-        // TODO Implement code to return an ETag for a particular resource
-        // End of user code
-        return eTag;
-    }
     public static String getETagFromRule(final Rule aResource)
     {
         String eTag = null;
@@ -905,18 +987,34 @@ public class CE4IoTConnectorManager {
         // End of user code
         return eTag;
     }
-    public static String getETagFromLogicalInterface(final LogicalInterface aResource)
+    public static String getETagFromChangeRequest(final ChangeRequest aResource)
     {
         String eTag = null;
-        // Start of user code getETagFromLogicalInterface
+        // Start of user code getETagFromChangeRequest
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;
     }
-    public static String getETagFromDeviceType(final DeviceType aResource)
+    public static String getETagFromSpace(final Space aResource)
     {
         String eTag = null;
-        // Start of user code getETagFromDeviceType
+        // Start of user code getETagFromSpace
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromResource(final Resource aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromResource
+        // TODO Implement code to return an ETag for a particular resource
+        // End of user code
+        return eTag;
+    }
+    public static String getETagFromRequirement(final Requirement aResource)
+    {
+        String eTag = null;
+        // Start of user code getETagFromRequirement
         // TODO Implement code to return an ETag for a particular resource
         // End of user code
         return eTag;

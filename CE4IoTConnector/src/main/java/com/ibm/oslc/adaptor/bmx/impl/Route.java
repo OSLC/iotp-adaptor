@@ -1,4 +1,4 @@
-package com.ibm.oslc.adaptor.bmx;
+package com.ibm.oslc.adaptor.bmx.impl;
 
 public class Route {
 	public String guid;

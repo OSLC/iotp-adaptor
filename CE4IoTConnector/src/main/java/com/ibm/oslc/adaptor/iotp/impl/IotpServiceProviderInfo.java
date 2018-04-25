@@ -18,22 +18,24 @@
  *******************************************************************************/
 // End of user code
 
-package com.ibm.oslc.adaptor.iotp;
+package com.ibm.oslc.adaptor.iotp.impl;
 
 // Start of user code imports
-import com.ibm.oslc.adaptor.bmx.impl.Organization;
 // End of user code
 
 // Start of user code pre_class_code
 // End of user code
-public class BmxServiceProviderInfo {
+public class IotpServiceProviderInfo {
     public String name;
-    public String bmxId;
+    public String iotId;
 
     // Start of user code class_attributes
-    public Organization bmxOrg;
+    public String httpProtocol = "https:";
+    public String platformBase;
+    public String apiVersion;
     // End of user code
 
     // Start of user code class_methods
     // End of user code
 }
+

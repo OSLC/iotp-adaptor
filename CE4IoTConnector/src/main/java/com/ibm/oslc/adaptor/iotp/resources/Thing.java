@@ -118,6 +118,51 @@ public class Thing
         // End of user code
     }
     
+    /**
+    * @deprecated Use the methods in class {@link com.ibm.oslc.adaptor.iotp.CE4IoTConnectorResourcesFactory} instead.
+    */
+    @Deprecated
+    public Thing(final String iotId, final String thingId)
+           throws URISyntaxException
+    {
+        this (constructURI(iotId, thingId));
+        // Start of user code constructor3
+        // End of user code
+    }
+    
+    /**
+    * @deprecated Use the methods in class {@link com.ibm.oslc.adaptor.iotp.CE4IoTConnectorResourcesFactory} instead.
+    */
+    @Deprecated
+    public static URI constructURI(final String iotId, final String thingId)
+    {
+        String basePath = OSLC4JUtils.getServletURI();
+        Map<String, Object> pathParameters = new HashMap<String, Object>();
+        pathParameters.put("iotId", iotId);
+        pathParameters.put("thingId", thingId);
+        String instanceURI = "iotp/{iotId}/resources/things/{thingId}";
+    
+        final UriBuilder builder = UriBuilder.fromUri(basePath);
+        return builder.path(instanceURI).buildFromMap(pathParameters);
+    }
+    
+    /**
+    * @deprecated Use the methods in class {@link com.ibm.oslc.adaptor.iotp.CE4IoTConnectorResourcesFactory} instead.
+    */
+    @Deprecated
+    public static Link constructLink(final String iotId, final String thingId , final String label)
+    {
+        return new Link(constructURI(iotId, thingId), label);
+    }
+    
+    /**
+    * @deprecated Use the methods in class {@link com.ibm.oslc.adaptor.iotp.CE4IoTConnectorResourcesFactory} instead.
+    */
+    @Deprecated
+    public static Link constructLink(final String iotId, final String thingId)
+    {
+        return new Link(constructURI(iotId, thingId));
+    }
     
     public static ResourceShape createResourceShape() throws OslcCoreApplicationException, URISyntaxException {
         return ResourceShapeFactory.createResourceShape(OSLC4JUtils.getServletURI(),

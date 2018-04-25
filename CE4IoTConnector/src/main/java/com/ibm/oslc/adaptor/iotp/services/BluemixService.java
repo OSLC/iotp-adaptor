@@ -94,8 +94,6 @@ import com.ibm.oslc.adaptor.iotp.resources.Resource;
 import com.ibm.oslc.adaptor.iotp.resources.Space;
 
 // Start of user code imports
-import com.ibm.oslc.adaptor.iotp.BmxServiceProviderInfo;
-import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
 // End of user code
 
 // Start of user code pre_class_code
@@ -279,7 +277,7 @@ public class BluemixService
          hintWidth = "525px",
          hintHeight = "325px",
          resourceTypes = {Oslc_bmxDomainConstants.NODEREDAPP_TYPE, Oslc_cmDomainConstants.CHANGEREQUEST_TYPE, Oslc_rmDomainConstants.REQUIREMENT_TYPE},
-         usages = {}
+         usages = {"http://open-services.net/ns/am#BmxSelectionDialog"}
     )
     @GET
     @Path("selector")
@@ -293,7 +291,7 @@ public class BluemixService
             // Start of user code NodeREDAppAndChangeRequestAndRequirementSelector_init
             // End of user code
 
-            httpServletRequest.setAttribute("selectionUri",uriInfo.getAbsolutePath().toString());
+            httpServletRequest.setAttribute("selectionUri",UriBuilder.fromUri(OSLC4JUtils.getServletURI()).path(uriInfo.getPath()).build().toString());
             // Start of user code NodeREDAppAndChangeRequestAndRequirementSelector_setAttributes
             // End of user code
 
@@ -302,7 +300,7 @@ public class BluemixService
                 final List<AbstractResource> resources = CE4IoTConnectorManager.NodeREDAppAndChangeRequestAndRequirementSelector(httpServletRequest, bmxId, terms);
                 if (resources!= null) {
                             httpServletRequest.setAttribute("resources", resources);
-                            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/noderedappandchangerequestandrequirementselectorresults.jsp");
+                            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/bmxselectiondialogselectorresults.jsp");
                             rd.forward(httpServletRequest, httpServletResponse);
                 }
                 //a empty search should return an empty list and not NULL!
@@ -310,7 +308,7 @@ public class BluemixService
 
             } else {
                 try {
-                    RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/noderedappandchangerequestandrequirementselector.jsp");
+                    RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/bmxselectiondialogselector.jsp");
                     rd.forward(httpServletRequest, httpServletResponse);
                 } catch (Exception e) {
                     throw new ServletException(e);

@@ -78,6 +78,7 @@ To revert to the default generated content, delete all content in this file, and
       </div>
     </div>
         <% for (Device aResource : resources) { %>
+        <p><%= aResource.toHtml() %><br /></p>
         <% } %>
         <% if (nextPageUri != null) { %><a href="<%= nextPageUri %>">Next Page</a><% } %>
       </div>

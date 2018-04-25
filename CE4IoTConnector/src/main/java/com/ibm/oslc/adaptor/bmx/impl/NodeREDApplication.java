@@ -1,4 +1,4 @@
-package com.ibm.oslc.adaptor.bmx;
+package com.ibm.oslc.adaptor.bmx.impl;
 
 import java.util.ArrayList;
 

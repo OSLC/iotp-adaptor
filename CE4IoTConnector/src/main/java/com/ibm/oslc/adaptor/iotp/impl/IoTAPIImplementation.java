@@ -18,8 +18,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.ibm.oslc.adaptor.bmx.BluemixClient;
-import com.ibm.oslc.adaptor.bmx.Organization;
+import com.ibm.oslc.adaptor.bmx.impl.BluemixClient;
+import com.ibm.oslc.adaptor.bmx.impl.Organization;
 import com.ibm.oslc.adaptor.iotp.BmxServiceProviderInfo;
 import com.ibm.oslc.adaptor.iotp.IotpServiceProviderInfo;
 

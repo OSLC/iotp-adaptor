@@ -97,6 +97,9 @@ public class Rule
     // Start of user code attributeAnnotation:action
     // End of user code
     private String action;
+    // Start of user code attributeAnnotation:logicalInterfaceId
+    // End of user code
+    private String logicalInterfaceId;
     
     // Start of user code classAttributes
     // End of user code
@@ -257,6 +260,21 @@ public class Rule
         return action;
     }
     
+    // Start of user code getterAnnotation:logicalInterfaceId
+    // End of user code
+    @OslcName("logicalInterfaceId")
+    @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "logicalInterfaceId")
+    @OslcOccurs(Occurs.ExactlyOne)
+    @OslcValueType(ValueType.String)
+    @OslcReadOnly(false)
+    @OslcTitle("logicalInterfaceId")
+    public String getLogicalInterfaceId()
+    {
+        // Start of user code getterInit:logicalInterfaceId
+        // End of user code
+        return logicalInterfaceId;
+    }
+    
     
     // Start of user code setterAnnotation:condition
     // End of user code
@@ -279,6 +297,18 @@ public class Rule
         this.action = action;
     
         // Start of user code setterFinalize:action
+        // End of user code
+    }
+    
+    // Start of user code setterAnnotation:logicalInterfaceId
+    // End of user code
+    public void setLogicalInterfaceId(final String logicalInterfaceId )
+    {
+        // Start of user code setterInit:logicalInterfaceId
+        // End of user code
+        this.logicalInterfaceId = logicalInterfaceId;
+    
+        // Start of user code setterFinalize:logicalInterfaceId
         // End of user code
     }
     
@@ -316,6 +346,25 @@ public class Rule
     
         s= s + "<input name=\"action\" type=\"text\" style=\"width: 400px\" id=\"action\" >";
         // Start of user code "Finalize:actionToHtmlForCreation(...)"
+        // End of user code
+    
+        return s;
+    }
+    
+    static public String logicalInterfaceIdToHtmlForCreation (final HttpServletRequest httpServletRequest)
+    {
+        String s = "";
+    
+        // Start of user code "Init:logicalInterfaceIdToHtmlForCreation(...)"
+        // End of user code
+    
+        s = s + "<label for=\"logicalInterfaceId\">logicalInterfaceId: </LABEL>";
+    
+        // Start of user code "Mid:logicalInterfaceIdToHtmlForCreation(...)"
+        // End of user code
+    
+        s= s + "<input name=\"logicalInterfaceId\" type=\"text\" style=\"width: 400px\" id=\"logicalInterfaceId\" >";
+        // Start of user code "Finalize:logicalInterfaceIdToHtmlForCreation(...)"
         // End of user code
     
         return s;
@@ -365,6 +414,30 @@ public class Rule
         }
     
         // Start of user code actiontoHtml_finalize
+        // End of user code
+    
+        return s;
+    }
+    
+    public String logicalInterfaceIdToHtml()
+    {
+        String s = "";
+    
+        // Start of user code logicalInterfaceIdtoHtml_mid
+        // End of user code
+    
+        try {
+            if (logicalInterfaceId == null) {
+                s = s + "<em>null</em>";
+            }
+            else {
+                s = s + logicalInterfaceId.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    
+        // Start of user code logicalInterfaceIdtoHtml_finalize
         // End of user code
     
         return s;

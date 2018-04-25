@@ -1,9 +1,8 @@
-package com.ibm.oslc.adaptor.bmx;
+package com.ibm.oslc.adaptor.bmx.impl;
 
-public class Application {
+public class Space {
 	private String guid;
 	private String name;
-	private String state;
 	private Metadata metadata;
 	
 	public String getGuid() {
@@ -20,14 +19,6 @@ public class Application {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
 	}
 
 	public Metadata getMetadata() {

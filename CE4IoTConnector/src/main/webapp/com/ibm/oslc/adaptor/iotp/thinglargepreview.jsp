@@ -35,18 +35,12 @@ To revert to the default generated content, delete all content in this file, and
 
 <%@page import="org.eclipse.lyo.oslc4j.core.model.ServiceProvider"%>
 <%@page import="java.util.List" %>
-<%@page import="com.ibm.oslc.adaptor.iotp.resources.Device"%>
-<%@page import="com.google.gson.JsonElement"%>
-<%@page import="com.google.gson.JsonObject"%>
-<%@page import="com.google.gson.JsonArray"%>
-<%@page import="com.google.gson.JsonPrimitive"%>
-<%@page import="java.util.Map"%>
+<%@page import="com.ibm.oslc.adaptor.iotp.resources.Thing"%>
 
 <%@ page contentType="text/html" language="java" pageEncoding="UTF-8" %>
 
 <%
-  Device aDevice = (Device) request.getAttribute("aDevice");
-  JsonObject deviceData = aDevice.getDeviceData(request);
+  Thing aThing = (Thing) request.getAttribute("aThing");
 %>
 
 <html lang="en">
@@ -55,7 +49,7 @@ To revert to the default generated content, delete all content in this file, and
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title><%= aDevice.toString(false) %></title>
+  <title><%= aThing.toString(false) %></title>
 
   <link href="<c:url value="/static/css/bootstrap-4.0.0-beta.min.css"/>" rel="stylesheet">
   <link href="<c:url value="/static/css/adaptor.css"/>" rel="stylesheet">
@@ -70,15 +64,65 @@ To revert to the default generated content, delete all content in this file, and
 <!-- Begin page content -->
 <div>
         <div>
-          <dl class="row">
-            <dt class="col-sm-3">typeId</dt>
-            <dd class="col-sm-9"><%= aDevice.typeIdToHtml()%></dd>
-            <dt class="col-sm-3">description</dt>
-            <dd class="col-sm-9"><%= aDevice.descriptionToHtml()%></dd>
-<% for (Map.Entry<String, JsonElement> e : deviceData.entrySet()) { %>  
-			<dt class="col-sm-3"><%= e.getKey() %> </dt>
-			<dt class="col-sm-9"><%= e.getValue().toString() %> <dd>
-<% } %>         
+          <dl class="dl-horizontal">
+            <dt>thingTypes</dt>
+            <dd><%= aThing.thingTypesToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>description</dt>
+            <dd><%= aThing.descriptionToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>identifier</dt>
+            <dd><%= aThing.identifierToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>shortTitle</dt>
+            <dd><%= aThing.shortTitleToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>title</dt>
+            <dd><%= aThing.titleToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>contributor</dt>
+            <dd><%= aThing.contributorToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>creator</dt>
+            <dd><%= aThing.creatorToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>subject</dt>
+            <dd><%= aThing.subjectToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>created</dt>
+            <dd><%= aThing.createdToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>modified</dt>
+            <dd><%= aThing.modifiedToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>type</dt>
+            <dd><%= aThing.typeToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>discussedBy</dt>
+            <dd><%= aThing.discussedByToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>instanceShape</dt>
+            <dd><%= aThing.instanceShapeToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>serviceProvider</dt>
+            <dd><%= aThing.serviceProviderToHtml()%></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>relation</dt>
+            <dd><%= aThing.relationToHtml()%></dd>
           </dl>
         </div>
       </div>

@@ -36,11 +36,17 @@ To revert to the default generated content, delete all content in this file, and
 <%@page import="org.eclipse.lyo.oslc4j.core.model.ServiceProvider"%>
 <%@page import="java.util.List" %>
 <%@page import="com.ibm.oslc.adaptor.iotp.resources.Device"%>
+<%@page import="com.google.gson.JsonElement"%>
+<%@page import="com.google.gson.JsonObject"%>
+<%@page import="com.google.gson.JsonArray"%>
+<%@page import="com.google.gson.JsonPrimitive"%>
+<%@page import="java.util.Map"%>
 
 <%@ page contentType="text/html" language="java" pageEncoding="UTF-8" %>
 
 <%
   Device aDevice = (Device) request.getAttribute("aDevice");
+  JsonObject deviceData = aDevice.getDeviceData(request);
 %>
 
 <html lang="en">
@@ -64,73 +70,19 @@ To revert to the default generated content, delete all content in this file, and
 <!-- Begin page content -->
 <div>
         <div>
-          <dl class="dl-horizontal">
-            <dt>deviceInfo</dt>
-            <dd><%= aDevice.deviceInfoToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>metaData</dt>
-            <dd><%= aDevice.metaDataToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>typeId</dt>
-            <dd><%= aDevice.typeIdToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>description</dt>
-            <dd><%= aDevice.descriptionToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>identifier</dt>
-            <dd><%= aDevice.identifierToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>shortTitle</dt>
-            <dd><%= aDevice.shortTitleToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>title</dt>
-            <dd><%= aDevice.titleToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>contributor</dt>
-            <dd><%= aDevice.contributorToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>creator</dt>
-            <dd><%= aDevice.creatorToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>subject</dt>
-            <dd><%= aDevice.subjectToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>created</dt>
-            <dd><%= aDevice.createdToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>modified</dt>
-            <dd><%= aDevice.modifiedToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>type</dt>
-            <dd><%= aDevice.typeToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>discussedBy</dt>
-            <dd><%= aDevice.discussedByToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>instanceShape</dt>
-            <dd><%= aDevice.instanceShapeToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>serviceProvider</dt>
-            <dd><%= aDevice.serviceProviderToHtml()%></dd>
-          </dl>
-          <dl class="dl-horizontal">
-            <dt>relation</dt>
-            <dd><%= aDevice.relationToHtml()%></dd>
+          <dl class="row">
+            <dt class="col-sm-3">description</dt>
+            <dd class="col-sm-9"><%= aDevice.descriptionToHtml()%></dd>
+<% for (Map.Entry<String, JsonElement> e : deviceData.entrySet()) { %>  
+			<dt class="col-sm-3"><%= e.getKey() %> </dt>
+			<dt class="col-sm-9"><%= e.getValue().toString() %> <dd>
+<% } %>         
+            <dt class="col-sm-3">deviceInfo</dt>
+            <dd class="col-sm-9"><%= aDevice.deviceInfoToHtml()%></dd>
+            <dt class="col-sm-3">metaData</dt>
+            <dd class="col-sm-9"><%= aDevice.metaDataToHtml()%></dd>
+            <dt class="col-sm-3">created</dt>
+            <dd class="col-sm-9"><%= aDevice.createdToHtml()%></dd>
           </dl>
         </div>
       </div>

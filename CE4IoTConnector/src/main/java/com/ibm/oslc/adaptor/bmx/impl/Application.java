@@ -1,19 +1,19 @@
-package com.ibm.oslc.adaptor.bmx;
+package com.ibm.oslc.adaptor.bmx.impl;
 
-public class Organization {
+public class Application {
 	private String guid;
 	private String name;
-	private String spaces_url;
+	private String state;
 	private Metadata metadata;
-
+	
 	public String getGuid() {
 		return guid;
 	}
-
-	public void setGuid(String url) {
-		this.guid = url;
+	
+	public void setGuid(String guid) {
+		this.guid = guid;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -21,13 +21,13 @@ public class Organization {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getSpaces_url() {
-		return spaces_url;
+
+	public String getState() {
+		return state;
 	}
-	
-	public void setSpaces_url(String spaces_url) {
-		this.spaces_url = spaces_url;
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public Metadata getMetadata() {

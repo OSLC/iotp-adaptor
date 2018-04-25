@@ -78,6 +78,11 @@ import com.ibm.oslc.adaptor.iotp.resources.Discussion;
 import com.ibm.oslc.adaptor.iotp.resources.Schema;
 
 // Start of user code imports
+import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.ibm.oslc.adaptor.iotp.servlet.ServiceProviderCatalogSingleton;
+import com.ibm.oslc.adaptor.iotp.IotpServiceProviderInfo;
 // End of user code
 
 // Start of user code preClassCode
@@ -99,7 +104,196 @@ public class LogicalInterface
     // Start of user code classAttributes
     // End of user code
     // Start of user code classMethods
-    // End of user code
+	public LogicalInterface(final HttpServletRequest httpServletRequest, final IotpServiceProviderInfo info, final String id, JsonObject jsonObject)
+			throws URISyntaxException {
+		super(id, jsonObject);
+		// Rules: Don't set anything where there is no value.
+		// E.g. if there is no representation, don't set the value.
+
+		// Set some inherited oslc_am:Resource properties that need to be set by the
+		// subclass
+		// IoT Platform resources need to be marked with rdf:types that the CLM apps can
+		// link to
+		// All cross-server links are fixed and hard-coded, so we have to do this to
+		// create any links
+		// This is also influenced by where the links can be stored - either directly or
+		// as backlinks
+		getTypes().add(new URI("http://open-services.net/ns/cm#ChangeRequest"));
+		getTypes().add(new URI("http://open-services.net/ns/rm#Requirement"));
+
+		// Note that there must be a service provider since we are creating an instance
+		// of an resource
+		// Therefore there will be no need to refresh the catalog
+		ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getIotpServiceProvider(httpServletRequest, info.iotId);
+		HashSet<URI> serviceProviders = new HashSet<URI>();
+		serviceProviders.add(serviceProvider.getAbout());
+		setServiceProvider(serviceProviders);
+		setAbout(constructURI(info.iotId, id));
+		try {
+			setInstanceShape(createResourceShape().getAbout());
+		} catch (OslcCoreApplicationException e) {
+		}
+
+		// properties for IotLogicalInterface:
+		// id: setter from base class, NO OP
+		// name: use "name" to set IResource.title in base class
+		// description: setter from base class, NO OP
+		// version: Not modeled, NO OP
+		// created: use "created" to setCreated in IResource.created in base class
+		// createdBy: use "createdBy" to setCreator and setContributor in
+		// IResource.creator in base class with these steps:
+		// a) casting string to URI b) casting URI to Link, c) casting Link to
+		// HashSet<Link>
+		// Note: multiple creators are listed in the same String with delimiters
+		// updated: use "updated" to set IResource.modified in base class
+		// updatedBy: use "updatedBy" to add IResource.Contributors in base class
+		// refs.schema: set refs Link schema
+		// schemaId: use addTypes HashSet<Link> with prefix "schemaId:"
+		// sample Link: "schemaId:5829e2c546e0fb0001cf0ac4"
+
+		// name: map to IResource.title in base class
+		JsonElement element = jsonObject.get("name");
+		if (element != null)
+			this.setTitle(element.getAsString());
+
+		// created: cast string to Date then set "created"
+		element = jsonObject.get("created");
+		if (element != null) {
+			try {
+				Date createDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX").parse(element.getAsString());
+				this.setCreated(createDate);
+			} catch (Exception e) {
+			}
+		}
+
+		// createdBy: map to IResource.creator in base class
+		// a) casting string to URI b) casting URI to Link, c) casting Link to
+		// HashSet<Link>
+		// d) setCreator(HashSet<Link>)
+		// Note: multiple creators are listed in the same String with delimiters
+		element = jsonObject.get("createdBy");
+		if (element != null) {
+			try {
+				HashSet<Link> createdbyT = new HashSet<Link>();
+				URI createdbyURI = new URI("mailto:" + element.getAsString());
+				Link createdbyLink = new Link(createdbyURI);
+				createdbyT.add(createdbyLink);
+				this.setCreator(createdbyT);
+				this.setContributor(createdbyT);
+			} catch (Exception e) {
+
+			}
+		}
+
+		// updated: map to IResource.modified in base class
+		element = jsonObject.get("updated");
+		if (element != null) {
+			try {
+				Date updateDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(element.getAsString());
+				this.setModified(updateDate);
+			} catch (Exception e) {
+			}
+		}
+
+		// updatedBy: use "updatedBy" to set IResource.Contributors in base class
+		element = jsonObject.get("updateBy");
+		if (element != null) {
+			try {
+				// first contributor was already set to be the same as the creator, therefore it
+				// has "mailto:"
+				Link existingContributorsLink = (Link) this.getContributor().toArray()[0];
+				// keep appending by adding ";" with the new contributor
+				URI updatedByURI = new URI(existingContributorsLink.toString() + ";" + element.getAsString());
+				Link updatedByLink = new Link(updatedByURI);
+				HashSet<Link> updatedByT = new HashSet<Link>();
+				updatedByT.add(updatedByLink);
+				this.setContributor(updatedByT);
+			} catch (Exception e) {
+			}
+		}
+
+		// schemaId has the same information as refs.schema
+		element = jsonObject.get("schemaId");
+		if (element != null) {
+			String schemaId = element.getAsString();
+			Link link = Schema.constructLink(info.iotId, schemaId);
+			link.setLabel(schemaId);
+			this.setSchema(link);
+		}
+	}
+		
+    public JsonElement toJson() {
+    	    JsonObject json = super.toJson().getAsJsonObject();
+    	    
+    		// properties for IotLogicalInterface:
+    		// id:			get "id" from getIdentifier() in base class
+    		// name:			get "name" from getTitle() in base class
+    		// description:	get "description" from getDescription() in base class
+    		// version:    	not modeled 
+    		// created:		get "created" from getCreated() in base class, cast Date to String
+    		// createdBy:	get "createdBy" from getCreator() in base class, cast HashSet<Link> to Link; cast Link to URI, cast URI to String
+    		//             	Note: multiple creators are in the same String variable 	    
+    		// updated:   	get "updated" from getModified() in base class, cast Date to String
+    		// updatedBy: 	get "updatedBy" from getContributors() in base class
+    		// refs.schema:	get from Link schema
+    		// schemaId:    use getTypes HashSet<Link> with prefix "schemaId:"
+    		//			    sample Link: "schemaId:5829e2c546e0fb0001cf0ac4"   
+		
+    		json.addProperty("id", getIdentifier());
+    		json.addProperty("name", getTitle());
+		json.addProperty("description", getDescription());
+		
+		// created: get "created" from getCreated() in base class, cast Date to String
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
+			String dateString =  dateFormat.format(getCreated());
+			json.addProperty("created", dateString);
+		} catch(Exception e) {
+		}
+		
+   		// createdBy: use getCreator() in base class, cast HashSet<Link> to Link; cast Link to URI, cast URI to String
+		//            Note: multiple creators are in the same String variable
+		Link createdBy = (Link) getCreator().toArray()[0];
+		if (createdBy != null) 
+		{
+		    URI createdbyURI = createdBy.getValue();
+		    String stringURI = createdbyURI.toString(); 
+		    // remove "mailto:" from the URI
+		    stringURI.replaceAll("mailto:", "");
+		    json.addProperty("createdBy", stringURI);
+		}
+		
+		// updated: get "updated" from getModified() in base class, cast Date to String 
+		Date updatedDate = getModified();
+		if (updatedDate != null)
+		{
+		String dateString = "";	
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+			dateString =  dateFormat.format(updatedDate);
+		} catch(Exception exc) {
+			System.out.println("Cannot parse date: "+exc.getMessage());
+		}
+		json.addProperty("updated", dateString);
+		}
+		
+		// updatedBy:  	get from IResource.getContributors in base class 
+		Link ContributorsLink = (Link) this.getContributor().toArray()[0];  
+		if (ContributorsLink != null)
+		{
+		    URI contributorsURI = ContributorsLink.getValue();
+		    String contributorsString = contributorsURI.toString();
+		    // remove "mailto:" from the URI
+		    contributorsString.replaceAll("mailto:", "");
+		    json.addProperty("updatedBy",  contributorsString);
+		}
+
+		// refs.schema: these are fixed query URLs and should never be updated 
+		// schemaId:  sample value: "5829e2c546e0fb0001cf0ac4"   
+		if (this.getSchema() != null) json.addProperty("schemaId", this.getSchema().getLabel());
+
+		return json;
+    }    // End of user code
     public LogicalInterface()
            throws URISyntaxException
     {

@@ -79,11 +79,10 @@ import com.ibm.oslc.adaptor.iotp.resources.Discussion;
 import com.ibm.oslc.adaptor.iotp.resources.Flow;
 
 // Start of user code imports
-import com.ibm.oslc.adaptor.bmx.NodeREDApplication;
+import com.ibm.oslc.adaptor.bmx.impl.NodeREDApplication;
 import com.ibm.oslc.adaptor.iotp.servlet.ServiceProviderCatalogSingleton;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
-import com.ibm.oslc.adaptor.iotp.BmxServiceProviderInfo;
-// End of user code
+import com.ibm.oslc.adaptor.iotp.BmxServiceProviderInfo;// End of user code
 
 // Start of user code preClassCode
 // End of user code

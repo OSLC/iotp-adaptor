@@ -38,4 +38,3 @@ public class IotpServiceProviderInfo {
     // Start of user code class_methods
     // End of user code
 }
-

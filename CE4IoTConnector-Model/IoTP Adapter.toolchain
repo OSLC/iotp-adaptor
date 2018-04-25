@@ -4,7 +4,7 @@
     <serviceProviderCatalog title="IoT Platform Service Provider Catalog" description="A Service Provider Catalog describing service providers for IoT Platform Organizations">
       <serviceProviders title="IoT Platform Service Provider" description="Service Provider for the IoT Platform Organization services" serviceNamespace="iotp" instanceID="{iotId}">
         <services domainSpecification="//@specification/@domainSpecifications.1">
-          <creationFactories title="RuleCreationFactory" label="Rule Creation Factory" creationURI="rule" resourceTypes="//@specification/@domainSpecifications.1/@resources.1"/>
+          <creationFactories title="RuleCreationFactory" label="Rule Creation Factory" creationURI="logicalInterfaceId/rule" resourceTypes="//@specification/@domainSpecifications.1/@resources.1"/>
           <creationFactories title="EventTypeCreationFactory" label="Event Type CreationFactory" creationURI="eventtype" resourceTypes="//@specification/@domainSpecifications.1/@resources.5"/>
           <creationFactories title="PhysicalInterfaceCreationFactory" label="Physical Interface Creation Factory" creationURI="physicalinterface" resourceTypes="//@specification/@domainSpecifications.1/@resources.4"/>
           <creationFactories title="SchemaCreationFactory" label="Schema Creation Factory" creationURI="schema" resourceTypes="//@specification/@domainSpecifications.1/@resources.8"/>
@@ -34,8 +34,9 @@
             <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.6/@resources.0"/>
             <usages>http://open-services.net/ns/am#IoTPCreationDialog</usages>
           </creationDialogs>
-          <basicCapabilities instanceID="" resourceTypes="//@specification/@domainSpecifications.1/@resources.0 //@specification/@domainSpecifications.1/@resources.1 //@specification/@domainSpecifications.1/@resources.7 //@specification/@domainSpecifications.1/@resources.5 //@specification/@domainSpecifications.1/@resources.4 //@specification/@domainSpecifications.1/@resources.8 //@specification/@domainSpecifications.1/@resources.9" delete="true" update="true"/>
+          <basicCapabilities instanceID="" resourceTypes="//@specification/@domainSpecifications.1/@resources.0 //@specification/@domainSpecifications.1/@resources.7 //@specification/@domainSpecifications.1/@resources.5 //@specification/@domainSpecifications.1/@resources.4 //@specification/@domainSpecifications.1/@resources.8 //@specification/@domainSpecifications.1/@resources.9 //@specification/@domainSpecifications.1/@resources.13" delete="true" update="true"/>
           <basicCapabilities instanceID="{typeId}/devices/{deviceId}" resourceTypes="//@specification/@domainSpecifications.1/@resources.12" delete="true" update="true"/>
+          <basicCapabilities instanceID="" resourceTypes="//@specification/@domainSpecifications.1/@resources.1" delete="true" update="true"/>
           <usages>http://open-services.net/ns/am#IoTPlatform</usages>
         </services>
       </serviceProviders>
@@ -47,6 +48,7 @@
             <resourceTypes href="#//@specification/@domainSpecifications.0/@resources.3"/>
             <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.5/@resources.0"/>
             <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.6/@resources.0"/>
+            <usages>http://open-services.net/ns/am#BmxSelectionDialog</usages>
           </selectionDialogs>
           <basicCapabilities resourceTypes="//@specification/@domainSpecifications.0/@resources.0 //@specification/@domainSpecifications.0/@resources.3" delete="true" update="true"/>
           <usages>http://open-services.net/ns/am#Bluemix</usages>
@@ -80,7 +82,7 @@
       <resources name="DeviceType" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.17 //@specification/@domainSpecifications.1/@resourceProperties.22 //@specification/@domainSpecifications.1/@resourceProperties.16 //@specification/@domainSpecifications.1/@resourceProperties.23 //@specification/@domainSpecifications.1/@resourceProperties.24 //@specification/@domainSpecifications.1/@resourceProperties.27">
         <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
       </resources>
-      <resources name="Rule" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.20 //@specification/@domainSpecifications.1/@resourceProperties.21">
+      <resources name="Rule" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.20 //@specification/@domainSpecifications.1/@resourceProperties.21 //@specification/@domainSpecifications.1/@resourceProperties.29">
         <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
       </resources>
       <resources name="MetaProperty" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.25 //@specification/@domainSpecifications.1/@resourceProperties.1"/>
@@ -147,6 +149,7 @@
       <resourceProperties title="metaProperties" name="metaProperties" occurs="zeroOrMany" valueType="LocalResource" range="//@specification/@domainSpecifications.1/@resources.2"/>
       <resourceProperties title="classId" name="classId" occurs="zeroOrOne" valueType="String"/>
       <resourceProperties title="typeId" name="typeId" readOnly="true" valueType="String"/>
+      <resourceProperties title="logicalInterfaceId" name="logicalInterfaceId" valueType="String"/>
     </domainSpecifications>
     <domainPrefixes name="oslc_bmx"/>
     <domainPrefixes name="oslc_iot"/>

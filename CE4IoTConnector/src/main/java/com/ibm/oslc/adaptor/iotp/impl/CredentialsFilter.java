@@ -41,7 +41,7 @@ import org.eclipse.lyo.server.oauth.core.utils.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ibm.oslc.adaptor.bmx.BluemixClient;
+import com.ibm.oslc.adaptor.bmx.impl.BluemixClient;
 import com.ibm.oslc.adaptor.iotp.CE4IoTConnectorManager;
 
 import net.oauth.OAuth;

@@ -1,4 +1,4 @@
-package com.ibm.oslc.adaptor.bmx;
+package com.ibm.oslc.adaptor.bmx.impl;
 
 public class Service {
 	private String guid;

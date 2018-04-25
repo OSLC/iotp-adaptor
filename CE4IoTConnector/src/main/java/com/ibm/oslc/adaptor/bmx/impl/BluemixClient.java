@@ -1,4 +1,4 @@
-package com.ibm.oslc.adaptor.bmx;
+package com.ibm.oslc.adaptor.bmx.impl;
 
 import java.io.IOException;
 import java.net.URI;

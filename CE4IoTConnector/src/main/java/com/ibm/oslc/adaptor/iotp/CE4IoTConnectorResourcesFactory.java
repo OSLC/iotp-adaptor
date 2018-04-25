@@ -27,30 +27,30 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.eclipse.lyo.oslc4j.core.model.Link;
 import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
-import com.ibm.oslc.adaptor.iotp.resources.ChangeRequest;
-import com.ibm.oslc.adaptor.iotp.resources.Resource;
-import com.ibm.oslc.adaptor.iotp.resources.NodeREDApp;
-import com.ibm.oslc.adaptor.iotp.resources.PhysicalInterface;
-import com.ibm.oslc.adaptor.iotp.resources.Person;
 import com.ibm.oslc.adaptor.iotp.resources.Discussion;
-import com.ibm.oslc.adaptor.iotp.resources.Thing;
-import com.ibm.oslc.adaptor.iotp.resources.ThingTypeMapping;
-import com.ibm.oslc.adaptor.iotp.resources.LogicalInterface;
-import com.ibm.oslc.adaptor.iotp.resources.App;
-import com.ibm.oslc.adaptor.iotp.resources.Flow;
-import com.ibm.oslc.adaptor.iotp.resources.DeviceInfo;
 import com.ibm.oslc.adaptor.iotp.resources.Device;
-import com.ibm.oslc.adaptor.iotp.resources.CFService;
-import com.ibm.oslc.adaptor.iotp.resources.ThingType;
-import com.ibm.oslc.adaptor.iotp.resources.EventType;
-import com.ibm.oslc.adaptor.iotp.resources.Space;
-import com.ibm.oslc.adaptor.iotp.resources.MetaData;
-import com.ibm.oslc.adaptor.iotp.resources.DeviceTypeMapping;
-import com.ibm.oslc.adaptor.iotp.resources.Schema;
-import com.ibm.oslc.adaptor.iotp.resources.Requirement;
-import com.ibm.oslc.adaptor.iotp.resources.Rule;
+import com.ibm.oslc.adaptor.iotp.resources.PhysicalInterface;
+import com.ibm.oslc.adaptor.iotp.resources.Thing;
 import com.ibm.oslc.adaptor.iotp.resources.MetaProperty;
+import com.ibm.oslc.adaptor.iotp.resources.MetaData;
 import com.ibm.oslc.adaptor.iotp.resources.DeviceType;
+import com.ibm.oslc.adaptor.iotp.resources.Schema;
+import com.ibm.oslc.adaptor.iotp.resources.Person;
+import com.ibm.oslc.adaptor.iotp.resources.CFService;
+import com.ibm.oslc.adaptor.iotp.resources.App;
+import com.ibm.oslc.adaptor.iotp.resources.ChangeRequest;
+import com.ibm.oslc.adaptor.iotp.resources.Space;
+import com.ibm.oslc.adaptor.iotp.resources.Resource;
+import com.ibm.oslc.adaptor.iotp.resources.Requirement;
+import com.ibm.oslc.adaptor.iotp.resources.LogicalInterface;
+import com.ibm.oslc.adaptor.iotp.resources.DeviceTypeMapping;
+import com.ibm.oslc.adaptor.iotp.resources.NodeREDApp;
+import com.ibm.oslc.adaptor.iotp.resources.EventType;
+import com.ibm.oslc.adaptor.iotp.resources.ThingType;
+import com.ibm.oslc.adaptor.iotp.resources.Flow;
+import com.ibm.oslc.adaptor.iotp.resources.Rule;
+import com.ibm.oslc.adaptor.iotp.resources.DeviceInfo;
+import com.ibm.oslc.adaptor.iotp.resources.ThingTypeMapping;
 
 // Start of user code imports
 // End of user code
@@ -66,10 +66,34 @@ public class CE4IoTConnectorResourcesFactory {
     // Start of user code class_methods
     // End of user code
 
-    //methods for Resource resource
+    //methods for LogicalInterface resource
+    public static LogicalInterface createLogicalInterface(final String iotId, final String logicalInterfaceId)
+           throws URISyntaxException
+    {
+        return new LogicalInterface(constructURIForLogicalInterface(iotId, logicalInterfaceId));
+    }
     
-
-    //methods for ChangeRequest resource
+    public static URI constructURIForLogicalInterface(final String iotId, final String logicalInterfaceId)
+    {
+        String basePath = OSLC4JUtils.getServletURI();
+        Map<String, Object> pathParameters = new HashMap<String, Object>();
+        pathParameters.put("iotId", iotId);
+        pathParameters.put("logicalInterfaceId", logicalInterfaceId);
+        String instanceURI = "iotp/{iotId}/resources/logicalInterfaces/{logicalInterfaceId}";
+    
+        final UriBuilder builder = UriBuilder.fromUri(basePath);
+        return builder.path(instanceURI).buildFromMap(pathParameters);
+    }
+    
+    public static Link constructLinkForLogicalInterface(final String iotId, final String logicalInterfaceId , final String label)
+    {
+        return new Link(constructURIForLogicalInterface(iotId, logicalInterfaceId), label);
+    }
+    
+    public static Link constructLinkForLogicalInterface(final String iotId, final String logicalInterfaceId)
+    {
+        return new Link(constructURIForLogicalInterface(iotId, logicalInterfaceId));
+    }
     
 
     //methods for NodeREDApp resource
@@ -99,6 +123,36 @@ public class CE4IoTConnectorResourcesFactory {
     public static Link constructLinkForNodeREDApp(final String bmxId, final String nodeREDAppId)
     {
         return new Link(constructURIForNodeREDApp(bmxId, nodeREDAppId));
+    }
+    
+
+    //methods for EventType resource
+    public static EventType createEventType(final String iotId, final String eventTypeId)
+           throws URISyntaxException
+    {
+        return new EventType(constructURIForEventType(iotId, eventTypeId));
+    }
+    
+    public static URI constructURIForEventType(final String iotId, final String eventTypeId)
+    {
+        String basePath = OSLC4JUtils.getServletURI();
+        Map<String, Object> pathParameters = new HashMap<String, Object>();
+        pathParameters.put("iotId", iotId);
+        pathParameters.put("eventTypeId", eventTypeId);
+        String instanceURI = "iotp/{iotId}/resources/eventTypes/{eventTypeId}";
+    
+        final UriBuilder builder = UriBuilder.fromUri(basePath);
+        return builder.path(instanceURI).buildFromMap(pathParameters);
+    }
+    
+    public static Link constructLinkForEventType(final String iotId, final String eventTypeId , final String label)
+    {
+        return new Link(constructURIForEventType(iotId, eventTypeId), label);
+    }
+    
+    public static Link constructLinkForEventType(final String iotId, final String eventTypeId)
+    {
+        return new Link(constructURIForEventType(iotId, eventTypeId));
     }
     
 
@@ -193,67 +247,64 @@ public class CE4IoTConnectorResourcesFactory {
     }
     
 
-    //methods for EventType resource
-    public static EventType createEventType(final String iotId, final String eventTypeId)
+    //methods for Thing resource
+    public static Thing createThing(final String iotId, final String thingId)
            throws URISyntaxException
     {
-        return new EventType(constructURIForEventType(iotId, eventTypeId));
+        return new Thing(constructURIForThing(iotId, thingId));
     }
     
-    public static URI constructURIForEventType(final String iotId, final String eventTypeId)
+    public static URI constructURIForThing(final String iotId, final String thingId)
     {
         String basePath = OSLC4JUtils.getServletURI();
         Map<String, Object> pathParameters = new HashMap<String, Object>();
         pathParameters.put("iotId", iotId);
-        pathParameters.put("eventTypeId", eventTypeId);
-        String instanceURI = "iotp/{iotId}/resources/eventTypes/{eventTypeId}";
+        pathParameters.put("thingId", thingId);
+        String instanceURI = "iotp/{iotId}/resources/things/{thingId}";
     
         final UriBuilder builder = UriBuilder.fromUri(basePath);
         return builder.path(instanceURI).buildFromMap(pathParameters);
     }
     
-    public static Link constructLinkForEventType(final String iotId, final String eventTypeId , final String label)
+    public static Link constructLinkForThing(final String iotId, final String thingId , final String label)
     {
-        return new Link(constructURIForEventType(iotId, eventTypeId), label);
+        return new Link(constructURIForThing(iotId, thingId), label);
     }
     
-    public static Link constructLinkForEventType(final String iotId, final String eventTypeId)
+    public static Link constructLinkForThing(final String iotId, final String thingId)
     {
-        return new Link(constructURIForEventType(iotId, eventTypeId));
+        return new Link(constructURIForThing(iotId, thingId));
     }
     
 
-    //methods for Space resource
-    public static Space createSpace(final String bmxId, final String spaceId)
+    //methods for DeviceType resource
+    public static DeviceType createDeviceType(final String iotId, final String deviceTypeId)
            throws URISyntaxException
     {
-        return new Space(constructURIForSpace(bmxId, spaceId));
+        return new DeviceType(constructURIForDeviceType(iotId, deviceTypeId));
     }
     
-    public static URI constructURIForSpace(final String bmxId, final String spaceId)
+    public static URI constructURIForDeviceType(final String iotId, final String deviceTypeId)
     {
         String basePath = OSLC4JUtils.getServletURI();
         Map<String, Object> pathParameters = new HashMap<String, Object>();
-        pathParameters.put("bmxId", bmxId);
-        pathParameters.put("spaceId", spaceId);
-        String instanceURI = "bmx/{bmxId}/resources/spaces/{spaceId}";
+        pathParameters.put("iotId", iotId);
+        pathParameters.put("deviceTypeId", deviceTypeId);
+        String instanceURI = "iotp/{iotId}/resources/deviceTypes/{deviceTypeId}";
     
         final UriBuilder builder = UriBuilder.fromUri(basePath);
         return builder.path(instanceURI).buildFromMap(pathParameters);
     }
     
-    public static Link constructLinkForSpace(final String bmxId, final String spaceId , final String label)
+    public static Link constructLinkForDeviceType(final String iotId, final String deviceTypeId , final String label)
     {
-        return new Link(constructURIForSpace(bmxId, spaceId), label);
+        return new Link(constructURIForDeviceType(iotId, deviceTypeId), label);
     }
     
-    public static Link constructLinkForSpace(final String bmxId, final String spaceId)
+    public static Link constructLinkForDeviceType(final String iotId, final String deviceTypeId)
     {
-        return new Link(constructURIForSpace(bmxId, spaceId));
+        return new Link(constructURIForDeviceType(iotId, deviceTypeId));
     }
-    
-
-    //methods for Thing resource
     
 
     //methods for Schema resource
@@ -286,9 +337,6 @@ public class CE4IoTConnectorResourcesFactory {
     }
     
 
-    //methods for Requirement resource
-    
-
     //methods for Rule resource
     public static Rule createRule(final String iotId, final String ruleId)
            throws URISyntaxException
@@ -319,64 +367,43 @@ public class CE4IoTConnectorResourcesFactory {
     }
     
 
-    //methods for LogicalInterface resource
-    public static LogicalInterface createLogicalInterface(final String iotId, final String logicalInterfaceId)
+    //methods for ChangeRequest resource
+    
+
+    //methods for Space resource
+    public static Space createSpace(final String bmxId, final String spaceId)
            throws URISyntaxException
     {
-        return new LogicalInterface(constructURIForLogicalInterface(iotId, logicalInterfaceId));
+        return new Space(constructURIForSpace(bmxId, spaceId));
     }
     
-    public static URI constructURIForLogicalInterface(final String iotId, final String logicalInterfaceId)
+    public static URI constructURIForSpace(final String bmxId, final String spaceId)
     {
         String basePath = OSLC4JUtils.getServletURI();
         Map<String, Object> pathParameters = new HashMap<String, Object>();
-        pathParameters.put("iotId", iotId);
-        pathParameters.put("logicalInterfaceId", logicalInterfaceId);
-        String instanceURI = "iotp/{iotId}/resources/logicalInterfaces/{logicalInterfaceId}";
+        pathParameters.put("bmxId", bmxId);
+        pathParameters.put("spaceId", spaceId);
+        String instanceURI = "bmx/{bmxId}/resources/spaces/{spaceId}";
     
         final UriBuilder builder = UriBuilder.fromUri(basePath);
         return builder.path(instanceURI).buildFromMap(pathParameters);
     }
     
-    public static Link constructLinkForLogicalInterface(final String iotId, final String logicalInterfaceId , final String label)
+    public static Link constructLinkForSpace(final String bmxId, final String spaceId , final String label)
     {
-        return new Link(constructURIForLogicalInterface(iotId, logicalInterfaceId), label);
+        return new Link(constructURIForSpace(bmxId, spaceId), label);
     }
     
-    public static Link constructLinkForLogicalInterface(final String iotId, final String logicalInterfaceId)
+    public static Link constructLinkForSpace(final String bmxId, final String spaceId)
     {
-        return new Link(constructURIForLogicalInterface(iotId, logicalInterfaceId));
+        return new Link(constructURIForSpace(bmxId, spaceId));
     }
     
 
-    //methods for DeviceType resource
-    public static DeviceType createDeviceType(final String iotId, final String deviceTypeId)
-           throws URISyntaxException
-    {
-        return new DeviceType(constructURIForDeviceType(iotId, deviceTypeId));
-    }
+    //methods for Resource resource
     
-    public static URI constructURIForDeviceType(final String iotId, final String deviceTypeId)
-    {
-        String basePath = OSLC4JUtils.getServletURI();
-        Map<String, Object> pathParameters = new HashMap<String, Object>();
-        pathParameters.put("iotId", iotId);
-        pathParameters.put("deviceTypeId", deviceTypeId);
-        String instanceURI = "iotp/{iotId}/resources/deviceTypes/{deviceTypeId}";
-    
-        final UriBuilder builder = UriBuilder.fromUri(basePath);
-        return builder.path(instanceURI).buildFromMap(pathParameters);
-    }
-    
-    public static Link constructLinkForDeviceType(final String iotId, final String deviceTypeId , final String label)
-    {
-        return new Link(constructURIForDeviceType(iotId, deviceTypeId), label);
-    }
-    
-    public static Link constructLinkForDeviceType(final String iotId, final String deviceTypeId)
-    {
-        return new Link(constructURIForDeviceType(iotId, deviceTypeId));
-    }
+
+    //methods for Requirement resource
     
 
 }

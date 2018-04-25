@@ -85,10 +85,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonPrimitive;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import com.ibm.oslc.adaptor.iotp.servlet.ServiceProviderCatalogSingleton;
-import com.ibm.oslc.adaptor.iotp.IotpServiceProviderInfo;
+
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.text.ParseException;
+import com.ibm.oslc.adaptor.iotp.impl.IoTPClient;
+import com.ibm.oslc.adaptor.iotp.CE4IoTConnectorManager;
+import com.ibm.oslc.adaptor.iotp.IotpServiceProviderInfo;
+
 // End of user code
 
 // Start of user code preClassCode
@@ -177,18 +181,20 @@ public class Device
     public JsonElement toJson() {
 		JsonObject json = super.toJson().getAsJsonObject();
 		
+		json.remove("id"); // the superclass property has a different name in this case
+		json.remove("description"); // Device puts description in the deviceInfo
 		json.addProperty("deviceId", getIdentifier());
 		json.addProperty("typeId", getTypeId());
 		if (deviceInfo != null) {
 			JsonObject deviceInfoJson = new JsonObject();
-			deviceInfoJson.addProperty("serialNumber", deviceInfo.getSerialNumber());
-			deviceInfoJson.addProperty("manufacturer", deviceInfo.getManufacturer());
-			deviceInfoJson.addProperty("model", deviceInfo.getModel());
-			deviceInfoJson.addProperty("deviceClass", deviceInfo.getDeviceClass());
-			deviceInfoJson.addProperty("description", deviceInfo.getDescription());
-			deviceInfoJson.addProperty("fwVersion", deviceInfo.getFwVersion());
-			deviceInfoJson.addProperty("hwVersion", deviceInfo.getHwVersion());
-			deviceInfoJson.addProperty("descriptiveLocation", deviceInfo.getDescriptiveLocation());
+			if (deviceInfo.getSerialNumber() != null) deviceInfoJson.addProperty("serialNumber", deviceInfo.getSerialNumber());
+			if (deviceInfo.getManufacturer() != null) deviceInfoJson.addProperty("manufacturer", deviceInfo.getManufacturer());
+			if (deviceInfo.getModel() != null) deviceInfoJson.addProperty("model", deviceInfo.getModel());
+			if (deviceInfo.getDeviceClass() != null) deviceInfoJson.addProperty("deviceClass", deviceInfo.getDeviceClass());
+			if (deviceInfo.getDescription() != null) deviceInfoJson.addProperty("description", deviceInfo.getDescription());
+			if (deviceInfo.getFwVersion() != null) deviceInfoJson.addProperty("fwVersion", deviceInfo.getFwVersion());
+			if (deviceInfo.getHwVersion() != null) deviceInfoJson.addProperty("hwVersion", deviceInfo.getHwVersion());
+			if (deviceInfo.getDescriptiveLocation() != null) deviceInfoJson.addProperty("descriptiveLocation", deviceInfo.getDescriptiveLocation());
 			json.add("deviceInfo", deviceInfoJson);
 		}
 		if (metaData != null && metaData.getMetaProperties().size() > 0)  {
@@ -199,6 +205,31 @@ public class Device
 			json.add("metadata", metaDataJson);
 		}
 		return json;
+    }
+
+    /** Gets the latest runtime data for the Device from its 1st logical interface.
+     * 
+     * @return Device runtime data as a JsonObject
+     */
+    public JsonObject getDeviceData(HttpServletRequest httpServletRequest) {
+		JsonObject results = new JsonObject();
+		// the organization ID is the last entry in the service provider URI path
+		String path = ((URI)getServiceProvider().toArray()[0]).getPath();
+		String orgId = path.substring(path.lastIndexOf('/')+1);
+		try {
+			IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
+			DeviceType deviceType = CE4IoTConnectorManager.getDeviceType(httpServletRequest, orgId, getTypeId());
+			
+			if(!deviceType.getLogicalInterfaces().isEmpty()) {
+				String logicalInterface = ((Link)deviceType.getLogicalInterfaces().toArray()[0]).getLabel();
+				JsonElement deviceData = client.readIoTResource(orgId, "device/types/" + deviceType.getIdentifier() + "/devices/" + getIdentifier() + "/state/" + logicalInterface);
+				if (deviceData != null) results = deviceData.getAsJsonObject().get("state").getAsJsonObject();
+			}    			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    		return results;
     }
     // End of user code
     public Device()

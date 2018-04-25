@@ -81,8 +81,7 @@ import com.ibm.oslc.adaptor.iotp.resources.App;
 // Start of user code imports
 import com.ibm.oslc.adaptor.iotp.BmxServiceProviderInfo;
 import com.ibm.oslc.adaptor.iotp.servlet.ServiceProviderCatalogSingleton;
-import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
-// End of user code
+import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;// End of user code
 
 // Start of user code preClassCode
 // End of user code
@@ -106,7 +105,7 @@ public class Space
     // Start of user code classAttributes
     // End of user code
     // Start of user code classMethods
-    public Space(HttpServletRequest httpServletRequest, BmxServiceProviderInfo info, com.ibm.oslc.adaptor.bmx.Space space) throws URISyntaxException {
+    public Space(HttpServletRequest httpServletRequest, BmxServiceProviderInfo info, com.ibm.oslc.adaptor.bmx.impl.Space space) throws URISyntaxException {
 		super();
 		setTitle(space.getName());
 		setShortTitle(space.getName());

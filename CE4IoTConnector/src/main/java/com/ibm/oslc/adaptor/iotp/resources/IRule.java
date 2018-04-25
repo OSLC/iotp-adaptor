@@ -96,8 +96,17 @@ public interface IRule
     @OslcTitle("action")
     public String getAction();
 
+    @OslcName("logicalInterfaceId")
+    @OslcPropertyDefinition(Oslc_iotDomainConstants.IOT_PLATFORM_NAMSPACE + "logicalInterfaceId")
+    @OslcOccurs(Occurs.ExactlyOne)
+    @OslcValueType(ValueType.String)
+    @OslcReadOnly(false)
+    @OslcTitle("logicalInterfaceId")
+    public String getLogicalInterfaceId();
+
 
     public void setCondition(final String condition );
     public void setAction(final String action );
+    public void setLogicalInterfaceId(final String logicalInterfaceId );
 }
 

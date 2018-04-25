@@ -89,6 +89,7 @@ import com.google.gson.JsonPrimitive;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import com.ibm.oslc.adaptor.iotp.servlet.ServiceProviderCatalogSingleton;
 import com.ibm.oslc.adaptor.iotp.IotpServiceProviderInfo;
+
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -128,8 +129,11 @@ public class DeviceType
     // Start of user code classAttributes
     // End of user code
     // Start of user code classMethods
-    public DeviceType(HttpServletRequest httpServletRequest, final IotpServiceProviderInfo info, final String id, JsonObject jsonObject) throws URISyntaxException {
-		super(id, jsonObject);
+	private static DateFormat createDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
+	private static DateFormat updateDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+    public DeviceType(final HttpServletRequest httpServletRequest, final IotpServiceProviderInfo info, final String id, JsonElement deviceTypeE, JsonElement physicalInterfaceE, JsonElement logicalInterfacesE) throws URISyntaxException {
+		super(id, deviceTypeE.getAsJsonObject());
 		// Rules: Don't set anything where there is no value.
 		// E.g. if there is no representation, don't set the value.
 
@@ -141,6 +145,9 @@ public class DeviceType
 		getTypes().add(new URI("http://open-services.net/ns/cm#ChangeRequest"));		
 		getTypes().add(new URI("http://open-services.net/ns/rm#Requirement"));		
 
+
+		// Note that there must be a service provider since we are creating an instance of an resource
+		// Therefore there will be no need to refresh the catalog
 		ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getIotpServiceProvider(httpServletRequest, info.iotId);
 		HashSet<URI> serviceProviders = new HashSet<URI>();
 		serviceProviders.add(serviceProvider.getAbout());
@@ -151,10 +158,44 @@ public class DeviceType
 		} catch (OslcCoreApplicationException e) {
 		}
 
-		JsonElement element = jsonObject.get("description");
+		JsonObject deviceTypeO = deviceTypeE.getAsJsonObject();
+		JsonElement element = deviceTypeO.get("description");
 		if (element != null) this.setDescription(element.getAsString());
-
-		JsonObject devInfo = jsonObject.get("deviceInfo").getAsJsonObject();
+		element = deviceTypeO.get("classId");
+		if (element != null) this.setClassId(element.getAsString());
+		
+		try {
+			element = deviceTypeO.get("createdDateTime");
+			if (element != null) this.setCreated(createDateFormat.parse(element.getAsString()));
+			element = deviceTypeO.get("updatedDateTime");
+			if (element != null) this.setModified(updateDateFormat.parse(element.getAsString()));
+		} catch (ParseException exc) {
+			// the updated format is the same as the created format when the device type is first deployed
+			try {
+				if (this.getModified() == null) this.setModified(createDateFormat.parse(element.getAsString()));
+			} catch (ParseException e) {				
+			}
+		}
+		
+		if (physicalInterfaceE != null) {
+			String physicalInterfaceId = physicalInterfaceE.getAsJsonObject().get("id").getAsString();
+			Link link = PhysicalInterface.constructLink(info.iotId, physicalInterfaceId);
+			link.setLabel(physicalInterfaceId);
+			this.setPhysicalInterface(link);			
+		}
+		
+		if (logicalInterfacesE != null) {
+			HashSet<Link> links = new HashSet<Link>();
+			for (JsonElement li: logicalInterfacesE.getAsJsonArray()) {
+				String logicalInterfaceId = li.getAsJsonObject().get("id").getAsString();
+				Link link = LogicalInterface.constructLink(info.iotId, logicalInterfaceId);
+				link.setLabel(logicalInterfaceId);
+				links.add(link);
+			}
+			this.setLogicalInterfaces(links);			
+		}
+		
+		JsonObject devInfo = deviceTypeO.get("deviceInfo").getAsJsonObject();
 		if (element != null) {
 			element = devInfo.get("serialNumber");
 			if (element != null) deviceInfo.setSerialNumber(element.getAsString());
@@ -174,7 +215,7 @@ public class DeviceType
 			if (element != null) deviceInfo.setDescriptiveLocation(element.getAsString());
 		}
 		
-		element = jsonObject.get("metadata");
+		element = deviceTypeO.get("metadata");
 		if (element != null) {
 			for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
 				MetaProperty prop = new MetaProperty();
@@ -190,18 +231,23 @@ public class DeviceType
 		
 		json.addProperty("description", getDescription());
 		json.addProperty("id", getIdentifier());
+		json.addProperty("classId", getClassId());
+
+		// Logical and physical interface refs are fixed query URLs and should not be included in the JSON
+		
 		if (deviceInfo != null) {
 			JsonObject deviceInfoJson = new JsonObject();
-			deviceInfoJson.addProperty("serialNumber", deviceInfo.getSerialNumber());
-			deviceInfoJson.addProperty("manufacturer", deviceInfo.getManufacturer());
-			deviceInfoJson.addProperty("model", deviceInfo.getModel());
-			deviceInfoJson.addProperty("deviceClass", deviceInfo.getDeviceClass());
-			deviceInfoJson.addProperty("description", deviceInfo.getDescription());
-			deviceInfoJson.addProperty("fwVersion", deviceInfo.getFwVersion());
-			deviceInfoJson.addProperty("hwVersion", deviceInfo.getHwVersion());
-			deviceInfoJson.addProperty("descriptiveLocation", deviceInfo.getDescriptiveLocation());
+			if (deviceInfo.getSerialNumber() != null) deviceInfoJson.addProperty("serialNumber", deviceInfo.getSerialNumber());
+			if (deviceInfo.getManufacturer() != null) deviceInfoJson.addProperty("manufacturer", deviceInfo.getManufacturer());
+			if (deviceInfo.getModel() != null) deviceInfoJson.addProperty("model", deviceInfo.getModel());
+			if (deviceInfo.getDeviceClass() != null) deviceInfoJson.addProperty("deviceClass", deviceInfo.getDeviceClass());
+			if (deviceInfo.getDescription() != null) deviceInfoJson.addProperty("description", deviceInfo.getDescription());
+			if (deviceInfo.getFwVersion() != null) deviceInfoJson.addProperty("fwVersion", deviceInfo.getFwVersion());
+			if (deviceInfo.getHwVersion() != null) deviceInfoJson.addProperty("hwVersion", deviceInfo.getHwVersion());
+			if (deviceInfo.getDescriptiveLocation() != null) deviceInfoJson.addProperty("descriptiveLocation", deviceInfo.getDescriptiveLocation());
 			json.add("deviceInfo", deviceInfoJson);
 		}
+		
 		if (metaData != null && metaData.getMetaProperties().size() > 0)  {
 			JsonObject metaDataJson = new JsonObject();
 			for (MetaProperty prop : metaData.getMetaProperties()) {

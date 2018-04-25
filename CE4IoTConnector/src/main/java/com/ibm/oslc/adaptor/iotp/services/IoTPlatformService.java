@@ -113,8 +113,7 @@ import com.ibm.oslc.adaptor.iotp.resources.ThingTypeMapping;
 // Start of user code imports
 import com.ibm.oslc.adaptor.iotp.impl.IoTAPIImplementation;
 import com.ibm.oslc.adaptor.iotp.IotpServiceProviderInfo;
-import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
-// End of user code
+import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;// End of user code
 
 // Start of user code pre_class_code
 // End of user code
@@ -843,7 +842,7 @@ public class IoTPlatformService
             // Start of user code RequirementAndChangeRequestAndResourceSelector_init
             // End of user code
 
-            httpServletRequest.setAttribute("selectionUri",uriInfo.getAbsolutePath().toString());
+            httpServletRequest.setAttribute("selectionUri",UriBuilder.fromUri(OSLC4JUtils.getServletURI()).path(uriInfo.getPath()).build().toString());
             // Start of user code RequirementAndChangeRequestAndResourceSelector_setAttributes
             // End of user code
 
@@ -886,7 +885,7 @@ public class IoTPlatformService
          usages = {}
     )
     @POST
-    @Path("rule")
+    @Path("logicalInterfaceId/rule")
     @Consumes({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
     @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
     public Response createRule(
@@ -1184,7 +1183,7 @@ public class IoTPlatformService
         // Start of user code ResourceAndChangeRequestAndRequirementCreator
         // End of user code
 
-        httpServletRequest.setAttribute("creatorUri", uriInfo.getAbsolutePath().toString());
+        httpServletRequest.setAttribute("creatorUri", UriBuilder.fromUri(OSLC4JUtils.getServletURI()).path(uriInfo.getPath()).build().toString());
         httpServletRequest.setAttribute("iotId", iotId);
 
         RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/iotpcreationdialogcreator.jsp");
@@ -1429,147 +1428,6 @@ public class IoTPlatformService
             // End of user code
 
             RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/devicetypelargepreview.jsp");
-            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
-            rd.forward(httpServletRequest, httpServletResponse);
-        }
-
-        throw new WebApplicationException(Status.NOT_FOUND);
-    }
-    @GET
-    @Path("rules/{ruleId}")
-    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
-    public Rule getRule(
-                @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
-        ) throws IOException, ServletException, URISyntaxException
-    {
-        // Start of user code getResource_init
-        // End of user code
-
-        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
-
-        if (aRule != null) {
-            // Start of user code getRule
-            // End of user code
-            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
-            return aRule;
-        }
-
-        throw new WebApplicationException(Status.NOT_FOUND);
-    }
-
-    @GET
-    @Path("rules/{ruleId}")
-    @Produces({ MediaType.TEXT_HTML })
-    public Response getRuleAsHtml(
-        @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
-        ) throws ServletException, IOException, URISyntaxException
-    {
-        // Start of user code getRuleAsHtml_init
-        // End of user code
-
-        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
-
-        if (aRule != null) {
-            httpServletRequest.setAttribute("aRule", aRule);
-            // Start of user code getRuleAsHtml_setAttributes
-            // End of user code
-
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/rule.jsp");
-            rd.forward(httpServletRequest,httpServletResponse);
-        }
-
-        throw new WebApplicationException(Status.NOT_FOUND);
-    }
-
-    @GET
-    @Path("rules/{ruleId}")
-    @Produces({OslcMediaType.APPLICATION_X_OSLC_COMPACT_XML})
-    public Compact getRuleCompact(
-        @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
-        ) throws ServletException, IOException, URISyntaxException
-    {
-        String iconUri = OSLC4JUtils.getPublicURI() + "/images/ui_preview_icon.gif";
-        String smallPreviewHintHeight = "10em";
-        String smallPreviewHintWidth = "45em";
-        String largePreviewHintHeight = "20em";
-        String largePreviewHintWidth = "45em";
-
-        // Start of user code getRuleCompact_init
-        //TODO: adjust the preview height & width values from the default values provided above.
-        // End of user code
-
-        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
-
-        if (aRule != null) {
-            final Compact compact = new Compact();
-
-            compact.setAbout(aRule.getAbout());
-            compact.setTitle(aRule.toString());
-
-            compact.setIcon(new URI(iconUri));
-
-            //Create and set attributes for OSLC preview resource
-            final Preview smallPreview = new Preview();
-            smallPreview.setHintHeight(smallPreviewHintHeight);
-            smallPreview.setHintWidth(smallPreviewHintWidth);
-            smallPreview.setDocument(UriBuilder.fromUri(aRule.getAbout()).path("smallPreview").build());
-            compact.setSmallPreview(smallPreview);
-
-            final Preview largePreview = new Preview();
-            largePreview.setHintHeight(largePreviewHintHeight);
-            largePreview.setHintWidth(largePreviewHintWidth);
-            largePreview.setDocument(UriBuilder.fromUri(aRule.getAbout()).path("largePreview").build());
-            compact.setLargePreview(largePreview);
-
-            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
-            return compact;
-        }
-        throw new WebApplicationException(Status.NOT_FOUND);
-    }
-
-    @GET
-    @Path("rules/{ruleId}/smallPreview")
-    @Produces({ MediaType.TEXT_HTML })
-    public void getRuleAsHtmlSmallPreview(
-        @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
-        ) throws ServletException, IOException, URISyntaxException
-    {
-        // Start of user code getRuleAsHtmlSmallPreview_init
-        // End of user code
-
-        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
-
-        if (aRule != null) {
-            httpServletRequest.setAttribute("aRule", aRule);
-            // Start of user code getRuleAsHtmlSmallPreview_setAttributes
-            // End of user code
-
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/rulesmallpreview.jsp");
-            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
-            rd.forward(httpServletRequest, httpServletResponse);
-        }
-
-        throw new WebApplicationException(Status.NOT_FOUND);
-    }
-
-    @GET
-    @Path("rules/{ruleId}/largePreview")
-    @Produces({ MediaType.TEXT_HTML })
-    public void getRuleAsHtmlLargePreview(
-        @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
-        ) throws ServletException, IOException, URISyntaxException
-    {
-        // Start of user code getRuleAsHtmlLargePreview_init
-        // End of user code
-
-        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
-
-        if (aRule != null) {
-            httpServletRequest.setAttribute("aRule", aRule);
-            // Start of user code getRuleAsHtmlLargePreview_setAttributes
-            // End of user code
-
-            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/rulelargepreview.jsp");
             httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
             rd.forward(httpServletRequest, httpServletResponse);
         }
@@ -2281,6 +2139,147 @@ public class IoTPlatformService
 
         throw new WebApplicationException(Status.NOT_FOUND);
     }
+    @GET
+    @Path("things/{thingId}")
+    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
+    public Thing getThing(
+                @PathParam("iotId") final String iotId, @PathParam("thingId") final String thingId
+        ) throws IOException, ServletException, URISyntaxException
+    {
+        // Start of user code getResource_init
+        // End of user code
+
+        final Thing aThing = CE4IoTConnectorManager.getThing(httpServletRequest, iotId, thingId);
+
+        if (aThing != null) {
+            // Start of user code getThing
+            // End of user code
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            return aThing;
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("things/{thingId}")
+    @Produces({ MediaType.TEXT_HTML })
+    public Response getThingAsHtml(
+        @PathParam("iotId") final String iotId, @PathParam("thingId") final String thingId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getThingAsHtml_init
+        // End of user code
+
+        final Thing aThing = CE4IoTConnectorManager.getThing(httpServletRequest, iotId, thingId);
+
+        if (aThing != null) {
+            httpServletRequest.setAttribute("aThing", aThing);
+            // Start of user code getThingAsHtml_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/thing.jsp");
+            rd.forward(httpServletRequest,httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("things/{thingId}")
+    @Produces({OslcMediaType.APPLICATION_X_OSLC_COMPACT_XML})
+    public Compact getThingCompact(
+        @PathParam("iotId") final String iotId, @PathParam("thingId") final String thingId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        String iconUri = OSLC4JUtils.getPublicURI() + "/images/ui_preview_icon.gif";
+        String smallPreviewHintHeight = "10em";
+        String smallPreviewHintWidth = "45em";
+        String largePreviewHintHeight = "20em";
+        String largePreviewHintWidth = "45em";
+
+        // Start of user code getThingCompact_init
+        //TODO: adjust the preview height & width values from the default values provided above.
+        // End of user code
+
+        final Thing aThing = CE4IoTConnectorManager.getThing(httpServletRequest, iotId, thingId);
+
+        if (aThing != null) {
+            final Compact compact = new Compact();
+
+            compact.setAbout(aThing.getAbout());
+            compact.setTitle(aThing.toString());
+
+            compact.setIcon(new URI(iconUri));
+
+            //Create and set attributes for OSLC preview resource
+            final Preview smallPreview = new Preview();
+            smallPreview.setHintHeight(smallPreviewHintHeight);
+            smallPreview.setHintWidth(smallPreviewHintWidth);
+            smallPreview.setDocument(UriBuilder.fromUri(aThing.getAbout()).path("smallPreview").build());
+            compact.setSmallPreview(smallPreview);
+
+            final Preview largePreview = new Preview();
+            largePreview.setHintHeight(largePreviewHintHeight);
+            largePreview.setHintWidth(largePreviewHintWidth);
+            largePreview.setDocument(UriBuilder.fromUri(aThing.getAbout()).path("largePreview").build());
+            compact.setLargePreview(largePreview);
+
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            return compact;
+        }
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("things/{thingId}/smallPreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getThingAsHtmlSmallPreview(
+        @PathParam("iotId") final String iotId, @PathParam("thingId") final String thingId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getThingAsHtmlSmallPreview_init
+        // End of user code
+
+        final Thing aThing = CE4IoTConnectorManager.getThing(httpServletRequest, iotId, thingId);
+
+        if (aThing != null) {
+            httpServletRequest.setAttribute("aThing", aThing);
+            // Start of user code getThingAsHtmlSmallPreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/thingsmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("things/{thingId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getThingAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("thingId") final String thingId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getThingAsHtmlLargePreview_init
+        // End of user code
+
+        final Thing aThing = CE4IoTConnectorManager.getThing(httpServletRequest, iotId, thingId);
+
+        if (aThing != null) {
+            httpServletRequest.setAttribute("aThing", aThing);
+            // Start of user code getThingAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/thinglargepreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
     @DELETE
     @Path("deviceTypes/{deviceTypeId}")
     public Response deleteDeviceType(
@@ -2295,28 +2294,6 @@ public class IoTPlatformService
             // Start of user code deleteDeviceType
             // End of user code
             boolean deleted = CE4IoTConnectorManager.deleteDeviceType(httpServletRequest, iotId, deviceTypeId);
-            if (deleted)
-                return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
-            else
-                throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
-        }
-        throw new WebApplicationException(Status.NOT_FOUND);
-    }
-
-    @DELETE
-    @Path("rules/{ruleId}")
-    public Response deleteRule(
-                @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
-        ) throws IOException, ServletException, URISyntaxException
-    {
-        // Start of user code deleteRule_init
-        // End of user code
-        final Rule aResource = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
-
-        if (aResource != null) {
-            // Start of user code deleteRule
-            // End of user code
-            boolean deleted = CE4IoTConnectorManager.deleteRule(httpServletRequest, iotId, ruleId);
             if (deleted)
                 return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
             else
@@ -2435,6 +2412,28 @@ public class IoTPlatformService
         throw new WebApplicationException(Status.NOT_FOUND);
     }
 
+    @DELETE
+    @Path("things/{thingId}")
+    public Response deleteThing(
+                @PathParam("iotId") final String iotId, @PathParam("thingId") final String thingId
+        ) throws IOException, ServletException, URISyntaxException
+    {
+        // Start of user code deleteThing_init
+        // End of user code
+        final Thing aResource = CE4IoTConnectorManager.getThing(httpServletRequest, iotId, thingId);
+
+        if (aResource != null) {
+            // Start of user code deleteThing
+            // End of user code
+            boolean deleted = CE4IoTConnectorManager.deleteThing(httpServletRequest, iotId, thingId);
+            if (deleted)
+                return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
+            else
+                throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
+        }
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
     @PUT
     @Path("deviceTypes/{deviceTypeId}")
     @Consumes({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
@@ -2457,45 +2456,6 @@ public class IoTPlatformService
                     // End of user code
                     final DeviceType updatedResource = CE4IoTConnectorManager.updateDeviceType(httpServletRequest, aResource, iotId, deviceTypeId);
                     httpServletResponse.setHeader("ETag", CE4IoTConnectorManager.getETagFromDeviceType(updatedResource));
-                    return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
-                }
-                else {
-                    throw new WebApplicationException(Status.PRECONDITION_FAILED);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new WebApplicationException(e);
-            }
-
-        }
-        else {
-            throw new WebApplicationException(Status.NOT_FOUND);
-        }
-    }
-
-    @PUT
-    @Path("rules/{ruleId}")
-    @Consumes({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
-    public Response updateRule(
-            @HeaderParam("If-Match") final String eTagHeader,
-            @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId ,
-            final Rule aResource
-        ) throws IOException, ServletException
-    {
-        // Start of user code updateRule_init
-        // End of user code
-        final Rule originalResource = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
-
-        if (originalResource != null) {
-            try {
-                final String originalETag = CE4IoTConnectorManager.getETagFromRule(originalResource);
-
-                if ((eTagHeader == null) || (originalETag.equals(eTagHeader))) {
-                    // Start of user code updateRule
-                    // End of user code
-                    final Rule updatedResource = CE4IoTConnectorManager.updateRule(httpServletRequest, aResource, iotId, ruleId);
-                    httpServletResponse.setHeader("ETag", CE4IoTConnectorManager.getETagFromRule(updatedResource));
                     return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
                 }
                 else {
@@ -2708,6 +2668,45 @@ public class IoTPlatformService
         }
     }
 
+    @PUT
+    @Path("things/{thingId}")
+    @Consumes({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
+    public Response updateThing(
+            @HeaderParam("If-Match") final String eTagHeader,
+            @PathParam("iotId") final String iotId, @PathParam("thingId") final String thingId ,
+            final Thing aResource
+        ) throws IOException, ServletException
+    {
+        // Start of user code updateThing_init
+        // End of user code
+        final Thing originalResource = CE4IoTConnectorManager.getThing(httpServletRequest, iotId, thingId);
+
+        if (originalResource != null) {
+            try {
+                final String originalETag = CE4IoTConnectorManager.getETagFromThing(originalResource);
+
+                if ((eTagHeader == null) || (originalETag.equals(eTagHeader))) {
+                    // Start of user code updateThing
+                    // End of user code
+                    final Thing updatedResource = CE4IoTConnectorManager.updateThing(httpServletRequest, aResource, iotId, thingId);
+                    httpServletResponse.setHeader("ETag", CE4IoTConnectorManager.getETagFromThing(updatedResource));
+                    return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
+                }
+                else {
+                    throw new WebApplicationException(Status.PRECONDITION_FAILED);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new WebApplicationException(e);
+            }
+
+        }
+        else {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
+    }
+
     @GET
     @Path("devices/{typeId}/devices/{deviceId}")
     @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
@@ -2903,6 +2902,208 @@ public class IoTPlatformService
                     // End of user code
                     final Device updatedResource = CE4IoTConnectorManager.updateDevice(httpServletRequest, aResource, iotId, typeId, deviceId);
                     httpServletResponse.setHeader("ETag", CE4IoTConnectorManager.getETagFromDevice(updatedResource));
+                    return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
+                }
+                else {
+                    throw new WebApplicationException(Status.PRECONDITION_FAILED);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new WebApplicationException(e);
+            }
+
+        }
+        else {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
+    }
+
+    @GET
+    @Path("rules/{ruleId}")
+    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
+    public Rule getRule(
+                @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
+        ) throws IOException, ServletException, URISyntaxException
+    {
+        // Start of user code getResource_init
+        // End of user code
+
+        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
+
+        if (aRule != null) {
+            // Start of user code getRule
+            // End of user code
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            return aRule;
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("rules/{ruleId}")
+    @Produces({ MediaType.TEXT_HTML })
+    public Response getRuleAsHtml(
+        @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getRuleAsHtml_init
+        // End of user code
+
+        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
+
+        if (aRule != null) {
+            httpServletRequest.setAttribute("aRule", aRule);
+            // Start of user code getRuleAsHtml_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/rule.jsp");
+            rd.forward(httpServletRequest,httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("rules/{ruleId}")
+    @Produces({OslcMediaType.APPLICATION_X_OSLC_COMPACT_XML})
+    public Compact getRuleCompact(
+        @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        String iconUri = OSLC4JUtils.getPublicURI() + "/images/ui_preview_icon.gif";
+        String smallPreviewHintHeight = "10em";
+        String smallPreviewHintWidth = "45em";
+        String largePreviewHintHeight = "20em";
+        String largePreviewHintWidth = "45em";
+
+        // Start of user code getRuleCompact_init
+        //TODO: adjust the preview height & width values from the default values provided above.
+        // End of user code
+
+        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
+
+        if (aRule != null) {
+            final Compact compact = new Compact();
+
+            compact.setAbout(aRule.getAbout());
+            compact.setTitle(aRule.toString());
+
+            compact.setIcon(new URI(iconUri));
+
+            //Create and set attributes for OSLC preview resource
+            final Preview smallPreview = new Preview();
+            smallPreview.setHintHeight(smallPreviewHintHeight);
+            smallPreview.setHintWidth(smallPreviewHintWidth);
+            smallPreview.setDocument(UriBuilder.fromUri(aRule.getAbout()).path("smallPreview").build());
+            compact.setSmallPreview(smallPreview);
+
+            final Preview largePreview = new Preview();
+            largePreview.setHintHeight(largePreviewHintHeight);
+            largePreview.setHintWidth(largePreviewHintWidth);
+            largePreview.setDocument(UriBuilder.fromUri(aRule.getAbout()).path("largePreview").build());
+            compact.setLargePreview(largePreview);
+
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            return compact;
+        }
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("rules/{ruleId}/smallPreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getRuleAsHtmlSmallPreview(
+        @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getRuleAsHtmlSmallPreview_init
+        // End of user code
+
+        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
+
+        if (aRule != null) {
+            httpServletRequest.setAttribute("aRule", aRule);
+            // Start of user code getRuleAsHtmlSmallPreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/rulesmallpreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @GET
+    @Path("rules/{ruleId}/largePreview")
+    @Produces({ MediaType.TEXT_HTML })
+    public void getRuleAsHtmlLargePreview(
+        @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
+        ) throws ServletException, IOException, URISyntaxException
+    {
+        // Start of user code getRuleAsHtmlLargePreview_init
+        // End of user code
+
+        final Rule aRule = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
+
+        if (aRule != null) {
+            httpServletRequest.setAttribute("aRule", aRule);
+            // Start of user code getRuleAsHtmlLargePreview_setAttributes
+            // End of user code
+
+            RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/com/ibm/oslc/adaptor/iotp/rulelargepreview.jsp");
+            httpServletResponse.addHeader(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2);
+            rd.forward(httpServletRequest, httpServletResponse);
+        }
+
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+    @DELETE
+    @Path("rules/{ruleId}")
+    public Response deleteRule(
+                @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId
+        ) throws IOException, ServletException, URISyntaxException
+    {
+        // Start of user code deleteRule_init
+        // End of user code
+        final Rule aResource = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
+
+        if (aResource != null) {
+            // Start of user code deleteRule
+            // End of user code
+            boolean deleted = CE4IoTConnectorManager.deleteRule(httpServletRequest, iotId, ruleId);
+            if (deleted)
+                return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
+            else
+                throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
+        }
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    @PUT
+    @Path("rules/{ruleId}")
+    @Consumes({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON, OslcMediaType.TEXT_TURTLE})
+    public Response updateRule(
+            @HeaderParam("If-Match") final String eTagHeader,
+            @PathParam("iotId") final String iotId, @PathParam("ruleId") final String ruleId ,
+            final Rule aResource
+        ) throws IOException, ServletException
+    {
+        // Start of user code updateRule_init
+        // End of user code
+        final Rule originalResource = CE4IoTConnectorManager.getRule(httpServletRequest, iotId, ruleId);
+
+        if (originalResource != null) {
+            try {
+                final String originalETag = CE4IoTConnectorManager.getETagFromRule(originalResource);
+
+                if ((eTagHeader == null) || (originalETag.equals(eTagHeader))) {
+                    // Start of user code updateRule
+                    // End of user code
+                    final Rule updatedResource = CE4IoTConnectorManager.updateRule(httpServletRequest, aResource, iotId, ruleId);
+                    httpServletResponse.setHeader("ETag", CE4IoTConnectorManager.getETagFromRule(updatedResource));
                     return Response.ok().header(CE4IoTConnectorConstants.HDR_OSLC_VERSION, CE4IoTConnectorConstants.OSLC_VERSION_V2).build();
                 }
                 else {
