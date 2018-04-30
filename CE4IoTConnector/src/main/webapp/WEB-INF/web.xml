@@ -16,17 +16,17 @@
 	<context-param>
 		<description>Scheme used for URI when registering ServiceProvider.  Can be overridden by System property of the same name.</description>
 		<param-name>com.ibm.oslc.adaptor.iotp.servlet.scheme</param-name>
-		<param-value>https</param-value>
+		<param-value>http</param-value>
 	</context-param>
 	<context-param>
 		<description>Base URI for the adaptor.</description>
 		<param-name>com.ibm.oslc.adaptor.iotp.servlet.baseurl</param-name>
-		<param-value>https://rlia4iot.raleigh.ibm.com:9443</param-value>
+		<param-value>http://localhost:8080</param-value>
 	</context-param>
 	<context-param>
 		<description>Port used for URI when registering ServiceProvider.  Can be overridden by System property of the same name.</description>
 		<param-name>com.ibm.oslc.adaptor.iotp.servlet.port</param-name>
-		<param-value>9443</param-value>
+		<param-value>8080</param-value>
 	</context-param>
 	<listener>
 		<description>Listener for ServletContext lifecycle changes</description>

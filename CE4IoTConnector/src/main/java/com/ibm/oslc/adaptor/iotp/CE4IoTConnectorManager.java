@@ -728,11 +728,9 @@ public class CE4IoTConnectorManager {
 			String uri = "device/types/" + aResource.getTypeId() + "/devices/" + aResource.getIdentifier();
 			JsonObject json = aResource.toJson().getAsJsonObject();
 			// Remove the properties that can't be updated
-			json.remove("id");
-			json.remove("typeid");
+			json.remove("deviceId");
+			json.remove("typeId");
 			json.remove("classId");
-			json.remove("createdDateTime");
-			json.remove("updatedDateTime");
 			JsonElement result = client.updateIoTResource(info.name, uri, json);
 			if (result != null) updatedResource = new Device(httpServletRequest, info, aResource.getTypeId(), aResource.getIdentifier(), result.getAsJsonObject());
 		} catch (Exception e) {
