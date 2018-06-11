@@ -9,9 +9,11 @@ package com.ibm.oslc.adaptor.tests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 import org.apache.http.Header;
@@ -27,21 +29,31 @@ import org.eclipse.lyo.client.oslc.OslcClient;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.ibm.oslc.adaptor.iotp.resources.Oslc_iotDomainConstants;
+import com.ibm.oslc.adaptor.iotp.resources.Device;
 import com.ibm.oslc.adaptor.iotp.resources.DeviceType;
+import com.ibm.oslc.adaptor.iotp.resources.Oslc_iotDomainConstants;
 
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class CE4IoTConnectorTests {
 
 	private static final Logger logger = Logger.getLogger(CE4IoTConnectorTests.class.getName());
-	private static final String serverUrl = "https://rlia4iot.raleigh.ibm.com:9443/iotp";
-	private static final String userId = "someuser@ibm.com";
-	private static final String password = "********";
-	private static final String orgId = "some organization";
+	private static String serverUrl = "https://rlia4iot.raleigh.ibm.com:9443/iotp";
+	private static String userId = "someuser@ibm.com";
+	private static String password = "********";
+	private static String orgId = "some organization";
 	private static String queryCapability = null;
 	private static String creationFactory = null;
 	private static OslcClient client = null;
+
+	private static Properties testProperties = new Properties();
+	static {
+		try {
+			testProperties.load(CE4IoTConnectorTests.class.getResourceAsStream("/test.properties"));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	/**
 	 * @return the suite of tests being tested
@@ -54,6 +66,11 @@ public class CE4IoTConnectorTests {
 	@BeforeClass
 	public static void initialize() {
 		try {
+			serverUrl = testProperties.getProperty("serverUrl");
+			userId = testProperties.getProperty("userId");
+			password = testProperties.getProperty("password");
+			orgId = testProperties.getProperty("orgId");
+			
 			client = new OslcClient();
 			// Add a receptor to set the Authorization header as a default header for all requests
 			// This is using deprecated code because OSLC4J OslcClient needs to be updated at some point
@@ -121,6 +138,53 @@ public class CE4IoTConnectorTests {
 		response = client.deleteResource(uri);
 		assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
 		logger.info("Deleted DeviceType: " + uri);
+		response.consumeContent();
+
+	}
+
+	@Test
+	public void testDevice() throws Exception {
+		String uri = creationFactory.replace("devicetype", "iotDeviceTypes") + "/TestDeviceType";
+		
+		// TODO: Delete the resource if it exists
+
+		// Create
+		Device device = new Device(new URI(uri));
+		device.setIdentifier("TestDevice01");
+		device.setTitle("TestDevice01");
+		// TODO: add values to all the supported properties
+		device.setDescription("This is a test device that will be deleted");
+		ClientResponse response = client.createResource(creationFactory, device, OSLCConstants.CT_RDF);
+		assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+		logger.info("Created DeviceType: " + device.getTitle());
+		response.consumeContent();
+
+		// Read
+		device = client.getResource(uri).getEntity(Device.class);
+		assertEquals("TestDevice01", device.getIdentifier());
+		// TODO: Check all the read properties to be sure they are what was set when the resource was created
+		logger.info("Read DeviceType: " + device.getTitle());
+		response.consumeContent();
+
+		// Update
+		device.setDescription("This is the updated description");
+		// TODO: make changes to more of the properties
+		response = client.updateResource(uri, device, OSLCConstants.CT_RDF);
+		assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+		logger.info("Updated DeviceType: " + device.getTitle());
+		response.consumeContent();
+		
+		// Read back the DeviceType that was just updated
+		device = client.getResource(uri).getEntity(Device.class);
+		// TODO: Check that all of the updated properties have the expected values
+		assertEquals(device.getDescription(), "This is the updated description");
+		logger.info("Read updated DeviceType: " + device.getTitle());
+		response.consumeContent();
+
+		// Delete
+		response = client.deleteResource(uri);
+		assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+		logger.info("Deleted Device: " + uri);
 		response.consumeContent();
 
 	}

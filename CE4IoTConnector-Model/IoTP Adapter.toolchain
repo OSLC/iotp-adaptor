@@ -36,7 +36,7 @@
           </creationDialogs>
           <basicCapabilities instanceID="" resourceTypes="//@specification/@domainSpecifications.1/@resources.0 //@specification/@domainSpecifications.1/@resources.7 //@specification/@domainSpecifications.1/@resources.5 //@specification/@domainSpecifications.1/@resources.4 //@specification/@domainSpecifications.1/@resources.8 //@specification/@domainSpecifications.1/@resources.9 //@specification/@domainSpecifications.1/@resources.13" delete="true" update="true"/>
           <basicCapabilities instanceID="{typeId}/devices/{deviceId}" resourceTypes="//@specification/@domainSpecifications.1/@resources.12" delete="true" update="true"/>
-          <basicCapabilities instanceID="" resourceTypes="//@specification/@domainSpecifications.1/@resources.1" delete="true" update="true"/>
+          <basicCapabilities instanceID="{logicalInterfaceId}/rules/{ruleId}" resourceTypes="//@specification/@domainSpecifications.1/@resources.1" delete="true" update="true"/>
           <usages>http://open-services.net/ns/am#IoTPlatform</usages>
         </services>
       </serviceProviders>

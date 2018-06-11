@@ -21,34 +21,32 @@ package com.ibm.oslc.adaptor.iotp.impl;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.SocketTimeoutException;
 import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Base64;
+import java.util.Properties;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.apache.http.ConnectionClosedException;
+import org.apache.http.Header;
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.HttpClientUtils;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
-import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.cookie.CookieOrigin;
 import org.apache.http.cookie.CookieSpec;
@@ -57,16 +55,11 @@ import org.apache.http.cookie.MalformedCookieException;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.impl.cookie.DefaultCookieSpec;
-import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.eclipse.lyo.server.oauth.core.utils.UnauthorizedException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,7 +67,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.ibm.oslc.adaptor.iotp.impl.Constants;
 
 
 /**
@@ -104,6 +96,7 @@ public class IoTPClient {
 
 	private String platformBase;
 	private String apiVersion;
+	private String access_token;
 
 	// End user session information
 	private HttpClient client;
@@ -112,6 +105,16 @@ public class IoTPClient {
 	private String password;
 	private Registry<CookieSpecProvider> cookieReg = null;
 	private RequestConfig config = null;
+	
+	private static Properties clientProperties = new Properties();
+	static {
+		try {
+			clientProperties.load(IoTPClient.class.getResourceAsStream("/config.properties"));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 
 	// Enum for content-type header
 	public enum ContentType {
@@ -145,6 +148,7 @@ public class IoTPClient {
 		this.apiVersion = IoTAPIImplementation.getApiVersion();
 		this.user = userId;
 		this.password = password;
+		
 
 		class LooseCookieSpec extends DefaultCookieSpec {
 		    @Override
@@ -212,127 +216,38 @@ public class IoTPClient {
 	 * 
 	 */
 	public void login() throws UnauthorizedException {
+		String clientId = clientProperties.getProperty("clientId");
+		String secret = clientProperties.getProperty("secret");
 		
-		String state = null;
-
-		String blueidlogin;
-		String blueidlogin_redirect;
-		String ibm_security_logout;
-		String basicldapuser;
-
-		String submitUser;
-		String submitUserPwd;
-		String submitUserPwd_redirect, submitUserPwd_redirect_rd, staging_platform, logout_redirect;
-
-		int staging_platform_response, getOrgs_response, logout_redirect_response;
-		String statusCode;
-		int responseCode = 0;
-
-		blueidlogin=Constants.BLUEID_LOGIN;
-		ibm_security_logout=Constants.IBM_SECURITY_LOGOUT;
-		basicldapuser=Constants.BASIC_LDAP_USER;
-		submitUser=Constants.SUBMIT_USER_URI;
-		submitUserPwd=Constants.SUBMIT_USER_PWD_URI;
-		
-		
+		String result = "login failed";
 		HttpResponse response = null;
+		int status_code = 0;
 		
-		boolean result = true;
 		try {
-			log.debug("------ 2 ---- GET {}", blueidlogin);
-			response = getRequest(blueidlogin);
-			blueidlogin_redirect = response.getFirstHeader("Location").getValue();
-			// Save the rejected LptaToken2 cookie for use later in step 10
-			CookieSpec cookieSpec = new DefaultCookieSpec();
-			CookieOrigin origin = new CookieOrigin(Constants.IOT_PLATFORM_BASE, 443, "/", true);
-			List<Cookie> cookies = cookieSpec.parse(response.getFirstHeader("Set-Cookie"), origin);
-			Cookie ltpaToken2 = cookies.get(0);
-			EntityUtils.consume(response.getEntity()); // throw away the content
+			HttpClient client = HttpClientBuilder.create().build();
 
-			log.debug("------ 3 ---- GET {}", blueidlogin_redirect);
-			response = getRequest(blueidlogin_redirect);
-			EntityUtils.consume(response.getEntity()); // throw away the content
+			URIBuilder builder = new URIBuilder("https://iam.bluemix.net/oidc/token");
+			builder.setParameter("grant_type", "password");
+			builder.addParameter("response_type", "cloud_iam");
+			builder.addParameter("username", user);
+			builder.addParameter("password", password);
 
-			log.debug("------ 4 ---- GET {}", ibm_security_logout);
-			response = getRequest(ibm_security_logout);
-			EntityUtils.consume(response.getEntity()); // throw away the content
-
-			blueidlogin_redirect = blueidlogin_redirect.replaceFirst("oidc/endpoint/default/authorize",
-					"mtfim/sps/idaas/login");
+			HttpPost post = new HttpPost(builder.build());
+			Header authHeader = new BasicHeader(HttpHeaders.AUTHORIZATION,  "Basic "+Base64.getEncoder().encodeToString((clientId+":"+secret).getBytes()));
+			post.addHeader(authHeader);
+			post.setHeader("Content-Type", "application/x-www-form-urlencoded");
+			response = client.execute(post);
 			
-			log.debug("------ 5 ---- GET {}", blueidlogin_redirect);
-			response = getRequest(blueidlogin_redirect);
-			EntityUtils.consume(response.getEntity()); // throw away the content
-			// remove the JSESSIONID cookie with path=/idaas/
-			List<Cookie> latestCookies = cookieStore.getCookies();
-			cookieStore.clear();
-			for (Cookie aCookie : latestCookies) {
-				//if (!(aCookie.getName().equals("JSESSIONID") && aCookie.getPath().equals("/idaas/") || aCookie.getName().equals("LtpaToken2"))) cookieStore.addCookie(aCookie);
-				if (!(aCookie.getName().equals("JSESSIONID") && aCookie.getPath().equals("/idaas/"))) cookieStore.addCookie(aCookie);
+			status_code = response.getStatusLine().getStatusCode();
+			if (status_code != HttpStatus.SC_OK) {
+				log.error("Couldn't get access_token: "+status_code);
+				log.info(EntityUtils.toString(response.getEntity()));
 			}
-
-			log.debug("------ 6 ---- GET {}", basicldapuser);
-			response = getRequest(basicldapuser);
-			Document doc = Jsoup.parseBodyFragment(EntityUtils.toString(response.getEntity()));
-			Elements elements = doc.select("body").first().children();
-			for (Element el : elements) {
-				if (el.tagName().equals("div")) {
-					Elements x = el.getElementsByTag("div").tagName("form").eq(3);
-					String[] y = x.toString().split(" ");
-					for (int i = 0; i <= y.length; i++) {
-						if (y[i].contains("action")) {
-							String[] k = y[i].split("=");
-							state = k[2];
-							state = state.substring(0, state.length() - 2);
-							break;
-						}
-					}
-				}
-			}
-						
-			log.debug("------ 8 ---- POST {}", submitUserPwd);
-			BasicClientCookie userIdCookie = new BasicClientCookie("useribmid", user.replaceAll("@", "%40"));
-			userIdCookie.setDomain(Constants.USERID_DOMAIN);
-			userIdCookie.setPath("/");
-			cookieStore.addCookie(userIdCookie);
-			submitUserPwd = submitUserPwd + state;
-			response = postRequest(submitUserPwd);
-			submitUserPwd_redirect = response.getFirstHeader("Location").getValue();
-			EntityUtils.consume(response.getEntity()); // throw away the content
-
-			log.debug("------ 9 ---- GET {}", submitUserPwd_redirect);
-			response = getRequest(submitUserPwd_redirect);
-			submitUserPwd_redirect_rd = response.getFirstHeader("Location").getValue();
-			EntityUtils.consume(response.getEntity()); // throw away the content
-
-			log.debug("------ 10 ---- should have updated LtpaToken2 after: GET {}", submitUserPwd_redirect_rd);
-			// Clear out all the cookies
-			cookieStore.clear();
-			// Add the rejected LtpaToken2 from above, it will be replaced with the one we need for authentication
-			cookieStore.addCookie(ltpaToken2);
-			getRequest(submitUserPwd_redirect_rd);
-			EntityUtils.consume(response.getEntity()); // throw away the content
-
-			log.debug("------ 11 ---- GET {}", "https://internetofthings.ibmcloud.com");
-			getRequest(Constants.IOT_PLATFORM_BASE_URL);
-			EntityUtils.consume(response.getEntity()); // throw away the content
-			HttpClientUtils.closeQuietly(response);
-			client = HttpClientBuilder.create()
-					.setDefaultCookieStore(cookieStore)
-					.setDefaultCookieSpecRegistry(cookieReg)
-					.setDefaultRequestConfig(config).build();
-												
-			// TODO: do IoT Platform logout on shutdown
-			String logout = "https://"+IoTAPIImplementation.getPlatformBase()+"/logout";
-			//String logout_redirect = getRequest(logout, cookie_header);
-
-			// getRequest(logout_redirect, cookie_header);
-
+			JsonObject json_response = (new JsonParser()).parse(EntityUtils.toString(response.getEntity())).getAsJsonObject();
+			access_token = json_response.get("access_token").getAsString();
 		} catch (Exception e) {
-			log.error("blueidlogin caught execption:");
-			log.error("Login failed!", e.getStackTrace());
-			HttpClientUtils.closeQuietly(response);
-			throw new UnauthorizedException("Could not login to Watson IoT Platform");
+			e.printStackTrace();
+			throw new UnauthorizedException("Cannot login to Watson IoT Platform: "+status_code);
 		}
 	}
 	
@@ -341,117 +256,6 @@ public class IoTPClient {
 		HttpClientUtils.closeQuietly(client);		
 	}
 
-	/** Do an HTTP GET request for the IoT Platform based on user authentication. This ensures all the
-	 * required headers and cookies are set for the user's session
-	 * 
-	 * @param location
-	 * @param cookie_header
-	 * @return
-	 */
-	/**
-	 * @param location
-	 * @param cookie_header
-	 * @return
-	 */
-	public HttpResponse getRequest(String location) {
-		
-		String url = location;
-
-		HttpGet get = new HttpGet(url);
-		HttpResponse response = null;
-
-		try {
-			response = client.execute(get);
-		} catch (ConnectionClosedException e) {
-			log.error(e.getMessage(), e);
-			throw new RuntimeException(e);
-		}
-		catch(ConnectTimeoutException e)
-		{
-			log.error(e.getMessage(), e);
-			throw new RuntimeException(e);
-		}
-		catch(SocketTimeoutException e)
-		{
-			log.error(e.getMessage(), e);
-			throw new RuntimeException(e);
-		}
-
-		catch (ArrayIndexOutOfBoundsException e) {
-			log.error(e.getMessage(), e);
-			throw new RuntimeException(e);
-
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-			throw new RuntimeException(e);
-			
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			throw new RuntimeException(e);
-		}
-		return response;
-	}
-	
-	
-	/** Execute an HTTP POST request with the proper user session headers and cookies.
-	 * 
-	 * @param location
-	 * @param cookie_header
-	 * @param userId
-	 * @param password
-	 * @return
-	 */
-	public HttpResponse postRequest(String location) {
-		
-		String url = location;
-		HttpResponse response = null;
-
-		HttpPost post = new HttpPost(url);
-		try {
-			post.addHeader("Content-Type", "application/x-www-form-urlencoded");
-
-			List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-			urlParameters.add(new BasicNameValuePair("operation", "verify"));
-			urlParameters.add(new BasicNameValuePair("login-form-type", "pwd"));
-			urlParameters.add(new BasicNameValuePair("username", user));
-			urlParameters.add(new BasicNameValuePair("redirectURL", " "));
-			urlParameters.add(new BasicNameValuePair("password", password));
-			
-			log.debug("urlParameters are : " + urlParameters);
-			post.setEntity(new UrlEncodedFormEntity(urlParameters));
-
-			response = client.execute(post);
-			log.debug("    Response: "+response.getStatusLine().toString());
-			//log.debug("POST Response Body:\n"+EntityUtils.toString(response.getEntity()));
-		} catch(ConnectTimeoutException e)
-		{
-			log.error(e.getMessage(), e);
-			throw new RuntimeException();
-		}
-		catch(SocketTimeoutException e)
-		{
-			log.error(e.getMessage(), e);
-			throw new RuntimeException();
-		}
-		catch (ConnectionClosedException e) {
-			log.error(e.getMessage(), e);
-			throw new RuntimeException();
-		}
-
-		catch (ArrayIndexOutOfBoundsException e) {
-			log.error(e.getMessage(), e);
-			throw new RuntimeException();
-
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-			throw new RuntimeException();
-			
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			throw new RuntimeException();
-		}
-		return response;
-	}
 
 
 	/** Create a new IoT Platform resource.
@@ -474,6 +278,8 @@ public class IoTPClient {
 		post.setEntity(new StringEntity(resource.toString()));
 		post.addHeader("Content-Type", "application/json");
 		post.addHeader("Accept", "application/json");
+		post.setHeader("Authorization", "Bearer "+access_token);
+
 		try {
 			HttpResponse response = client.execute(post);
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_CREATED) {
@@ -507,7 +313,8 @@ public class IoTPClient {
 		HttpGet get = new HttpGet(uri);
 		get.addHeader("Content-Type", "application/json");
 		get.addHeader("Accept", "application/json");
-		
+		get.setHeader("Authorization", "Bearer "+access_token);
+
 		try {
 			HttpResponse response = client.execute(get);
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
@@ -542,6 +349,8 @@ public class IoTPClient {
 		put.setEntity(new StringEntity(resource.toString()));
 		put.addHeader("Content-Type", "application/json");
 		put.addHeader("Accept", "application/json");
+		put.setHeader("Authorization", "Bearer "+access_token);
+
 		try {
 			HttpResponse response = client.execute(put);
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
@@ -574,6 +383,8 @@ public class IoTPClient {
 		HttpDelete delete = new HttpDelete(uri);
 		delete.addHeader("Content-Type", "application/json");
 		delete.addHeader("Accept", "application/json");
+		delete.setHeader("Authorization", "Bearer "+access_token);
+
 		try {
 			HttpResponse response = client.execute(delete);
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_NO_CONTENT) {
@@ -606,7 +417,8 @@ public class IoTPClient {
 		HttpGet get = new HttpGet(uri);
 		get.addHeader("Content-Type", "application/json");
 		get.addHeader("Accept", "application/json");
-		
+		get.setHeader("Authorization", "Bearer "+access_token);
+
 		try {
 			HttpResponse response = client.execute(get);
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_UNAUTHORIZED) {
@@ -619,8 +431,8 @@ public class IoTPClient {
 				result = jsonResponse.getAsJsonArray();
 			} else {
 				log.error("Could not read organizations: {} got: {}", uri, response.getStatusLine().getStatusCode());
-				HttpClientUtils.closeQuietly(response);
 			}
+			HttpClientUtils.closeQuietly(response);
 		} catch (Exception e) {
 			log.warn("GET Organizations {}: {}", uri, e.getMessage());
 			throw e;

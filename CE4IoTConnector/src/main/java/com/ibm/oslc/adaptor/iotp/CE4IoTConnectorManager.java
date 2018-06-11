@@ -402,8 +402,11 @@ public class CE4IoTConnectorManager {
 			String uri = "device/types/" + aResource.getTypeId() + "/devices";
 			// Create the JSon Element representing the device.
 			JsonObject json = aResource.toJson().getAsJsonObject();
+			// add the authToken the user should specify for the MQTT access password, default to deviceId.
+			String authToken = httpServletRequest.getParameter("authToken");
+			if (authToken == null || authToken.equals("")) authToken = aResource.getIdentifier();
+			json.addProperty("authToken", authToken);
 			// Remove any properties that can't be assigned in case they were copied from another resource
-			json.addProperty("authToken", httpServletRequest.getParameter("authToken"));
 			json.remove("typeId");
 			json.remove("createdDateTime");
 			json.remove("updatedDateTime");

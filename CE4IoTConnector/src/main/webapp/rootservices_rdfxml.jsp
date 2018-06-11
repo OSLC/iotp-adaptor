@@ -34,9 +34,13 @@ String about = (String) request.getAttribute("about");
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 
 	<dcterms:title>OSLC AM CE4IoTConnector Jazz Root Services</dcterms:title>
+
+	<!-- Service Providers - ServiceProviderCatalog URLs for each domain -->
 	<oslc_am:amServiceProviders rdf:resource="<%= catalogUri %>" />
 	<oslc_rm:rmServiceProviders rdf:resource="<%= catalogUri %>" />
 	<oslc_cm:cmServiceProviders rdf:resource="<%= catalogUri %>" />
+
+    <!-- OAuth URLs for establishing server-to-server connections -->
 	<jfs:oauthRealmName>IoTPlatform</jfs:oauthRealmName>
 	<jfs:oauthDomain><%= oauthDomain %></jfs:oauthDomain>
 	<jfs:oauthRequestConsumerKeyUrl rdf:resource="<%= baseUri + "/services/oauth/requestKey" %>" />
@@ -44,6 +48,7 @@ String about = (String) request.getAttribute("about");
 	<jfs:oauthRequestTokenUrl rdf:resource="<%= baseUri + "/services/oauth/requestToken" %>"/>
 	<jfs:oauthUserAuthorizationUrl rdf:resource="<%= baseUri + "/services/oauth/authorize" %>" />
 	<jfs:oauthAccessTokenUrl rdf:resource="<%= baseUri + "/services/oauth/accessToken" %>"/>
+
 	<!-- IoT Platform Tracked Resource Set Provider -->
 	<iotp:trackedResourceSetProvider>
 		<trs:TrackedResourceSetProvider>

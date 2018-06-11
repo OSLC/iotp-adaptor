@@ -98,9 +98,8 @@ public class CredentialsFilter implements Filter {
 			HttpServletRequest request = (HttpServletRequest) servletRequest;
 			HttpServletResponse response = (HttpServletResponse) servletResponse;
 		
-			//Don't protect requests to oauth service.   TODO: possibly do this in web.xml
-			if (! request.getPathInfo().startsWith("/oauth"))
-			{
+			// Don't protect requests to oauth service. TODO: possibly do this in web.xml
+			if (! request.getPathInfo().startsWith("/oauth")) {
 			
 				// First check if this is an OAuth request.
 				try {

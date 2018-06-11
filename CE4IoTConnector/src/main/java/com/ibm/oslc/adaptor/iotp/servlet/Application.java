@@ -128,10 +128,12 @@ public class Application extends OslcWinkApplication {
         RESOURCE_CLASSES.add(ResourceShapeService.class);
 
         // Start of user code Custom Resource Classes
-        	// OAuth service
+        	// OAuth service and Swagger.io service
         try {
 			RESOURCE_CLASSES.add(Class.forName("org.eclipse.lyo.server.oauth.webapp.services.ConsumersService"));
 	        RESOURCE_CLASSES.add(Class.forName("org.eclipse.lyo.server.oauth.webapp.services.OAuthService"));
+	        RESOURCE_CLASSES.add(io.swagger.jaxrs.listing.ApiListingResource.class);
+	        RESOURCE_CLASSES.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
