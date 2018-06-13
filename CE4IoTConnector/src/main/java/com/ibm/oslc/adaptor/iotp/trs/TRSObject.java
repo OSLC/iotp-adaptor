@@ -20,6 +20,8 @@ package com.ibm.oslc.adaptor.iotp.trs;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,12 +30,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.http.cookie.MalformedCookieException;
 import org.eclipse.lyo.core.trs.Base;
 import org.eclipse.lyo.core.trs.ChangeLog;
 import org.eclipse.lyo.core.trs.Creation;
@@ -42,10 +46,13 @@ import org.eclipse.lyo.core.trs.Modification;
 import org.eclipse.lyo.core.trs.Page;
 import org.eclipse.lyo.core.trs.TRSConstants;
 import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
+import org.eclipse.lyo.server.oauth.core.utils.UnauthorizedException;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.ibm.oslc.adaptor.bmx.impl.BluemixClient;
+import com.ibm.oslc.adaptor.iotp.impl.IoTAPIImplementation;
 import com.ibm.oslc.adaptor.iotp.impl.IoTPClient;
 
 /**
@@ -84,6 +91,15 @@ public class TRSObject {
 	}
 	private static DateFormat createDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
 	private static DateFormat updateDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+	
+	private static Properties configProperties = new Properties();
+	static {
+		try {
+			configProperties.load(TRSObject.class.getResourceAsStream("/config.properties"));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 
 	/** Builds both the base resources and change log
@@ -285,6 +301,29 @@ public class TRSObject {
 		return result;
 	}
 
+	public static void setClient(HttpServletRequest httpServletRequest) throws KeyManagementException, NoSuchAlgorithmException, UnauthorizedException, MalformedCookieException, IOException {
+		IoTPClient iotConnector = null;
+		BluemixClient bmxConnector = null;
+		String trs_user = configProperties.getProperty("trs_user");
+		String trs_user_password=configProperties.getProperty("trs_user_password");
+		
+		String iotpPlatformBase = IoTAPIImplementation.getPlatformBase();
+		iotConnector = new IoTPClient(trs_user, trs_user_password);
+		
+		iotConnector.login();		
+		bmxConnector = new BluemixClient(trs_user, trs_user_password);
+		bmxConnector.login();
+		httpServletRequest.getSession().setAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE, iotConnector);
+		httpServletRequest.getSession().setAttribute(BluemixClient.BMXCLIENT_ATTRIBUTE, bmxConnector);
+		
+	}
+
+	public static void logOffClient(HttpServletRequest httpServletRequest) {
+		IoTPClient client = (IoTPClient)httpServletRequest.getSession().getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
+		client.logoff();
+		BluemixClient bmxClient = (BluemixClient)httpServletRequest.getSession().getAttribute(BluemixClient.BMXCLIENT_ATTRIBUTE);
+		bmxClient.logoff();
+	}
 
 
 }

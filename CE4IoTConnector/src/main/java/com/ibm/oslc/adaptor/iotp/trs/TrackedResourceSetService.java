@@ -18,6 +18,8 @@ package com.ibm.oslc.adaptor.iotp.trs;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +33,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
+import org.apache.http.HttpStatus;
+import org.apache.http.cookie.MalformedCookieException;
 import org.eclipse.lyo.core.trs.Base;
 import org.eclipse.lyo.core.trs.ChangeLog;
 import org.eclipse.lyo.core.trs.Page;
@@ -38,6 +42,7 @@ import org.eclipse.lyo.core.trs.TRSConstants;
 import org.eclipse.lyo.core.trs.TrackedResourceSet;
 import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
 import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
+import org.eclipse.lyo.server.oauth.core.utils.UnauthorizedException;
 
 /*
  * Added in Lab 1.1, Modified in Lab 1.3.
@@ -66,18 +71,19 @@ public class TrackedResourceSetService {
 	 */
 	@GET
     @Produces({OslcMediaType.TEXT_TURTLE, OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-	public TrackedResourceSet getTrackedResourceSet() throws URISyntaxException, IOException {
-		
-		TrackedResourceSet result = new TrackedResourceSet();
+	public TrackedResourceSet getTrackedResourceSet() throws URISyntaxException, IOException, KeyManagementException, MalformedCookieException, NoSuchAlgorithmException, UnauthorizedException {
+		TrackedResourceSet result = new TrackedResourceSet();		
 		result.setAbout(URI.create(OSLC4JUtils.getPublicURI() + "/services/trs"));//$NON-NLS-1$
 		result.setBase(URI.create(OSLC4JUtils.getPublicURI() + "/services/trs/"+TRSConstants.TRS_TERM_BASE));//$NON-NLS-1$
-		
+		TRSObject.setClient(httpServletRequest);
 		TRSObject.buildBaseResourcesAndChangeLogs(httpServletRequest);
 		ChangeLog changeLog = TRSObject.getChangeLog("1", httpServletRequest);
 		if (changeLog == null) {
 			changeLog = new ChangeLog();
 		}
 		result.setChangeLog(changeLog);
+		if(httpServletRequest.getHeader("User-Agent").startsWith("LQE"))
+			TRSObject.logOffClient(httpServletRequest);
 		return result;
 	}
 	

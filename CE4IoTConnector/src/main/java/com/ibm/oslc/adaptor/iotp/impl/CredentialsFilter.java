@@ -17,8 +17,10 @@
 package com.ibm.oslc.adaptor.iotp.impl;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -30,11 +32,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpStatus;
 import org.eclipse.lyo.server.oauth.consumerstore.FileSystemConsumerStore;
 import org.eclipse.lyo.server.oauth.core.Application;
 import org.eclipse.lyo.server.oauth.core.AuthenticationException;
 import org.eclipse.lyo.server.oauth.core.OAuthConfiguration;
 import org.eclipse.lyo.server.oauth.core.OAuthRequest;
+import org.eclipse.lyo.server.oauth.core.consumer.LyoOAuthConsumer;
 import org.eclipse.lyo.server.oauth.core.token.LRUCache;
 import org.eclipse.lyo.server.oauth.core.token.SimpleTokenStrategy;
 import org.eclipse.lyo.server.oauth.core.utils.UnauthorizedException;
@@ -43,8 +47,10 @@ import org.slf4j.LoggerFactory;
 
 import com.ibm.oslc.adaptor.bmx.impl.BluemixClient;
 import com.ibm.oslc.adaptor.iotp.CE4IoTConnectorManager;
+import com.ibm.oslc.adaptor.iotp.trs.TRSObject;
 
 import net.oauth.OAuth;
+import net.oauth.OAuthAccessor;
 import net.oauth.OAuthException;
 import net.oauth.OAuthMessage;
 import net.oauth.OAuthProblemException;
@@ -72,6 +78,15 @@ public class CredentialsFilter implements Filter {
 	private static LRUCache<String, BluemixClient> bmxKeyToConnectorCache = new LRUCache<String, BluemixClient>(200);
 	
 	private static Logger log = LoggerFactory.getLogger(CredentialsFilter.class);
+	
+	private static Properties configProperties = new Properties();
+	static {
+		try {
+			configProperties.load(TRSObject.class.getResourceAsStream("/config.properties"));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	
 	@Override
@@ -87,33 +102,43 @@ public class CredentialsFilter implements Filter {
 	 * 
 	 * Store the IoTPClient and BluemixClient in the HttpSession for retrieval in the REST services. The IoTPClient
 	 * has the LtpaToken2 cookie used to authenticate the user's access to the IoT Platform REST APIs. 
-	 * This cookie is retireved on Watson IoT Platform login. BluemixClient
-	 * uses bearer token authroization.
-	 */
-	@Override
+	 * This cookie is retrieved on Watson IoT Platform login. BluemixClient
+	 * uses bearer token authorization.
+	 */	
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain chain) throws IOException, ServletException {
 		
 		if(servletRequest instanceof HttpServletRequest && servletResponse instanceof HttpServletResponse) {
 			HttpServletRequest request = (HttpServletRequest) servletRequest;
 			HttpServletResponse response = (HttpServletResponse) servletResponse;
+			
+			boolean isTwoLeggedOAuthRequest = false;
 		
-			// Don't protect requests to oauth service. TODO: possibly do this in web.xml
-			if (! request.getPathInfo().startsWith("/oauth")) {
+			// Don't protect requests to oauth service.   
+			// TODO: Consider not protecting requests for oauth service in web.xml
+			if (!request.getPathInfo().startsWith("/oauth") && !request.getPathInfo().startsWith("/login")) {
 			
 				// First check if this is an OAuth request.
 				try {
 					try {
 						OAuthMessage message = OAuthServlet.getMessage(request, null);
-						if (message.getToken() != null) {
+						// test if this is a valid two-legged oauth request
+						if ("".equals(message.getToken())) {
+							validateTwoLeggedOAuthMessage(message);
+							isTwoLeggedOAuthRequest = true;
+						}
+						
+						if (!isTwoLeggedOAuthRequest && message.getToken() != null) {
 							OAuthRequest oAuthRequest = new OAuthRequest(request);
 							oAuthRequest.validate();
+							// The connectors should have been added to the connector cache previously, when the token was null
 							IoTPClient iotConnector = iotKeyToConnectorCache.get(message.getToken());
 							BluemixClient bmxConnector = bmxKeyToConnectorCache.get(message.getToken());
 							if (iotConnector == null || bmxConnector == null) {
 								throw new OAuthProblemException(OAuth.Problems.TOKEN_REJECTED);
 							}
-			
+							
+							// set the session connector clients to the ones stored in the connector cache by the request token
 							request.getSession().setAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE, iotConnector);
 							request.getSession().setAttribute(BluemixClient.BMXCLIENT_ATTRIBUTE, bmxConnector);
 						}
@@ -127,38 +152,76 @@ public class CredentialsFilter implements Filter {
 				} catch (OAuthException e) {
 					OAuthServlet.handleException(response, e, OAUTH_REALM);
 					return;
+				} catch (URISyntaxException e) {
+					throw new ServletException(e);
 				}
                 
 				
-				// This is not an OAuth request. Check for basic access authentication.
+				// This is not an OAuth request. Get the user's credentials and login to the IoT Platform and Bluemix
+				// Then save the IoT Platform and Bluemix connectors into the session for use next time
 				HttpSession session = request.getSession();
 				IoTPClient iotConnector = (IoTPClient) session.getAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE);
 				BluemixClient bmxConnector = (BluemixClient)session.getAttribute(BluemixClient.BMXCLIENT_ATTRIBUTE);
+				
+				String apiVersion = IoTAPIImplementation.getApiVersion();
+				String iotpPlatformBase = IoTAPIImplementation.getPlatformBase();
+				
+				// Are we already authenticated? If not, then authenticate
 				if (iotConnector == null || bmxConnector == null) {
 					try {
+						// TODO: Is this where a fixed admin's credentials should be used as a server-server functional ID?
 						Credentials credentials = (Credentials) session.getAttribute(CREDENTIALS_ATTRIBUTE);
-						if (credentials == null) {
-							credentials = HttpUtils.getCredentials(request);
-							if (credentials == null) {
-								throw new UnauthorizedException();
+						if (isTwoLeggedOAuthRequest) {
+							iotConnector = iotKeyToConnectorCache.get("");
+							bmxConnector = bmxKeyToConnectorCache.get("");
+							if (iotConnector == null || bmxConnector == null) {
+								// Use the TRS user as the functional ID for two-legged OAuth
+								String trs_user = configProperties.getProperty("trs_user");
+								String trs_user_password = configProperties.getProperty("trs_user_password");
+								
+								iotConnector = new IoTPClient(trs_user, trs_user_password);
+								try {
+									iotConnector.login();
+								}catch (Exception e) {
+									log.error(e.getMessage(),e);
+									return;
+								}
+								
+								bmxConnector = new BluemixClient(trs_user, trs_user_password);
+								bmxConnector.login();	
+								iotKeyToConnectorCache.put("", iotConnector);
+								bmxKeyToConnectorCache.put("", bmxConnector);
 							}
+						} else {
+							credentials = (Credentials) session.getAttribute(CREDENTIALS_ATTRIBUTE);
+							if (credentials == null) {
+								credentials = HttpUtils.getCredentials(request);
+								if (credentials == null) {
+									throw new UnauthorizedException();
+								}
+							}
+							iotConnector = new IoTPClient(credentials.getUsername(), credentials.getPassword());
+							try {
+								iotConnector.login();
+							}catch (Exception e) {
+								log.error(e.getMessage(),e);
+								return;
+							}	
+
+							bmxConnector = new BluemixClient(credentials.getUsername(), credentials.getPassword());
+							bmxConnector.login();
 						}
-						iotConnector = new IoTPClient(credentials.getUsername(), credentials.getPassword());
-						iotConnector.login();
 						session.setAttribute(IoTPClient.IOTPCLIENT_ATTRIBUTE, iotConnector);
-
-						bmxConnector = new BluemixClient(credentials.getUsername(), credentials.getPassword());
-						bmxConnector.login();
 						session.setAttribute(BluemixClient.BMXCLIENT_ATTRIBUTE, bmxConnector);
-
 						session.setAttribute(CREDENTIALS_ATTRIBUTE, credentials);
 				
 					} catch (UnauthorizedException e) {
 						HttpUtils.sendUnauthorizedResponse(response, e);
 						log.info("Sending authentication challenge to get credentials: {}", e.getMessage());
 						return;
-					} catch (KeyManagementException | NoSuchAlgorithmException ce) {
-						throw new ServletException(ce);
+					}catch (KeyManagementException | NoSuchAlgorithmException ce) {
+						log.error(ce.getMessage(),ce);
+						return;
 					}
 				}					
 			}
@@ -166,6 +229,25 @@ public class CredentialsFilter implements Filter {
 
 		chain.doFilter(servletRequest, servletResponse);
 	}
+	
+	private void validateTwoLeggedOAuthMessage(OAuthMessage message)
+			throws IOException, OAuthException,
+			URISyntaxException {
+		OAuthConfiguration config = OAuthConfiguration.getInstance();
+		LyoOAuthConsumer consumer = config.getConsumerStore().getConsumer(message.getConsumerKey());
+		if (consumer != null && consumer.isTrusted()) {
+			// The request can be a two-legged oauth request because it's a trusted consumer
+			// Validate the message with an empty token and an empty secret
+			OAuthAccessor accessor = new OAuthAccessor(consumer);
+			accessor.requestToken = "";
+			accessor.tokenSecret = "";
+			config.getValidator().validateMessage(message, accessor);
+		} else {
+			throw new OAuthProblemException(
+					OAuth.Problems.TOKEN_REJECTED);
+		}
+	}
+
 	
 
 	@Override
