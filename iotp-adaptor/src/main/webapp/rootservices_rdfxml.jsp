@@ -25,15 +25,16 @@ String about = (String) request.getAttribute("about");
 %>
 <rdf:Description rdf:about="<%= about %>"
     xmlns:iotp="http://jazz.net/ns/dm/iotp#"
+    xmlns:oslc="http://open-services.net/ns/core#"
     xmlns:oslc_am="http://open-services.net/ns/am#"
     xmlns:oslc_rm="http://open-services.net/xmlns/rm/1.0/"
     xmlns:oslc_cm="http://open-services.net/xmlns/cm/1.0/"
-    	xmlns:trs="http://open-services.net/ns/core/trs#"
-    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:trs="http://open-services.net/ns/core/trs#"
+    xmlns:dc="http://purl.org/dc/terms/"
     xmlns:jfs="http://jazz.net/xmlns/prod/jazz/jfs/1.0/" 
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 
-	<dcterms:title>OSLC AM CE4IoTConnector Jazz Root Services</dcterms:title>
+	<dc:title>OSLC AM CE4IoTConnector Jazz Root Services</dc:title>
 
 	<!-- Service Providers - ServiceProviderCatalog URLs for each domain -->
 	<oslc_am:amServiceProviders rdf:resource="<%= catalogUri %>" />
@@ -50,9 +51,14 @@ String about = (String) request.getAttribute("about");
 	<jfs:oauthAccessTokenUrl rdf:resource="<%= baseUri + "/services/oauth/accessToken" %>"/>
 
 	<!-- IoT Platform Tracked Resource Set Provider -->
-	<iotp:trackedResourceSetProvider>
-		<trs:TrackedResourceSetProvider>
+	<iotp:TrackedResourceSetProvider>
+		<trs:TrackedResourceSet>
 			<trs:trackedResourceSet rdf:resource="<%= baseUri + "/services/trs" %>" />
-		</trs:TrackedResourceSetProvider>		
-	</iotp:trackedResourceSetProvider>
+	        <dc:title>iotp-adaptor TRS resources</dc:title>
+	        <dc:description>TRS 2.0 provider for IoT Platform resources</dc:description>
+	        <dc:type     rdf:resource="http://open-services.net/ns/cm#" />
+	        <oslc:domain rdf:resource="http://open-services.net/ns/rm#" />
+	        <oslc:domain rdf:resource="http://open-services.net/ns/am#" />
+        </trs:TrackedResourceSet>
+	</iotp:TrackedResourceSetProvider>		
 </rdf:Description>
