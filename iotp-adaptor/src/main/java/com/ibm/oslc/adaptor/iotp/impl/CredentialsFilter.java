@@ -343,7 +343,7 @@ public class CredentialsFilter implements Filter {
 
 		try {
 			// For now, hard-code the consumers.
-			config.setConsumerStore(new FileSystemConsumerStore("CE4IoTConnectorOAuthStore.xml"));
+			config.setConsumerStore(new FileSystemConsumerStore("OAuthStore.xml"));
 		} catch (Throwable t) {
 			log.error("Error initializing the OAuth consumer store: " +  t.getMessage());
 		
