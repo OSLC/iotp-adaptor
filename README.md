@@ -4,8 +4,8 @@ A project to provide a sample OSLC adaptor and TRS provider for the IBM Watson I
 
 For additional information, see:
 
- * [iotp-adaptor User Guide](./iotp_adaptor/userGuide/user-guide) is a simple user's guide for installing, configuring, administering and using iotp-adapter with the CE tools.
- * [iotp-adaptor Developer Guide](./iotp_adaptor/developer-guide) provides the complete documentation on how the server was developed.
+ * [iotp-adaptor User Guide](http://oslc.github.io/developing-oslc-applications/iotp_adaptor/userGuide/user-guide) is a simple user's guide for installing, configuring, administering and using iotp-adapter with the CE tools.
+ * [iotp-adaptor Developer Guide](http://oslc.github.io/developing-oslc-applications/iotp_adaptor/developer-guide) provides the complete documentation on how the server was developed.
 
 ## Synopsis
 
