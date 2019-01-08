@@ -194,26 +194,29 @@ public class DeviceType
 			}
 			this.setLogicalInterfaces(links);			
 		}
-		
-		JsonObject devInfo = deviceTypeO.get("deviceInfo").getAsJsonObject();
-		if (element != null) {
-			element = devInfo.get("serialNumber");
-			if (element != null) deviceInfo.setSerialNumber(element.getAsString());
-			element = devInfo.get("manufacturer");
-			if (element != null) deviceInfo.setManufacturer(element.getAsString());
-			element = devInfo.get("model");
-			if (element != null) deviceInfo.setModel(element.getAsString());
-			element = devInfo.get("deviceClass");
-			if (element != null) deviceInfo.setDeviceClass(element.getAsString());
-			element = devInfo.get("description");
-			if (element != null) deviceInfo.setDescription(element.getAsString());
-			element = devInfo.get("fwVersion");
-			if (element != null) deviceInfo.setFwVersion(element.getAsString());
-			element = devInfo.get("hwVersion");
-			if (element != null) deviceInfo.setHwVersion(element.getAsString());
-			element = devInfo.get("descriptiveLocation");
-			if (element != null) deviceInfo.setDescriptiveLocation(element.getAsString());
-		}
+
+		if (deviceTypeO.has("deviceInfo")) {
+            JsonObject devInfo = deviceTypeO.get("deviceInfo").getAsJsonObject();
+            if (element != null) {
+                element = devInfo.get("serialNumber");
+                if (element != null) deviceInfo.setSerialNumber(element.getAsString());
+                element = devInfo.get("manufacturer");
+                if (element != null) deviceInfo.setManufacturer(element.getAsString());
+                element = devInfo.get("model");
+                if (element != null) deviceInfo.setModel(element.getAsString());
+                element = devInfo.get("deviceClass");
+                if (element != null) deviceInfo.setDeviceClass(element.getAsString());
+                element = devInfo.get("description");
+                if (element != null) deviceInfo.setDescription(element.getAsString());
+                element = devInfo.get("fwVersion");
+                if (element != null) deviceInfo.setFwVersion(element.getAsString());
+                element = devInfo.get("hwVersion");
+                if (element != null) deviceInfo.setHwVersion(element.getAsString());
+                element = devInfo.get("descriptiveLocation");
+                if (element != null) deviceInfo.setDescriptiveLocation(element.getAsString());
+            }
+        }
+
 		
 		element = deviceTypeO.get("metadata");
 		if (element != null) {
