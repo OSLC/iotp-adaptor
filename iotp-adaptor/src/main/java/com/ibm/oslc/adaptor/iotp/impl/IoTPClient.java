@@ -207,7 +207,7 @@ public class IoTPClient {
 	
 	
 	/**
-	 * Login to the IoT Platform with the apikey provided in the constructor.
+	 * Login to the IoT Platform with the userId and password provided in the constructor.
 	 * This will set the LtpaToken2 cookie which will be used to authenticate other IoT Platform REST API calls.
 	 * 
 	 * The URI for login will look like: https://internetofthings.ibmcloud.com/ibmssologin 

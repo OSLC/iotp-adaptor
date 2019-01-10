@@ -84,18 +84,15 @@ import com.ibm.oslc.adaptor.iotp.resources.ThingTypeMapping;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_amDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_bmxDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_cmDomainConstants;
-import com.ibm.oslc.adaptor.iotp.resources.DctermsDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.FoafDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_iotDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.OslcDomainConstants;
-import com.ibm.oslc.adaptor.iotp.resources.RdfDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_rmDomainConstants;
 import com.ibm.oslc.adaptor.iotp.services.IoTPlatformService;
 import com.ibm.oslc.adaptor.iotp.services.BluemixService;
 
 // Start of user code imports
 import com.ibm.oslc.adaptor.iotp.trs.TrackedResourceSetService;
-import org.apache.jena.JenaRuntime;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.impl.RDFWriterFImpl;
 // End of user code
