@@ -216,28 +216,24 @@ public class IoTPClient {
 	 * 
 	 */
 	public void login() throws UnauthorizedException {
-		String clientId = clientProperties.getProperty("clientId");
-		String secret = clientProperties.getProperty("secret");
-		
+		String apiKey = clientProperties.getProperty("apiKey");
+
 		String result = "login failed";
 		HttpResponse response = null;
 		int status_code = 0;
-		
+
 		try {
 			HttpClient client = HttpClientBuilder.create().build();
 
-			URIBuilder builder = new URIBuilder("https://iam.bluemix.net/oidc/token");
-			builder.setParameter("grant_type", "password");
-			builder.addParameter("response_type", "cloud_iam");
-			builder.addParameter("username", user);
-			builder.addParameter("password", password);
+			URIBuilder builder = new URIBuilder("https://iam.cloud.ibm.com/identity/token");
+			builder.setParameter("grant_type", "urn:ibm:params:oauth:grant-type:apikey");
+			builder.addParameter("apikey", apiKey);
 
 			HttpPost post = new HttpPost(builder.build());
-			Header authHeader = new BasicHeader(HttpHeaders.AUTHORIZATION,  "Basic "+Base64.getEncoder().encodeToString((clientId+":"+secret).getBytes()));
+			Header authHeader = new BasicHeader("Content-Type",  "application/x-www-form-urlencoded");
 			post.addHeader(authHeader);
-			post.setHeader("Content-Type", "application/x-www-form-urlencoded");
 			response = client.execute(post);
-			
+
 			status_code = response.getStatusLine().getStatusCode();
 			if (status_code != HttpStatus.SC_OK) {
 				log.error("Couldn't get access_token: "+status_code);

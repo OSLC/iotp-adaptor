@@ -40,7 +40,6 @@ import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderFactory;
 
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_amDomainConstants;
-import com.ibm.oslc.adaptor.iotp.resources.Oslc_bmxDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_cmDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.DctermsDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.FoafDomainConstants;
