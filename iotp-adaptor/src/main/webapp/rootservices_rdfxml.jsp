@@ -29,6 +29,7 @@ String about = (String) request.getAttribute("about");
     xmlns:oslc_am="http://open-services.net/ns/am#"
     xmlns:oslc_rm="http://open-services.net/xmlns/rm/1.0/"
     xmlns:oslc_cm="http://open-services.net/xmlns/cm/1.0/"
+	xmlns:oslc_config="http://open-services.net/ns/config#"
     xmlns:trs="http://open-services.net/ns/core/trs#"
     xmlns:dc="http://purl.org/dc/terms/"
     xmlns:jfs="http://jazz.net/xmlns/prod/jazz/jfs/1.0/" 
@@ -40,8 +41,10 @@ String about = (String) request.getAttribute("about");
 	<oslc_am:amServiceProviders rdf:resource="<%= catalogUri %>" />
 	<oslc_rm:rmServiceProviders rdf:resource="<%= catalogUri %>" />
 	<oslc_cm:cmServiceProviders rdf:resource="<%= catalogUri %>" />
+	<oslc_cm:cmServiceProviders rdf:resource="<%= catalogUri %>" />
+	<oslc_config:cmServiceProviders	rdf:resource="<%= catalogUri %>"/>
 
-    <!-- OAuth URLs for establishing server-to-server connections -->
+	<!-- OAuth URLs for establishing server-to-server connections -->
 	<jfs:oauthRealmName>IoTPlatform</jfs:oauthRealmName>
 	<jfs:oauthDomain><%= oauthDomain %></jfs:oauthDomain>
 	<jfs:oauthRequestConsumerKeyUrl rdf:resource="<%= baseUri + "/services/oauth/requestKey" %>" />

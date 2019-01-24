@@ -8,11 +8,13 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Properties;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import com.ibm.oslc.adaptor.iotp.impl.IoTPClient;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -68,6 +70,15 @@ public final class BluemixClient {
 	private String user = null;
 	private String password = null;
 	private SSLContext sslContext = null;
+
+	private static Properties configProperties = new Properties();
+	static {
+		try {
+			configProperties.load(IoTPClient.class.getResourceAsStream("/config.properties"));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	
 	public BluemixClient(String userId, String password) throws NoSuchAlgorithmException, KeyManagementException {
 		this.user = userId;
@@ -97,12 +108,14 @@ public final class BluemixClient {
 		client = HttpClientBuilder.create().setSSLContext(sslContext).build();
 	}
 	
-	public void login() throws UnauthorizedException
-{
+	public void login() throws UnauthorizedException  {
 		HttpResponse response = null;
 		try {
 			log.info("Logging user: {} into Bluemix", user);
 
+			// Get the apiKey from the config.properties file
+			String apiKey = configProperties.getProperty("apiKey");
+			
 			// Get the authorization endpoint
 			HttpGet get = new HttpGet(bmxUri + "/v2/info");
 			response = client.execute(get);
@@ -119,8 +132,8 @@ public final class BluemixClient {
 			List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
 			urlParameters.add(new BasicNameValuePair("response_type", "token"));
 			urlParameters.add(new BasicNameValuePair("grant_type", "password"));
-			urlParameters.add(new BasicNameValuePair("username", user));
-			urlParameters.add(new BasicNameValuePair("password", password));
+			urlParameters.add(new BasicNameValuePair("username", "apikey"));
+			urlParameters.add(new BasicNameValuePair("password", apiKey));
 			post.setEntity(new UrlEncodedFormEntity(urlParameters));
 			post.addHeader("Accept", "application/json");
 			post.addHeader("Content-Type", "application/x-www-form-urlencoded");
