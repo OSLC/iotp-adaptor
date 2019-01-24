@@ -51,8 +51,8 @@ There are some sample JUnit test cases that test the OSLC CRUD capabilities.
 
 This distribution has the following dependencies:
 
-* jetty-io 9.4.14.v20181114 (eclipse jetty)
-* httpclient 4.5.6
+* jetty-io 9.4.6.v20170531 (eclipse jetty)
+* httpclient 4.5.2
 * ws-commons-util 1.0.2
 * oslc4j-core 2.4.0 (eclipse/Lyo OSLC4J)
 * oslc4j-jena-provider 2.4.0 (eclipse/Lyo OSLC4J)
@@ -62,13 +62,13 @@ This distribution has the following dependencies:
 * oauth-consumer-store 2.4.0/Lyo (eclipse OSLC4J)
 * oauth-webapp 2.4.0 (eclipse/Lyo OSLC4J)
 * oslc-java-client 2.4.0 (for JUnit testing)  (eclipse/Lyo OSLC4J)
-* java.servlet-api 4.0.1
-* javax.servlet.jsp.jstl-api 1.2.2
+* java.servlet-api 3.1.0
+* javax.servlet.jsp.jstl-api 2.3.1
 * taglibs-standard-impl 1.2.5
 * slf4j-log4j12 1.6.4
 * junit 4.12
-* jsoup 1.11.3
-* gson 2.8.5
+* jsoup 1.8.3
+* gson 2.8.1
 * dojo-war 1.12.2
 * JRE 1.8
 
