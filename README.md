@@ -2,6 +2,7 @@
 
 [![Discourse status](https://img.shields.io/discourse/https/meta.discourse.org/status.svg)](https://forum.open-services.net/)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/OSLC/chat)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FOSLC%2Fiotp-adaptor.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FOSLC%2Fiotp-adaptor?ref=badge_shield)
 
 
 A project to provide a sample OSLC adaptor and TRS provider for the IBM Watson IoT Platform and Bluemix, developed using the eclipse/Lyo Designer code generator. This sample code is used in the [OSLC Developer Guide](http://oslc.github.io/developing-oslc-applications/).
@@ -83,3 +84,6 @@ Contributors:
 
 Licensed under the [Eclipse Public License](./CE4IoTConnector/license.txt).
 
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FOSLC%2Fiotp-adaptor.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FOSLC%2Fiotp-adaptor?ref=badge_large)
