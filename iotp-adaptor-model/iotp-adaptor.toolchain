@@ -3,54 +3,54 @@
   <adaptorInterfaces name="CE4IoTConnector" javaClassBaseNamespace="com.ibm.oslc.adaptor.iotp" javaFilesBasePath="../CE4IoTConnector/src/main/java/" jspFilesBasePath="../CE4IoTConnector/src/main/webapp/" javascriptFilesBasePath="../CE4IoTConnector/src/main/webapp/">
     <serviceProviderCatalog title="IoT Platform Service Provider Catalog" description="A Service Provider Catalog describing service providers for IoT Platform Organizations">
       <serviceProviders title="IoT Platform Service Provider" description="Service Provider for the IoT Platform Organization services" serviceNamespace="iotp" instanceID="{iotId}">
-        <services domainSpecification="//@specification/@domainSpecifications.1">
-          <creationFactories title="RuleCreationFactory" label="Rule Creation Factory" creationURI="logicalInterfaceId/rule" resourceTypes="//@specification/@domainSpecifications.1/@resources.1"/>
-          <creationFactories title="EventTypeCreationFactory" label="Event Type CreationFactory" creationURI="eventtype" resourceTypes="//@specification/@domainSpecifications.1/@resources.5"/>
-          <creationFactories title="PhysicalInterfaceCreationFactory" label="Physical Interface Creation Factory" creationURI="physicalinterface" resourceTypes="//@specification/@domainSpecifications.1/@resources.4"/>
-          <creationFactories title="SchemaCreationFactory" label="Schema Creation Factory" creationURI="schema" resourceTypes="//@specification/@domainSpecifications.1/@resources.8"/>
-          <creationFactories title="ThingTypeCreationFactory" label="Thing Type Creation Factory" creationURI="thingtype" resourceTypes="//@specification/@domainSpecifications.1/@resources.9"/>
-          <creationFactories title="DeviceTypeCreationFactory" label="Device Type Creation Factory" creationURI="devicetype" resourceTypes="//@specification/@domainSpecifications.1/@resources.0"/>
-          <creationFactories title="LogicalInterfaceCreationFactory" label="Logical Interface Creation Factory" creationURI="logicalinterface" resourceTypes="//@specification/@domainSpecifications.1/@resources.7"/>
-          <creationFactories title="ThingCreationFactory" label="ThingCreationFactory" creationURI="thing" resourceTypes="//@specification/@domainSpecifications.1/@resources.13"/>
-          <creationFactories title="DeviceCreationFactory" label="Device Creation Factory" creationURI="typeId/create" resourceTypes="//@specification/@domainSpecifications.1/@resources.12"/>
-          <queryCapabilities title="EventTypeQueryCapability" label="Event Type Query Capability" queryBaseURI="eventtype" resourceTypes="//@specification/@domainSpecifications.1/@resources.5"/>
-          <queryCapabilities title="DeviceTypeQueryCapability" label="Device Type Query Capability" queryBaseURI="devicetype" resourceTypes="//@specification/@domainSpecifications.1/@resources.0"/>
-          <queryCapabilities title="PhysicalIntefaceQueryCapability" label="Physical Inteface Query Capability" queryBaseURI="physicalinterface" resourceTypes="//@specification/@domainSpecifications.1/@resources.4"/>
-          <queryCapabilities title="RuleQueryCapability" label="Rule Query Capability" queryBaseURI="rule" resourceTypes="//@specification/@domainSpecifications.1/@resources.1"/>
-          <queryCapabilities title="SchemaQueryCapability" label="Schema Query Capability" queryBaseURI="schema" resourceTypes="//@specification/@domainSpecifications.1/@resources.8"/>
-          <queryCapabilities title="ThingTypeQueryCapability" label="Thing Type Query Capability" queryBaseURI="thingtype" resourceTypes="//@specification/@domainSpecifications.1/@resources.9"/>
-          <queryCapabilities title="LogicalInterfaceQueryCapability" label="Logical Interface Query Capability" queryBaseURI="logicalinterface" resourceTypes="//@specification/@domainSpecifications.1/@resources.7"/>
-          <queryCapabilities title="DeviceQueryCapability" label="DeviceQueryCapability" queryBaseURI="device" resourceTypes="//@specification/@domainSpecifications.1/@resources.12"/>
-          <queryCapabilities title="ThingQueryCapability" label="ThingQueryCapability" queryBaseURI="thing" resourceTypes="//@specification/@domainSpecifications.1/@resources.13"/>
+        <services domainSpecification="//@specification/@domainSpecifications[name='IoT%20Platform']">
+          <creationFactories title="RuleCreationFactory" label="Rule Creation Factory" creationURI="logicalInterfaceId/rule" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Rule']"/>
+          <creationFactories title="EventTypeCreationFactory" label="Event Type CreationFactory" creationURI="eventtype" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='EventType']"/>
+          <creationFactories title="PhysicalInterfaceCreationFactory" label="Physical Interface Creation Factory" creationURI="physicalinterface" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='PhysicalInterface']"/>
+          <creationFactories title="SchemaCreationFactory" label="Schema Creation Factory" creationURI="schema" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Schema']"/>
+          <creationFactories title="ThingTypeCreationFactory" label="Thing Type Creation Factory" creationURI="thingtype" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='ThingType']"/>
+          <creationFactories title="DeviceTypeCreationFactory" label="Device Type Creation Factory" creationURI="devicetype" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='DeviceType']"/>
+          <creationFactories title="LogicalInterfaceCreationFactory" label="Logical Interface Creation Factory" creationURI="logicalinterface" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='LogicalInterface']"/>
+          <creationFactories title="ThingCreationFactory" label="ThingCreationFactory" creationURI="thing" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Thing']"/>
+          <creationFactories title="DeviceCreationFactory" label="Device Creation Factory" creationURI="typeId/create" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Device']"/>
+          <queryCapabilities title="EventTypeQueryCapability" label="Event Type Query Capability" queryBaseURI="eventtype" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='EventType']"/>
+          <queryCapabilities title="DeviceTypeQueryCapability" label="Device Type Query Capability" queryBaseURI="devicetype" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='DeviceType']"/>
+          <queryCapabilities title="PhysicalIntefaceQueryCapability" label="Physical Inteface Query Capability" queryBaseURI="physicalinterface" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='PhysicalInterface']"/>
+          <queryCapabilities title="RuleQueryCapability" label="Rule Query Capability" queryBaseURI="rule" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Rule']"/>
+          <queryCapabilities title="SchemaQueryCapability" label="Schema Query Capability" queryBaseURI="schema" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Schema']"/>
+          <queryCapabilities title="ThingTypeQueryCapability" label="Thing Type Query Capability" queryBaseURI="thingtype" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='ThingType']"/>
+          <queryCapabilities title="LogicalInterfaceQueryCapability" label="Logical Interface Query Capability" queryBaseURI="logicalinterface" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='LogicalInterface']"/>
+          <queryCapabilities title="DeviceQueryCapability" label="DeviceQueryCapability" queryBaseURI="device" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Device']"/>
+          <queryCapabilities title="ThingQueryCapability" label="ThingQueryCapability" queryBaseURI="thing" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Thing']"/>
           <selectionDialogs title="IotSelectionDialog" label="IoT Platform Selection Dialog" dialogURI="selector" hintWidth="525" hintHeight="325">
-            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.6/@resources.0"/>
-            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.5/@resources.0"/>
-            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Requirements%20Management%20shapes']/@resources[name='Requirement']"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Change%20Management%20shapes']/@resources[name='ChangeRequest']"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
             <usages>http://open-services.net/ns/am#IoTPSelectionDialog</usages>
           </selectionDialogs>
           <creationDialogs title="ResourceCreationDialog" label="Resource Creation Dialog" dialogURI="creator" hintWidth="525" hintHeight="225">
-            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
-            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.5/@resources.0"/>
-            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.6/@resources.0"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Change%20Management%20shapes']/@resources[name='ChangeRequest']"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Requirements%20Management%20shapes']/@resources[name='Requirement']"/>
             <usages>http://open-services.net/ns/am#IoTPCreationDialog</usages>
           </creationDialogs>
-          <basicCapabilities instanceID="" resourceTypes="//@specification/@domainSpecifications.1/@resources.0 //@specification/@domainSpecifications.1/@resources.7 //@specification/@domainSpecifications.1/@resources.5 //@specification/@domainSpecifications.1/@resources.4 //@specification/@domainSpecifications.1/@resources.8 //@specification/@domainSpecifications.1/@resources.9 //@specification/@domainSpecifications.1/@resources.13" delete="true" update="true"/>
-          <basicCapabilities instanceID="{typeId}/devices/{deviceId}" resourceTypes="//@specification/@domainSpecifications.1/@resources.12" delete="true" update="true"/>
-          <basicCapabilities instanceID="{logicalInterfaceId}/rules/{ruleId}" resourceTypes="//@specification/@domainSpecifications.1/@resources.1" delete="true" update="true"/>
+          <basicCapabilities instanceID="" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='DeviceType'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='LogicalInterface'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='EventType'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='PhysicalInterface'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Schema'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='ThingType'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Thing']" delete="true" update="true"/>
+          <basicCapabilities instanceID="{typeId}/devices/{deviceId}" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Device']" delete="true" update="true"/>
+          <basicCapabilities instanceID="{logicalInterfaceId}/rules/{ruleId}" resourceTypes="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Rule']" delete="true" update="true"/>
           <usages>http://open-services.net/ns/am#IoTPlatform</usages>
         </services>
       </serviceProviders>
       <serviceProviders title="Bluemix Service Provider" description="Bluemix Service Provider" serviceNamespace="bmx" instanceID="{bmxId}">
-        <services domainSpecification="//@specification/@domainSpecifications.0">
-          <queryCapabilities title="SpaceQueryCapability" label="Space Query Capability" queryBaseURI="space" resourceTypes="//@specification/@domainSpecifications.0/@resources.0"/>
-          <queryCapabilities title="NodeREDQueryCapability" label="Node-RED App Query Capability" queryBaseURI="noderedapp" resourceTypes="//@specification/@domainSpecifications.0/@resources.3"/>
+        <services domainSpecification="//@specification/@domainSpecifications[name='Bluemix']">
+          <queryCapabilities title="SpaceQueryCapability" label="Space Query Capability" queryBaseURI="space" resourceTypes="//@specification/@domainSpecifications[name='Bluemix']/@resources[name='Space']"/>
+          <queryCapabilities title="NodeREDQueryCapability" label="Node-RED App Query Capability" queryBaseURI="noderedapp" resourceTypes="//@specification/@domainSpecifications[name='Bluemix']/@resources[name='NodeREDApp']"/>
           <selectionDialogs title="BmxSelectionDialog" label="BmxSelectionDialog" dialogURI="selector" hintWidth="525" hintHeight="325">
-            <resourceTypes href="#//@specification/@domainSpecifications.0/@resources.3"/>
-            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.5/@resources.0"/>
-            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.6/@resources.0"/>
+            <resourceTypes href="#//@specification/@domainSpecifications[name='Bluemix']/@resources[name='NodeREDApp']"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Change%20Management%20shapes']/@resources[name='ChangeRequest']"/>
+            <resourceTypes href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Requirements%20Management%20shapes']/@resources[name='Requirement']"/>
             <usages>http://open-services.net/ns/am#BmxSelectionDialog</usages>
           </selectionDialogs>
-          <basicCapabilities resourceTypes="//@specification/@domainSpecifications.0/@resources.0 //@specification/@domainSpecifications.0/@resources.3" delete="true" update="true"/>
+          <basicCapabilities resourceTypes="//@specification/@domainSpecifications[name='Bluemix']/@resources[name='Space'] //@specification/@domainSpecifications[name='Bluemix']/@resources[name='NodeREDApp']" delete="true" update="true"/>
           <usages>http://open-services.net/ns/am#Bluemix</usages>
         </services>
       </serviceProviders>
@@ -58,75 +58,75 @@
     <specification/>
   </adaptorInterfaces>
   <specification>
-    <domainSpecifications name="Bluemix" namespaceURI="http://jazz.net/ns/bmx#" namespacePrefix="//@specification/@domainPrefixes.0">
-      <resources name="Space" resourceProperties="//@specification/@domainSpecifications.0/@resourceProperties.1 //@specification/@domainSpecifications.0/@resourceProperties.2">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+    <domainSpecifications name="Bluemix" namespaceURI="http://jazz.net/ns/bmx#" namespacePrefix="//@specification/@domainPrefixes[name='oslc_bmx']">
+      <resources name="Space" resourceProperties="//@specification/@domainSpecifications[name='Bluemix']/@resourceProperties[name='scopes'] //@specification/@domainSpecifications[name='Bluemix']/@resourceProperties[name='provisions']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resources name="App" resourceProperties="//@specification/@domainSpecifications.0/@resourceProperties.3">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+      <resources name="App" resourceProperties="//@specification/@domainSpecifications[name='Bluemix']/@resourceProperties[name='binds']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
       <resources name="CFService">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resources name="NodeREDApp" extends="//@specification/@domainSpecifications.0/@resources.1" resourceProperties="//@specification/@domainSpecifications.0/@resourceProperties.4"/>
+      <resources name="NodeREDApp" extends="//@specification/@domainSpecifications[name='Bluemix']/@resources[name='App']" resourceProperties="//@specification/@domainSpecifications[name='Bluemix']/@resourceProperties[name='flows']"/>
       <resources name="Flow">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resourceProperties title="contains Spaces" name="contains" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.0/@resources.0"/>
-      <resourceProperties title="scopes Applications" name="scopes" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.0/@resources.1"/>
-      <resourceProperties title="provisions Services" name="provisions" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.0/@resources.2" description="A Bluemix Space provisions zero or more Bluemix Services"/>
-      <resourceProperties title="binds Services" name="binds" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.0/@resources.2"/>
-      <resourceProperties title="flows" name="flows" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.0/@resources.4"/>
+      <resourceProperties title="contains Spaces" name="contains" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='Bluemix']/@resources[name='Space']"/>
+      <resourceProperties title="scopes Applications" name="scopes" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='Bluemix']/@resources[name='App']"/>
+      <resourceProperties title="provisions Services" name="provisions" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='Bluemix']/@resources[name='CFService']" description="A Bluemix Space provisions zero or more Bluemix Services"/>
+      <resourceProperties title="binds Services" name="binds" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='Bluemix']/@resources[name='CFService']"/>
+      <resourceProperties title="flows" name="flows" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='Bluemix']/@resources[name='Flow']"/>
     </domainSpecifications>
-    <domainSpecifications name="IoT Platform" namespaceURI="http://jazz.net/ns/iot#" namespacePrefix="//@specification/@domainPrefixes.1">
-      <resources name="DeviceType" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.17 //@specification/@domainSpecifications.1/@resourceProperties.22 //@specification/@domainSpecifications.1/@resourceProperties.16 //@specification/@domainSpecifications.1/@resourceProperties.23 //@specification/@domainSpecifications.1/@resourceProperties.24 //@specification/@domainSpecifications.1/@resourceProperties.27">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+    <domainSpecifications name="IoT Platform" namespaceURI="http://jazz.net/ns/iot#" namespacePrefix="//@specification/@domainPrefixes[name='oslc_iot']">
+      <resources name="DeviceType" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='deviceTypeMappings'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='physicalInterface'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='logicalInterfaces'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='deviceInfo'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='metaData'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='classId']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resources name="Rule" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.20 //@specification/@domainSpecifications.1/@resourceProperties.21 //@specification/@domainSpecifications.1/@resourceProperties.29">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+      <resources name="Rule" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='condition'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='action'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='logicalInterfaceId']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resources name="MetaProperty" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.25 //@specification/@domainSpecifications.1/@resourceProperties.1"/>
+      <resources name="MetaProperty" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='name'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='value']"/>
       <resources name="DeviceInfo">
-        <resourceProperties href="#//@specification/@domainSpecifications.1/@resourceProperties.8"/>
-        <resourceProperties href="#//@specification/@domainSpecifications.1/@resourceProperties.11"/>
-        <resourceProperties href="#//@specification/@domainSpecifications.1/@resourceProperties.9"/>
-        <resourceProperties href="#//@specification/@domainSpecifications.1/@resourceProperties.7"/>
-        <resourceProperties href="#//@specification/@domainSpecifications.1/@resourceProperties.10"/>
-        <resourceProperties href="#//@specification/@domainSpecifications.1/@resourceProperties.13"/>
-        <resourceProperties href="#//@specification/@domainSpecifications.1/@resourceProperties.12"/>
-        <resourceProperties href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.0/@resourceProperties.3"/>
+        <resourceProperties href="#//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='manufacturer']"/>
+        <resourceProperties href="#//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='fwVersion']"/>
+        <resourceProperties href="#//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='model']"/>
+        <resourceProperties href="#//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='serialNumber']"/>
+        <resourceProperties href="#//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='deviceClass']"/>
+        <resourceProperties href="#//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='descriptiveLocation']"/>
+        <resourceProperties href="#//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='hwVersion']"/>
+        <resourceProperties href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Dublin%20Core']/@resourceProperties[name='description']"/>
       </resources>
-      <resources name="PhysicalInterface" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.19">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+      <resources name="PhysicalInterface" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='eventTypes']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resources name="EventType" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.3">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+      <resources name="EventType" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='schema']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resources name="DeviceTypeMapping" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.15"/>
-      <resources name="LogicalInterface" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.3">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+      <resources name="DeviceTypeMapping" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='logicalInterface']"/>
+      <resources name="LogicalInterface" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='schema']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
       <resources name="Schema">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resources name="ThingType" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.3 //@specification/@domainSpecifications.1/@resourceProperties.14 //@specification/@domainSpecifications.1/@resourceProperties.16">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+      <resources name="ThingType" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='schema'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='thingTypeMappings'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='logicalInterfaces']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resources name="MetaData" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.26"/>
-      <resources name="ThingTypeMapping" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.15"/>
-      <resources name="Device" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.23 //@specification/@domainSpecifications.1/@resourceProperties.24 //@specification/@domainSpecifications.1/@resourceProperties.28">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+      <resources name="MetaData" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='metaProperties']"/>
+      <resources name="ThingTypeMapping" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='logicalInterface']"/>
+      <resources name="Device" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='deviceInfo'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='metaData'] //@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='typeId']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resources name="Thing" resourceProperties="//@specification/@domainSpecifications.1/@resourceProperties.4">
-        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications.8/@resources.0"/>
+      <resources name="Thing" resourceProperties="//@specification/@domainSpecifications[name='IoT%20Platform']/@resourceProperties[name='thingTypes']">
+        <extends href="../org.eclipse.lyo.tools.domainmodels/oslcDomainSpecifications.xml#//@domainSpecifications[name='Architecture%20Management']/@resources[name='Resource']"/>
       </resources>
-      <resourceProperties title="properties" name="properties" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.2"/>
+      <resourceProperties title="properties" name="properties" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='MetaProperty']"/>
       <resourceProperties title="value" name="value" valueType="String"/>
-      <resourceProperties title="deviceType" name="deviceType" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.0"/>
-      <resourceProperties title="schema" name="schema" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.8"/>
-      <resourceProperties title="thingTypes" name="thingTypes" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.9"/>
-      <resourceProperties title="schemas" name="schemas" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.8"/>
-      <resourceProperties title="thingType" name="thingType" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.9"/>
+      <resourceProperties title="deviceType" name="deviceType" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='DeviceType']"/>
+      <resourceProperties title="schema" name="schema" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Schema']"/>
+      <resourceProperties title="thingTypes" name="thingTypes" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='ThingType']"/>
+      <resourceProperties title="schemas" name="schemas" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='Schema']"/>
+      <resourceProperties title="thingType" name="thingType" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='ThingType']"/>
       <resourceProperties title="serialNumber" name="serialNumber" occurs="zeroOrOne" valueType="String"/>
       <resourceProperties title="manufacturer" name="manufacturer" occurs="zeroOrOne" valueType="String"/>
       <resourceProperties title="model" name="model" occurs="zeroOrOne" valueType="String"/>
@@ -134,19 +134,19 @@
       <resourceProperties title="fwVersion" name="fwVersion" occurs="zeroOrOne" valueType="String"/>
       <resourceProperties title="hwVersion" name="hwVersion" occurs="zeroOrOne" valueType="String"/>
       <resourceProperties title="descriptiveLocation" name="descriptiveLocation" occurs="zeroOrOne" valueType="String"/>
-      <resourceProperties title="thingTypeMapping" name="thingTypeMappings" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.11"/>
-      <resourceProperties title="logicalInterface" name="logicalInterface" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.7"/>
-      <resourceProperties title="applicationInterfaces" name="logicalInterfaces" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.7"/>
-      <resourceProperties title="deviceTypeMappings" name="deviceTypeMappings" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.6"/>
-      <resourceProperties title="physicalInterfaces" name="physicalInterfaces" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.4"/>
-      <resourceProperties title="eventTypes" name="eventTypes" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.5"/>
+      <resourceProperties title="thingTypeMapping" name="thingTypeMappings" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='ThingTypeMapping']"/>
+      <resourceProperties title="logicalInterface" name="logicalInterface" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='LogicalInterface']"/>
+      <resourceProperties title="applicationInterfaces" name="logicalInterfaces" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='LogicalInterface']"/>
+      <resourceProperties title="deviceTypeMappings" name="deviceTypeMappings" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='DeviceTypeMapping']"/>
+      <resourceProperties title="physicalInterfaces" name="physicalInterfaces" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='PhysicalInterface']"/>
+      <resourceProperties title="eventTypes" name="eventTypes" occurs="zeroOrMany" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='EventType']"/>
       <resourceProperties title="condition" name="condition" valueType="String"/>
       <resourceProperties title="action" name="action" valueType="String"/>
-      <resourceProperties title="physicalInterface" name="physicalInterface" occurs="zeroOrOne" valueType="Resource" range="//@specification/@domainSpecifications.1/@resources.4"/>
-      <resourceProperties title="deviceInfo" name="deviceInfo" occurs="zeroOrOne" valueType="LocalResource" range="//@specification/@domainSpecifications.1/@resources.3"/>
-      <resourceProperties title="metaData" name="metaData" occurs="zeroOrOne" valueType="LocalResource" range="//@specification/@domainSpecifications.1/@resources.10"/>
+      <resourceProperties title="physicalInterface" name="physicalInterface" occurs="zeroOrOne" valueType="Resource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='PhysicalInterface']"/>
+      <resourceProperties title="deviceInfo" name="deviceInfo" occurs="zeroOrOne" valueType="LocalResource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='DeviceInfo']"/>
+      <resourceProperties title="metaData" name="metaData" occurs="zeroOrOne" valueType="LocalResource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='MetaData']"/>
       <resourceProperties title="name" name="name" valueType="String"/>
-      <resourceProperties title="metaProperties" name="metaProperties" occurs="zeroOrMany" valueType="LocalResource" range="//@specification/@domainSpecifications.1/@resources.2"/>
+      <resourceProperties title="metaProperties" name="metaProperties" occurs="zeroOrMany" valueType="LocalResource" range="//@specification/@domainSpecifications[name='IoT%20Platform']/@resources[name='MetaProperty']"/>
       <resourceProperties title="classId" name="classId" occurs="zeroOrOne" valueType="String"/>
       <resourceProperties title="typeId" name="typeId" readOnly="true" valueType="String"/>
       <resourceProperties title="logicalInterfaceId" name="logicalInterfaceId" valueType="String"/>
@@ -154,4 +154,5 @@
     <domainPrefixes name="oslc_bmx"/>
     <domainPrefixes name="oslc_iot"/>
   </specification>
+  <vocabularies/>
 </oslc4j_tc:Toolchain>
