@@ -23,9 +23,17 @@
 package com.ibm.oslc.adaptor.iotp.services;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,8 +41,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -48,22 +58,39 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.UriBuilder;
 
+import org.apache.wink.json4j.JSONObject;
+import org.eclipse.lyo.oslc4j.provider.json4j.JsonHelper;
 import org.eclipse.lyo.oslc4j.core.OSLC4JUtils;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcCreationFactory;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcDialog;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcDialogs;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcQueryCapability;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcService;
 import org.eclipse.lyo.oslc4j.core.model.Compact;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 import org.eclipse.lyo.oslc4j.core.model.Preview;
+import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
+import org.eclipse.lyo.oslc4j.core.model.Link;
 import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
 
 import com.ibm.oslc.adaptor.iotp.CE4IoTConnectorManager;
 import com.ibm.oslc.adaptor.iotp.CE4IoTConnectorConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_bmxDomainConstants;
+import com.ibm.oslc.adaptor.iotp.resources.Oslc_bmxDomainConstants;
+import com.ibm.oslc.adaptor.iotp.resources.Oslc_bmxDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_cmDomainConstants;
 import com.ibm.oslc.adaptor.iotp.resources.Oslc_rmDomainConstants;
+import com.ibm.oslc.adaptor.iotp.servlet.ServiceProviderCatalogSingleton;
+import com.ibm.oslc.adaptor.iotp.resources.App;
+import com.ibm.oslc.adaptor.iotp.resources.CFService;
+import com.ibm.oslc.adaptor.iotp.resources.ChangeRequest;
+import com.ibm.oslc.adaptor.iotp.resources.Discussion;
+import com.ibm.oslc.adaptor.iotp.resources.Flow;
 import com.ibm.oslc.adaptor.iotp.resources.NodeREDApp;
+import com.ibm.oslc.adaptor.iotp.resources.Person;
+import com.ibm.oslc.adaptor.iotp.resources.Requirement;
+import com.ibm.oslc.adaptor.iotp.resources.Resource;
 import com.ibm.oslc.adaptor.iotp.resources.Space;
 
 // Start of user code imports
