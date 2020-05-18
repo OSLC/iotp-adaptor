@@ -18,7 +18,7 @@
 --%>
 <%@ page contentType="application/rdf+xml" language="java" pageEncoding="UTF-8" %>
 <%
-String baseUri = (String) request.getAttribute("baseUri");
+String baseUri = (String) request.getAttribute("baseUri");src/main/webapp/WEB-INF/web.xml
 String catalogUri = (String) request.getAttribute("catalogUri");
 String oauthDomain = (String) request.getAttribute("oauthDomain");
 String about = (String) request.getAttribute("about");
@@ -40,7 +40,6 @@ String about = (String) request.getAttribute("about");
 	<!-- Service Providers - ServiceProviderCatalog URLs for each domain -->
 	<oslc_am:amServiceProviders rdf:resource="<%= catalogUri %>" />
 	<oslc_rm:rmServiceProviders rdf:resource="<%= catalogUri %>" />
-	<oslc_cm:cmServiceProviders rdf:resource="<%= catalogUri %>" />
 	<oslc_cm:cmServiceProviders rdf:resource="<%= catalogUri %>" />
 	<oslc_config:cmServiceProviders	rdf:resource="<%= catalogUri %>"/>
 
