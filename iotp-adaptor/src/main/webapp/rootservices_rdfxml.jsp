@@ -18,7 +18,7 @@
 --%>
 <%@ page contentType="application/rdf+xml" language="java" pageEncoding="UTF-8" %>
 <%
-String baseUri = (String) request.getAttribute("baseUri");src/main/webapp/WEB-INF/web.xml
+String baseUri = (String) request.getAttribute("baseUri");
 String catalogUri = (String) request.getAttribute("catalogUri");
 String oauthDomain = (String) request.getAttribute("oauthDomain");
 String about = (String) request.getAttribute("about");
