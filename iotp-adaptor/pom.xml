@@ -13,7 +13,7 @@
 		<version-jvm>1.7</version-jvm>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<version-jetty>9.4.6.v20170531</version-jetty>
+		<version-jetty>11.0.2</version-jetty>
 		<version.lyo.core>2.4.0</version.lyo.core>
 		<version.lyo.server>2.4.0</version.lyo.server>
 	</properties>
