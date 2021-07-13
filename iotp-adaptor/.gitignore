@@ -1,6 +1,8 @@
 /target/
 /build/
 .idea/
+.classpath
+/.settings/
 
 *.class
 
