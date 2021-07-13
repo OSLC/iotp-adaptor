@@ -15,7 +15,7 @@ For additional information, see:
 The iotp-adaptor project provides sample code that demonstrates how to build a aimple OSLC adaptor on an existing data source, in this case, IBM Watson IoT Platform resources (DeviceType, Device, LogicalInterface, PhysicalInterface, Rule, etc.) iotp-adapter demonstrates how to use eclipse [Lyo Designer](https://wiki.eclipse.org/Lyo/ToolchainModellingAndCodeGenerationWorkshop) to model an OSLC toolchain and generate an OSLC server implementation that can be easily adapted to existing data sources. The generated server provides the following OSLC capabilities:
 
 * **CRUD operations** - on resources using RDF resource representations (provides predictable resource formats, rich semantics, and goos support for links)
-* **Service discovery** - ServiceProviderCatalog, ServiceProvicers (containers of managed resources), Services that describe what OSLC capabilities are provided on what resources
+* **Service discovery** - ServiceProviderCatalog, ServiceProviders (containers of managed resources), Services that describe what OSLC capabilities are provided on what resources
 * **Query Capability** – persistent independent query capability for integration
 * **Delegated dialogs** – to allow an application to create and select resources in another application for the purpose of establishing links
 * **Resource preview** – to provide icons and labels in order to view a link to a resource managed by another tool
@@ -53,20 +53,20 @@ This distribution has the following dependencies:
 * jetty-io 9.4.6.v20170531 (eclipse jetty)
 * httpclient 4.5.2
 * ws-commons-util 1.0.2
-* oslc4j-core 2.2.0 (eclipse/Lyo OSLC4J)
-* oslc4j-jena-provider 2.2.0 (eclipse/Lyo OSLC4J)
-* oslc4j-wink 2.2.0 (eclipse/Lyo OSLC4J)
-* oslc4j-json4j-provider 2.2.0 (eclipse OSLC4J)
-* oauth-core 2.2.0 (eclipse/Lyo OSLC4J)
-* oauth-consumer-store 2.2.0/Lyo (eclipse OSLC4J)
-* oauth-webapp 2.2.0 (eclipse/Lyo OSLC4J)
-* oslc-java-client 2.2.0 (for JUnit testing)  (eclipse/Lyo OSLC4J)
+* oslc4j-core 2.4.0 (eclipse/Lyo OSLC4J)
+* oslc4j-jena-provider 2.4.0 (eclipse/Lyo OSLC4J)
+* oslc4j-wink 2.4.0 (eclipse/Lyo OSLC4J)
+* oslc4j-json4j-provider 2.4.0 (eclipse OSLC4J)
+* oauth-core 2.4.0 (eclipse/Lyo OSLC4J)
+* oauth-consumer-store 2.4.0/Lyo (eclipse OSLC4J)
+* oauth-webapp 2.4.0 (eclipse/Lyo OSLC4J)
+* oslc-java-client 2.4.0 (for JUnit testing)  (eclipse/Lyo OSLC4J)
 * java.servlet-api 3.1.0
-* javax.servlet.jsp.jstl-api 1.2.1
+* javax.servlet.jsp.jstl-api 2.3.1
 * taglibs-standard-impl 1.2.5
 * slf4j-log4j12 1.6.4
-* junit 4.13
-* jsoup 1.8.3 
+* junit 4.12
+* jsoup 1.8.3
 * gson 2.8.1
 * dojo-war 1.12.2
 * JRE 1.8

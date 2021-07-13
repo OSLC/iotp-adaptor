@@ -105,16 +105,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.lyo.oslc4j.core</groupId>
-			<artifactId>oslc4j-core</artifactId>
-			<version>${version.lyo.core}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.lyo.oslc4j.core</groupId>
-			<artifactId>oslc4j-jena-provider</artifactId>
-			<version>${version.lyo.core}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.lyo.oslc4j.core</groupId>
 			<artifactId>oslc4j-wink</artifactId>
 			<version>${version.lyo.core}</version>
 		</dependency>

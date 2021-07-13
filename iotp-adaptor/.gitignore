@@ -1,5 +1,6 @@
 /target/
 /build/
+.idea/
 
 *.class
 
@@ -15,3 +16,6 @@
 hs_err_pid*
 
 /OAuthStore.xml
+
+overlays/
+*.iml
