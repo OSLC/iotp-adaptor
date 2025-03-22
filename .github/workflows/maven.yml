@@ -23,6 +23,12 @@ jobs:
         distribution: ['temurin']
         experimental: [false]
         include:
+          - jdk: '7'
+            distribution: 'zulu'
+            experimental: true
+          - jdk: '8'
+            distribution: 'zulu'
+            experimental: true
           - jdk: '23'
             distribution: 'zulu'
             experimental: true
