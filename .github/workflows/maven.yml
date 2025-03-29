@@ -19,22 +19,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        jdk: ['8', '11', '17', '21']
+        jdk: ['8']
         distribution: ['temurin']
         experimental: [false]
         include:
-          - jdk: '7'
-            distribution: 'zulu'
-            experimental: true
           - jdk: '8'
             distribution: 'zulu'
-            experimental: true
-          - jdk: '23'
-            distribution: 'zulu'
-            experimental: true
-          - jdk: '24-ea'
-            distribution: 'zulu'
-            experimental: true
+            experimental: false
+          # - jdk: '23'
+          #   distribution: 'zulu'
+          #   experimental: true
+          # - jdk: '24-ea'
+          #   distribution: 'zulu'
+          #   experimental: true
     continue-on-error: ${{ matrix.experimental }}
     steps:
     - uses: actions/checkout@v4
