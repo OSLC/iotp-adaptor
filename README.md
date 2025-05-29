@@ -3,6 +3,8 @@
 ![CI](https://github.com/OSLC/iotp-adaptor/workflows/CI/badge.svg)
 ![Discourse users](https://img.shields.io/discourse/users?color=28bd84&server=https%3A%2F%2Fforum.open-services.net%2F)
 
+> **Archived due to the sunset of the [IBM Watson IoT Platform](https://www.theregister.com/2022/11/15/ibm_set_to_retire_watson/)**
+
 A project to provide a sample OSLC adaptor and TRS provider for the IBM Watson IoT Platform and Bluemix, developed using the eclipse/Lyo Designer code generator. This sample code is used in the [OSLC Developer Guide](http://oslc.github.io/developing-oslc-applications/).
 
 For additional information, see:
